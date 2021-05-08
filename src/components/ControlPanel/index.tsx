@@ -1,7 +1,7 @@
 import React from 'react';
 import { Header } from './Header';
 import { Welcome } from './Welcome';
-import { ControlPanelList } from './ControlPanelList';
+import ControlPanelList from './ControlPanelList';
 
 import './style.scss';
 

@@ -1,41 +1,31 @@
 import React from 'react';
 import { ControlPanelItem } from '../ControlPanelItem';
+import { connect } from 'react-redux';
 import './style.scss';
+import { IStore } from '../../../types/store';
+import { IManagementState } from '../../../types/reducers';
+import { setActiveControl } from '../../../actions';
 
-import voitingImage from '../../../assets/image/voting-image.png';
-import breedsImage from '../../../assets/image/breeds-image.png';
-import galleryImage from '../../../assets/image/gallery-image.png';
+interface ControlPanelListProps {
+  management: IManagementState
+  setActiveControl: (text: string) => void
+}
 
-const CONTROLS = [
-  {
-    text: "VOTING",
-    backgroundColor: "#B4B7FF",
-    image: voitingImage
-  },
-  {
-    text: "BREEDS",
-    backgroundColor: "#97EAB9",
-    image: breedsImage
-  },
-  {
-    text: "GALLERY",
-    backgroundColor: "#FFD280",
-    image: galleryImage
-  },
-]
-
-export function ControlPanelList() {
+function ControlPanelList({ management, setActiveControl }: ControlPanelListProps): React.ReactElement<ControlPanelListProps> {
 
   return (
     <div className="control-list">
       <h2 className="control-list__title">Давайте начнем использовать Dogs API</h2>
 
       <ul className="control-list__items">
-        {CONTROLS.map((item) => {
+        {management && management.controls.map((item) => {
           const { text } = item;
 
           return (
-            <li className="control-list__item" key={text}>
+            <li key={text}
+              className="control-list__item"
+              onClick={() => setActiveControl(text)}
+            >
               <ControlPanelItem {...item} />
             </li>
           )
@@ -44,3 +34,9 @@ export function ControlPanelList() {
     </div>
   )
 }
+
+const mapStateToProps = ({ management }: IStore) => {
+  return { management }
+}
+
+export default connect(mapStateToProps, { setActiveControl })(ControlPanelList);

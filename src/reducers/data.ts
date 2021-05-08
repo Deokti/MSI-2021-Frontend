@@ -1,12 +1,6 @@
+import { IDataState } from '../types/reducers';
 
-
-interface IInitialState {
-  VOTING: Array<object>
-  BREEDS: Array<object>
-  GALLERY: Array<object>
-}
-
-const initialState: IInitialState = {
+const initialState: IDataState = {
   VOTING: [],
   BREEDS: [],
   GALLERY: []
