@@ -1,14 +1,14 @@
-.management-item {
+.control-panel {
   cursor: pointer;
   display: block;
   min-width: 138px;
   max-width: 138px;
-  &:hover > .management-item__button {
+  &:hover > .control-panel__button {
     background: #FBE0DC;
   }
 }
 
-.management-item__image {
+.control-panel__image {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,7 +18,7 @@
   border-radius: 20px;
 }
 
-.management-item__button {
+.control-panel__button {
   margin-top: 10px;
   letter-spacing: 2px;
   background-color: transparent;

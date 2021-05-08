@@ -1,16 +1,20 @@
-.management-list__title {
+.control-list {
+  margin-top: 60px;
+}
+
+.control-list__title {
   color: #1D1D1D;
   font-weight: 500;
   font-size: 20px;
   line-height: 29px;
 }
 
-.management__items {
+.control-list__items {
   margin-top: 20px;
   list-style: none;
   display: flex;
 }
 
-.management__item:not(:last-child) {
+.control-list__item:not(:last-child) {
   margin-right: 16px;
 }

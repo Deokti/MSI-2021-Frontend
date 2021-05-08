@@ -5,9 +5,18 @@ type TRow = React.ReactElement | React.FC | JSX.Element
 interface RowProps {
   left: TRow
   right: TRow
+  display?: string
+  justifyContent?: 'initial' | 'space-between' | 'space-around' | 'space-evenly'
+  marginLeft?: number
+  marginRight?: number
 }
 
-export function Row({ left, right }: RowProps): React.ReactElement<RowProps> {
+export function Row(
+  { left, right,
+    display = 'flex',
+    justifyContent = 'space-between',
+    marginLeft, marginRight
+  }: RowProps): React.ReactElement<RowProps> {
 
   function processСomponent(Component: TRow) {
     return typeof Component === 'function'
@@ -17,8 +26,10 @@ export function Row({ left, right }: RowProps): React.ReactElement<RowProps> {
 
   return (
     <div style={{
-      display: 'flex',
-      justifyContent: 'space-between'
+      display,
+      justifyContent,
+      marginLeft,
+      marginRight
     }}>
       {processСomponent(left)}
       {processСomponent(right)}

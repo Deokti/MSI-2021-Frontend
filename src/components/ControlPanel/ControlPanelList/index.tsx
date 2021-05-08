@@ -6,7 +6,7 @@ import voitingImage from '../../../assets/image/voting-image.png';
 import breedsImage from '../../../assets/image/breeds-image.png';
 import galleryImage from '../../../assets/image/gallery-image.png';
 
-const CONTROL = [
+const CONTROLS = [
   {
     text: "VOTING",
     backgroundColor: "#B4B7FF",
@@ -27,13 +27,15 @@ const CONTROL = [
 export function ControlPanelList() {
 
   return (
-    <div className="management-list">
-      <h2 className="management-list__title">Давайте начнем использовать Dogs API</h2>
+    <div className="control-list">
+      <h2 className="control-list__title">Давайте начнем использовать Dogs API</h2>
 
-      <ul className="management__items">
-        {CONTROL.map((item) => {
+      <ul className="control-list__items">
+        {CONTROLS.map((item) => {
+          const { text } = item;
+
           return (
-            <li className="management__item">
+            <li className="control-list__item" key={text}>
               <ControlPanelItem {...item} />
             </li>
           )

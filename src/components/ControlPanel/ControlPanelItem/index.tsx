@@ -12,8 +12,8 @@ interface ManagementItemProps {
 export function ControlPanelItem({ backgroundColor, text, image }: ManagementItemProps): React.ReactElement<ManagementItemProps> {
 
   return (
-    <span className="management-item">
-      <span className="management-item__image" style={{ backgroundColor }}>
+    <span className="control-panel">
+      <span className="control-panel__image" style={{ backgroundColor }}>
         <img src={image} alt="text" />
       </span>
       <Button
@@ -22,7 +22,7 @@ export function ControlPanelItem({ backgroundColor, text, image }: ManagementIte
         borderRadius={10}
         fontSize={12}
         fontWeight={600}
-        className="management-item__button"
+        className="control-panel__button"
       >
         {text}
       </Button>

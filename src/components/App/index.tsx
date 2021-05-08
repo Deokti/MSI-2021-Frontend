@@ -1,12 +1,17 @@
 import React from 'react';
+import { ContentPanel } from '../ContentPanel';
 import { ControlPanel } from '../ControlPanel';
+import { Row } from '../Row';
 import './app.scss';
 
 function App() {
 
   return (
     <main className="app">
-      <ControlPanel />
+      <Row
+        left={ControlPanel}
+        right={ContentPanel}
+      />
     </main>
   )
 }
