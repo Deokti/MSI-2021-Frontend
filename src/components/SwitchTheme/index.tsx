@@ -1,23 +1,20 @@
-import React from 'react';
-import './switch-theme.scss';
-
+import clsx from 'clsx';
+import React, { useState } from 'react';
 import { AiOutlineEye } from 'react-icons/ai';
 import { RiEyeCloseLine } from 'react-icons/ri';
+import './switch-theme.scss';
 
-export interface SwitchThemeProps {
-  darkTheme: boolean
-  onChangeTheme?: () => void
-}
 
-export function SwitchTheme({ darkTheme = false, onChangeTheme = () => { } }: SwitchThemeProps): React.ReactElement<SwitchThemeProps> {
+export function SwitchTheme(): React.ReactElement {
+  const [darkTheme, setDarkTheme] = useState(false);
 
   return (
-    <button className="switch-theme" onClick={onChangeTheme}>
+    <button className="switch-theme">
       {darkTheme
         ? <RiEyeCloseLine size={24} color="#FF868E" />
         : <AiOutlineEye size={24} color="#FF868E" />
       }
-      <span className={`switch-theme__circle ${darkTheme ? 'active' : ''}`} />
+      <span className={clsx('switch-theme__circle', { active: darkTheme })} />
     </button>
   )
 }

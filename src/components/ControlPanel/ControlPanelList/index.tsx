@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { ControlPanelItem } from '../ControlPanelItem';
 import { connect } from 'react-redux';
 import './style.scss';
@@ -11,7 +11,7 @@ interface ControlPanelListProps {
   setActiveControl: (text: string) => void
 }
 
-function ControlPanelList({ management, setActiveControl }: ControlPanelListProps): React.ReactElement<ControlPanelListProps> {
+function ControlPanelList({ management, setActiveControl }: ControlPanelListProps): ReactElement<ControlPanelListProps> {
 
   return (
     <div className="control-list">
@@ -23,10 +23,10 @@ function ControlPanelList({ management, setActiveControl }: ControlPanelListProp
 
           return (
             <li key={text}
-              className="control-list__item"
+              className='control-list__item'
               onClick={() => setActiveControl(text)}
             >
-              <ControlPanelItem {...item} />
+              <ControlPanelItem {...item} active={text === management.active} />
             </li>
           )
         })}
@@ -35,8 +35,6 @@ function ControlPanelList({ management, setActiveControl }: ControlPanelListProp
   )
 }
 
-const mapStateToProps = ({ management }: IStore) => {
-  return { management }
-}
+const mapStateToProps = ({ management }: IStore) => ({ management });
 
 export default connect(mapStateToProps, { setActiveControl })(ControlPanelList);

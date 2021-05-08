@@ -9,7 +9,7 @@ export function Header(): React.ReactElement {
     <header>
       <Row
         left={Logo}
-        right={<SwitchTheme darkTheme={false} />}
+        right={SwitchTheme}
       />
     </header>
   )

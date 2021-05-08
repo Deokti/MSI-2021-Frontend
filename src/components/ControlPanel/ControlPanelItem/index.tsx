@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
+import clsx from 'clsx';
 import Button from '../../Button';
 
 import './style.scss';
@@ -7,13 +8,14 @@ interface ManagementItemProps {
   backgroundColor: string
   text: string
   image: string
+  active: boolean
 }
 
-export function ControlPanelItem({ backgroundColor, text, image }: ManagementItemProps): React.ReactElement<ManagementItemProps> {
+export function ControlPanelItem({ backgroundColor, text, image, active }: ManagementItemProps): ReactElement<ManagementItemProps> {
 
   return (
-    <span className="control-panel">
-      <span className="control-panel__image" style={{ backgroundColor }}>
+    <span className="control-panel-item">
+      <span className="control-panel-item__image" style={{ backgroundColor }}>
         <img src={image} alt="text" />
       </span>
       <Button
@@ -22,7 +24,7 @@ export function ControlPanelItem({ backgroundColor, text, image }: ManagementIte
         borderRadius={10}
         fontSize={12}
         fontWeight={600}
-        className="control-panel__button"
+        className={clsx('control-panel-item__button', { active: active })}
       >
         {text}
       </Button>

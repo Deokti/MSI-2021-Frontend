@@ -1,14 +1,19 @@
-.control-panel {
+.control-panel-item {
   cursor: pointer;
   display: block;
   min-width: 138px;
   max-width: 138px;
-  &:hover > .control-panel__button {
+  &:hover > .control-panel-item__button:not(.active) {
     background: #FBE0DC;
+  }
+  
+  .active {
+    background-color: #FF868E;
+    color: #fff;
   }
 }
 
-.control-panel__image {
+.control-panel-item__image {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,7 +23,7 @@
   border-radius: 20px;
 }
 
-.control-panel__button {
+.control-panel-item__button {
   margin-top: 10px;
   letter-spacing: 2px;
   background-color: transparent;
