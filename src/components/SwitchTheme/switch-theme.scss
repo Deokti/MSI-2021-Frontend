@@ -1,0 +1,30 @@
+.switch-theme {
+  cursor: pointer;
+  display: flex;
+  border: none;
+  background-color: transparent;
+}
+
+.switch-theme__circle {
+  display: block;
+  margin-left: 5px;
+  position: relative;
+  width: 44px;
+  height: 24px;
+  background-color: #FBE0DC;
+  border-radius: 12px;
+  &::before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background-color: #FF868E;
+    border-radius: 50%;
+    top: 4px;
+    right: 4px;
+  }
+}
+
+.switch-theme__circle.active::before {
+  transform: translateX(-120%);
+}

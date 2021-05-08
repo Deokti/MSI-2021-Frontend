@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button component should render Button component 1`] = `
+<button
+  className="button"
+  disabled={false}
+  style={
+    Object {
+      "backgroundColor": "#fcfc",
+      "border": "1px solid #000",
+      "borderRadius": 4,
+      "color": "#000",
+      "cursor": "pointer",
+      "fontSize": 14,
+      "fontWeight": 500,
+      "height": 45,
+      "width": 250,
+    }
+  }
+  type="button"
+>
+  Тестовая кнопка
+</button>
+`;

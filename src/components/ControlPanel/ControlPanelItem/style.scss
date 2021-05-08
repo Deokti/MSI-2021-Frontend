@@ -1,0 +1,26 @@
+.management-item {
+  cursor: pointer;
+  display: block;
+  min-width: 138px;
+  max-width: 138px;
+  &:hover > .management-item__button {
+    background: #FBE0DC;
+  }
+}
+
+.management-item__image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 4px solid rgba(255, 255, 255, 0.6);
+  width: 100%;
+  height: 198px;
+  border-radius: 20px;
+}
+
+.management-item__button {
+  margin-top: 10px;
+  letter-spacing: 2px;
+  background-color: transparent;
+  color: #FF868E;
+}

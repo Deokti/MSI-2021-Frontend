@@ -1,0 +1,17 @@
+.button:hover {
+  opacity: .9;
+}
+
+.active > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.isLoading,
+.disabled {
+  pointer-events: none;
+  opacity: .6;
+}
+
+
