@@ -1,10 +1,10 @@
 import React, { ReactElement } from 'react';
 import { ControlPanelItem } from '../ControlPanelItem';
 import { connect } from 'react-redux';
-import './style.scss';
 import { IStore } from '../../../types/store';
 import { IManagementState } from '../../../types/reducers';
 import { setActiveControl } from '../../../actions';
+import './style.scss';
 
 interface ControlPanelListProps {
   management: IManagementState

@@ -3,6 +3,7 @@ export interface IDataState {
   VOTING: Array<object>
   BREEDS: Array<object>
   GALLERY: Array<object>
+  darkTheme: boolean
 }
 
 // Management

@@ -1,15 +1,42 @@
+import React, { useEffect } from 'react';
 import clsx from 'clsx';
-import React, { useState } from 'react';
 import { AiOutlineEye } from 'react-icons/ai';
 import { RiEyeCloseLine } from 'react-icons/ri';
+import { IStore } from '../../types/store';
+import { setDarkTheme } from '../../actions';
+import { connect } from 'react-redux';
+import { getThemeLocalStorage, setThemeLocalStorage } from '../../utils/theme-local-storage';
 import './switch-theme.scss';
 
+interface SwitchThemeProps {
+  darkTheme: boolean
+  setDarkTheme: (value: boolean) => void;
+}
 
-export function SwitchTheme(): React.ReactElement {
-  const [darkTheme, setDarkTheme] = useState(false);
+function SwitchTheme({ darkTheme, setDarkTheme }: SwitchThemeProps): React.ReactElement<SwitchThemeProps> {
+
+  useEffect(isDarkTheme, [isDarkTheme]);
+
+  function isDarkTheme() {
+    const theme = getThemeLocalStorage();
+    if (theme === false) {
+      return setThemeLocalStorage(darkTheme);
+    }
+
+    return setDarkTheme(getThemeLocalStorage());
+  }
+
+  function onChangeTheme(): void {
+    // При передаче темы, передаётся текущая тема, 
+    // по этой причине мы автоматически делает отричание,
+    // чтобы побучилось, например false => true
+
+    setDarkTheme(!darkTheme);
+    setThemeLocalStorage(!darkTheme);
+  }
 
   return (
-    <button className="switch-theme">
+    <button className="switch-theme" onClick={onChangeTheme}>
       {darkTheme
         ? <RiEyeCloseLine size={24} color="#FF868E" />
         : <AiOutlineEye size={24} color="#FF868E" />
@@ -18,3 +45,7 @@ export function SwitchTheme(): React.ReactElement {
     </button>
   )
 }
+
+const mapStateToProps = ({ data: { darkTheme } }: IStore) => ({ darkTheme });
+
+export default connect(mapStateToProps, { setDarkTheme })(SwitchTheme);

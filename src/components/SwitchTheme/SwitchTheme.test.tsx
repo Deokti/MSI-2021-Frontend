@@ -6,7 +6,7 @@ describe('SwitchTheme', () => {
   let wrapper: ShallowWrapper<any, Readonly<{}> | React.Component<{}, {}, any>>
 
   beforeEach(() => {
-    wrapper = shallow(<SwitchTheme darkTheme={false} />)
+    wrapper = shallow(<SwitchTheme />)
   });
 
   it('render component', () => {
@@ -22,7 +22,7 @@ describe('SwitchTheme', () => {
   });
 
   it('dark theme in the SwitchTheme component darkTheme when is true', () => {
-    wrapper = shallow(<SwitchTheme darkTheme={true} />);
+    wrapper = shallow(<SwitchTheme />);
     expect(wrapper.find('span.active').length).toEqual(1);
   });
 });
