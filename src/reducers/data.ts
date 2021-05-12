@@ -1,4 +1,4 @@
-import { setDarkTheme } from '../actions';
+import { getDarkTheme, setDarkTheme } from '../actions';
 import { IDataState } from '../types/reducers';
 
 const initialState: IDataState = {
@@ -11,6 +11,12 @@ const initialState: IDataState = {
 function data(state: IDataState = initialState, action: any) {
 
   switch (action.type) {
+
+    case getDarkTheme.toString(): {
+      return {
+        ...state,
+      }
+    }
 
     case setDarkTheme.toString(): {
       return {

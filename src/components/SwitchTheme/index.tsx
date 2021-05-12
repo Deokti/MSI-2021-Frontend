@@ -3,27 +3,21 @@ import clsx from 'clsx';
 import { AiOutlineEye } from 'react-icons/ai';
 import { RiEyeCloseLine } from 'react-icons/ri';
 import { IStore } from '../../types/store';
-import { setDarkTheme } from '../../actions';
+import { getDarkTheme, setDarkTheme } from '../../actions';
 import { connect } from 'react-redux';
-import { getThemeLocalStorage, setThemeLocalStorage } from '../../utils/theme-local-storage';
+import { setThemeLocalStorage } from '../../utils/theme-local-storage';
 import './switch-theme.scss';
 
 interface SwitchThemeProps {
   darkTheme: boolean
   setDarkTheme: (value: boolean) => void;
+  getDarkTheme: () => any;
 }
 
-function SwitchTheme({ darkTheme, setDarkTheme }: SwitchThemeProps): React.ReactElement<SwitchThemeProps> {
+function SwitchTheme({ darkTheme, setDarkTheme, getDarkTheme }: SwitchThemeProps): React.ReactElement<SwitchThemeProps> {
 
-  useEffect(checkTheme, [checkTheme]);
-
-  function checkTheme() {
-    const theme = getThemeLocalStorage();
-
-    return theme === false
-      ? setThemeLocalStorage(darkTheme)
-      : setDarkTheme(getThemeLocalStorage())
-  }
+  // Проверка темы и её выставление происходит в middlewave --> isDarkTheme
+  useEffect(getDarkTheme, [getDarkTheme]);
 
   function onChangeTheme(): void {
     // При передаче темы, передаётся текущая тема, 
@@ -49,4 +43,4 @@ function SwitchTheme({ darkTheme, setDarkTheme }: SwitchThemeProps): React.React
 
 const mapStateToProps = ({ data: { darkTheme } }: IStore) => ({ darkTheme });
 
-export default connect(mapStateToProps, { setDarkTheme })(SwitchTheme);
+export default connect(mapStateToProps, { setDarkTheme, getDarkTheme })(SwitchTheme);
