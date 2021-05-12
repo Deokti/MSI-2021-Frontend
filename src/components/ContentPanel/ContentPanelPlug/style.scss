@@ -1,8 +1,10 @@
+@import '../../../assets/styles/theme.scss';
+
 .content-panel-plug {
   max-width: 680px;
   width: 100%;
-  background-color: #FBE0DC;
-
+  background-color: rgba(var(--background-plug), var(--background-plug-opacity));
+  border-radius: 20px;
   display: flex;
   justify-content: center;
   align-items: center;

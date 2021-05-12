@@ -1,4 +1,4 @@
-import { createStore } from 'redux';
+import { createStore, compose } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { reducers } from './reducers';
 
@@ -7,6 +7,6 @@ const composeEnhancers = composeWithDevTools({
   traceLimit: 25,
 });
 
-const store = createStore(reducers, composeEnhancers());
+const store = createStore(reducers, compose(composeEnhancers()));
 
 export { store };

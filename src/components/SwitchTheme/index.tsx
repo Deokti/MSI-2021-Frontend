@@ -15,15 +15,14 @@ interface SwitchThemeProps {
 
 function SwitchTheme({ darkTheme, setDarkTheme }: SwitchThemeProps): React.ReactElement<SwitchThemeProps> {
 
-  useEffect(isDarkTheme, [isDarkTheme]);
+  useEffect(checkTheme, [checkTheme]);
 
-  function isDarkTheme() {
+  function checkTheme() {
     const theme = getThemeLocalStorage();
-    if (theme === false) {
-      return setThemeLocalStorage(darkTheme);
-    }
 
-    return setDarkTheme(getThemeLocalStorage());
+    return theme === false
+      ? setThemeLocalStorage(darkTheme)
+      : setDarkTheme(getThemeLocalStorage())
   }
 
   function onChangeTheme(): void {
@@ -37,10 +36,12 @@ function SwitchTheme({ darkTheme, setDarkTheme }: SwitchThemeProps): React.React
 
   return (
     <button className="switch-theme" onClick={onChangeTheme}>
-      {darkTheme
-        ? <RiEyeCloseLine size={24} color="#FF868E" />
-        : <AiOutlineEye size={24} color="#FF868E" />
-      }
+      <span className="switch-theme__image">
+        {darkTheme
+          ? <RiEyeCloseLine size={19} color="#FF868E" />
+          : <AiOutlineEye size={22} color="#FF868E" />
+        }
+      </span>
       <span className={clsx('switch-theme__circle', { active: darkTheme })} />
     </button>
   )

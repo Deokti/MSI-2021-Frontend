@@ -1,9 +1,11 @@
+@import '../../../assets/styles/theme.scss';
+
 .welcome {
   padding-top: 80px;
 }
 
 .title {
-  color: #1D1D1D;
+  color: var(--color);
   font-weight: 500;
   font-size: 58px;
 }

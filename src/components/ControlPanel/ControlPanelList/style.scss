@@ -1,9 +1,11 @@
+@import '../../../assets/styles/theme.scss';
+
 .control-list {
   margin-top: 60px;
 }
 
 .control-list__title {
-  color: #1D1D1D;
+  color: var(--color);
   font-weight: 500;
   font-size: 20px;
   line-height: 29px;

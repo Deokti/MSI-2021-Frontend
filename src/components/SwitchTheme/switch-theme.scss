@@ -1,8 +1,12 @@
+@import '../../assets/styles/theme.scss';
+
 .switch-theme {
   cursor: pointer;
   display: flex;
   border: none;
   background-color: transparent;
+
+  align-items: center;
 }
 
 .switch-theme__circle {
@@ -11,7 +15,7 @@
   position: relative;
   width: 44px;
   height: 24px;
-  background-color: #FBE0DC;
+  background-color: rgba(#FBE0DC, var(--background-plug-opacity));
   border-radius: 12px;
   &::before {
     content: '';
@@ -27,4 +31,14 @@
 
 .switch-theme__circle.active::before {
   transform: translateX(-120%);
+}
+
+.switch-theme__image {
+  background-color: rgba($color: var(--white), $alpha: var(--background-plug-opacity));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  width: 27px;
+  height: 24px;
 }

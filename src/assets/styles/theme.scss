@@ -1,7 +1,15 @@
 [data-theme="light"] {
   --main-background: #F8F8F7;
+  --color: #1D1D1D;
+  --white: 255, 255, 255;
+  --background-plug: 251, 224, 220;
+  --background-plug-opacity: 100%;
 }
 
 [data-theme="dark"] {
   --main-background: #1D1D1D;
+  --color: #fff;
+  --white: 255, 255, 255;
+  --background-plug: 255, 255, 255;
+  --background-plug-opacity: 0.05;
 }
