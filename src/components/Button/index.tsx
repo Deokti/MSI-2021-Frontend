@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import styles from './Button.module.scss';
 
 export interface ButtonProps {
-  children?: string
+  children?: any
   width?: number | string
   height?: number | string
   border?: string
@@ -12,7 +12,7 @@ export interface ButtonProps {
   color?: string
   fontSize?: number
   fontWeight?: 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
-  borderRadius?: number
+  borderRadius?: number | string
   onClick?: () => {}
   type?: 'button' | 'submit',
   isLoading?: boolean

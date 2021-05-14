@@ -13,17 +13,20 @@ const initialState: IManagementState = {
   active: null,
   controls: [
     {
-      text: "VOTING",
+      id: 'votes',
+      text: "ГОЛОСОВАНИЕ",
       backgroundColor: "#B4B7FF",
       image: voitingImage
     },
     {
-      text: "BREEDS",
+      id: 'breeds',
+      text: "ПОРОДЫ",
       backgroundColor: "#97EAB9",
       image: breedsImage
     },
     {
-      text: "GALLERY",
+      id: 'gallery',
+      text: "ГАЛЕРЕЯ",
       backgroundColor: "#FFD280",
       image: galleryImage
     },

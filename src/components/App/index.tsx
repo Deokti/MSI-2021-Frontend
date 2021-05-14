@@ -2,6 +2,7 @@ import React, { useEffect, ReactElement } from 'react';
 import { useRef } from 'react';
 import { connect } from 'react-redux';
 import { IStore } from '../../types/store';
+import { changeTheme } from '../../utils/change-theme';
 import { ContentPanel } from '../ContentPanel';
 import { ControlPanel } from '../ControlPanel';
 import { Row } from '../Row';
@@ -14,15 +15,7 @@ interface AppProsp {
 function App({ darkTheme }: AppProsp): ReactElement<AppProsp> {
   const appRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => changeTheme(darkTheme), [darkTheme]);
-
-  function changeTheme(darkTheme: boolean) {
-    const { current: app } = appRef;
-
-    return darkTheme === true
-      ? app?.setAttribute('data-theme', 'dark')
-      : app?.setAttribute('data-theme', 'light');
-  }
+  useEffect(() => changeTheme(appRef, darkTheme), [darkTheme]);
 
   return (
     <main className="app" ref={appRef}>
