@@ -22,7 +22,7 @@ const ICONS = [
   },
 ];
 
-export function Header(): React.ReactElement {
+export function HeaderSearch(): React.ReactElement {
 
   return (
     <header className="header">

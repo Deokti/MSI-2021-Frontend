@@ -1,9 +1,10 @@
 import React, { ReactElement } from 'react';
 import { ControlPanelItem } from '../ControlPanelItem';
 import { connect } from 'react-redux';
-import { IStore } from '../../../types/store';
-import { IManagementState } from '../../../types/reducers';
+import { IStore } from '../../../interfaces/store';
+import { IManagementState } from '../../../interfaces/reducers';
 import { setActiveControl } from '../../../actions';
+import { Link } from 'react-router-dom';
 import './style.scss';
 
 interface ControlPanelListProps {
@@ -26,7 +27,9 @@ function ControlPanelList({ management, setActiveControl }: ControlPanelListProp
               className='control-list__item'
               onClick={() => setActiveControl(id)}
             >
-              <ControlPanelItem {...item} active={id === management.active} />
+              <Link to={id}>
+                <ControlPanelItem {...item} active={id === management.active} />
+              </Link>
             </li>
           )
         })}

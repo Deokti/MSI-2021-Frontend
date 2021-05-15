@@ -1,7 +1,7 @@
 import voitingImage from '../assets/image/voting-image.png';
 import breedsImage from '../assets/image/breeds-image.png';
 import galleryImage from '../assets/image/gallery-image.png';
-import { IManagementState } from '../types/reducers';
+import { IManagementState } from '../interfaces/reducers';
 import { setActiveControl } from '../actions';
 
 interface IManagementAction {

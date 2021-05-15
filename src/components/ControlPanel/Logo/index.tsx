@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { connect } from 'react-redux';
-import { IStore } from '../../../types/store';
+import { IStore } from '../../../interfaces/store';
 
 import logoDark from '../../../assets/image/logo-dark.svg';
 import logoLight from '../../../assets/image/logo-light.svg';

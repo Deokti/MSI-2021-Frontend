@@ -1,7 +1,7 @@
 import React, { useEffect, ReactElement } from 'react';
 import { useRef } from 'react';
 import { connect } from 'react-redux';
-import { IStore } from '../../types/store';
+import { IStore } from '../../interfaces/store';
 import { changeTheme } from '../../utils/change-theme';
 import { ContentPanel } from '../ContentPanel';
 import { ControlPanel } from '../ControlPanel';

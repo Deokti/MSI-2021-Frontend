@@ -1,10 +1,7 @@
 import { getDarkTheme, setDarkTheme } from '../actions';
-import { IDataState } from '../types/reducers';
+import { IDataState } from '../interfaces/reducers';
 
 const initialState: IDataState = {
-  VOTING: [],
-  BREEDS: [],
-  GALLERY: [],
   darkTheme: false
 }
 

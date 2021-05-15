@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import clsx from 'clsx';
 import { AiOutlineEye } from 'react-icons/ai';
 import { RiEyeCloseLine } from 'react-icons/ri';
-import { IStore } from '../../types/store';
+import { IStore } from '../../interfaces/store';
 import { getDarkTheme, setDarkTheme } from '../../actions';
 import { connect } from 'react-redux';
 import { setThemeLocalStorage } from '../../utils/theme-local-storage';

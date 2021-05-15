@@ -1,8 +1,7 @@
+import { IResponseVoting } from "./response";
+
 // Data
 export interface IDataState {
-  VOTING: Array<object>
-  BREEDS: Array<object>
-  GALLERY: Array<object>
   darkTheme: boolean
 }
 
@@ -15,4 +14,10 @@ export interface IManagementState {
     backgroundColor: string
     image: string
   }>
+}
+
+export interface IVoting {
+  VOTING: null | IResponseVoting,
+  error: any
+  loading: boolean | null
 }
