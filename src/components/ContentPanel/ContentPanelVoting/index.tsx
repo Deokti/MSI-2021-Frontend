@@ -3,8 +3,9 @@ import Button from '../../Button';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { FiSmile } from 'react-icons/fi';
 import { CgSmileSad } from 'react-icons/cg';
-import './style.scss';
 import { API_KEY } from '../../../config/API_KEY';
+import './style.scss';
+import { IResponseVoting } from '../../../types/response';
 
 
 // https://api.thedogapi.com/v1/images/search --> рандомные картинки с изображением
@@ -32,7 +33,7 @@ const BUTTONS = [
 ];
 
 export function ContentPanelVoting() {
-  const [image, setImage] = useState();
+  const [image, setImage] = useState<IResponseVoting>();
 
 
   useEffect(getData, []);
@@ -41,22 +42,19 @@ export function ContentPanelVoting() {
     fetchData();
   }
 
-  console.log(image);
-
-
   async function fetchData() {
     const response = await fetch('https://api.thedogapi.com/v1/images/search', {
       headers: { 'x-api-key': API_KEY }
     });
 
     const json = await response.json();
-    setImage(json);
+    setImage(json[0]);
   }
 
   return (
     <div className="content-panel-voting">
       <header className="content-panel-voting__header">
-        <img src={''} alt="" className="content-panel-voting__image" />
+        <div className="content-panel-voting__image" style={{ backgroundImage: `url('${image && image.url}')` }} />
 
         <ul className="content-panel-voting__buttons">
           {BUTTONS.map((button) => {
