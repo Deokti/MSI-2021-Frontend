@@ -21,6 +21,7 @@ function ContentPanelVoting({ getVotingRequest, getVotingHistory, voting }: Cont
     getVotingHistory();
   }, [getVotingHistory, getVotingRequest]);
 
+
   return (
     <div className="content-panel-voting">
       {voting.loading
@@ -51,7 +52,9 @@ function ContentPanelVoting({ getVotingRequest, getVotingHistory, voting }: Cont
 
                 return (
                   <li className="content-panel-voting__action" key={history.id}>
-                    <span className="content-panel-voting__time">22:35</span>
+                    <span className="content-panel-voting__time">
+                      {new Date(history.created_at).toLocaleTimeString()}
+                    </span>
                     Изображение с ID: <span className="content-panel-voting__id">{history.image_id}</span> {text}
                     <span className="content-panel-voting__icon">
                       {icon}

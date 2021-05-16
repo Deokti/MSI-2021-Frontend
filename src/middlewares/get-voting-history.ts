@@ -10,7 +10,10 @@ export const votingHistory = (store: MiddlewareAPI) => (next: Dispatch) => (acti
       .then((voting) => {
         store.dispatch(getVotingHistorySucsess(voting));
       })
-      .catch(() => store.dispatch(getVotingHistory()));
+      .catch((error) => {
+        store.dispatch(getVotingHistory());
+        console.error(error);
+      });
   }
 
   return next(action);
