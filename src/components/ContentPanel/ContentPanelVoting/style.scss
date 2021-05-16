@@ -27,9 +27,9 @@
 }
 
 .content-panel-voting__buttons {
-  border: 4px solid #fff;
-  background-color: #fff;
-  border-radius: 20px;
+  border: 4px solid var(--main-background);
+  background-color: var(--main-background);
+  border-radius: 24px;
   display: flex;
   position: absolute;
   left: 50%;
@@ -38,7 +38,23 @@
 }
 
 .content-panel-voting__actions {
-  padding: 52px 10px 0px;
+  padding: 0 10px;
+  margin-top: 59px;
+  margin-bottom: 10px;
+  max-height: 350px;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: rgba(#F8F8F7, var(--background-plug-opacity));
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--main-background);
+    border: 2px solid var(--main-background);
+    border-radius: 2px;
+  }
 }
 
 .content-panel-voting__action {
@@ -56,6 +72,7 @@
   color: #8C8C8C;
 
   padding: 15px;
+  margin-bottom: 10px;
 }
 
 .content-panel-voting__time {

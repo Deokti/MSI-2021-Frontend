@@ -13,12 +13,13 @@ export interface ButtonProps {
   fontSize?: number
   fontWeight?: 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
   borderRadius?: number | string
-  onClick?: () => {}
+  onClick?: React.MouseEventHandler
   type?: 'button' | 'submit',
   isLoading?: boolean
   LoadingIcon?: JSX.Element | undefined
   disabled?: boolean,
   className?: string
+  props?: any
 }
 
 function Button({
@@ -36,7 +37,8 @@ function Button({
   onClick,
   LoadingIcon,
   isLoading = false,
-  className
+  className,
+  ...props
 }: ButtonProps) {
 
   return (
@@ -58,6 +60,7 @@ function Button({
       }
       disabled={isLoading}
       onClick={onClick}
+      {...props}
     >
       {isLoading ? LoadingIcon : children}
     </button>

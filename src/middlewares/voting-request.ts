@@ -1,5 +1,5 @@
 import { MiddlewareAPI, Dispatch, Action } from 'redux';
-import { getVotingRequest, getVotingSucsess, getVotingFailure } from '../actions';
+import { getVotingRequest, getVotingSucsess, getVotingFailure, getVotingHistory } from '../actions';
 import { API_KEY } from '../config/API_KEY';
 
 export const votingRequest = (store: MiddlewareAPI) => (next: Dispatch) => (action: Action) => {

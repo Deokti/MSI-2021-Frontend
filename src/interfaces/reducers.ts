@@ -1,4 +1,4 @@
-import { IResponseVoting } from "./response";
+import { IResponseHistoryVoting, IResponseVoting } from "./response";
 
 // Data
 export interface IDataState {
@@ -20,4 +20,5 @@ export interface IVoting {
   VOTING: null | IResponseVoting,
   error: any
   loading: boolean | null
+  votingHistory: Array<IResponseHistoryVoting>
 }

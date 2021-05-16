@@ -4,6 +4,7 @@ import { reducers } from './reducers';
 
 import { isDarkTheme } from './middlewares/is-dark-theme';
 import { votingRequest } from './middlewares/voting-request';
+import { votingHistory } from './middlewares/get-voting-history';
 
 const composeEnhancers = composeWithDevTools({
   trace: true,
@@ -11,6 +12,7 @@ const composeEnhancers = composeWithDevTools({
 });
 
 const store = createStore(reducers, compose(
+  applyMiddleware(votingHistory),
   applyMiddleware(votingRequest),
   applyMiddleware(isDarkTheme),
   composeEnhancers()

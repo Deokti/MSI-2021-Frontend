@@ -23,3 +23,12 @@ export interface IResponseVoting {
   url: string
   width: number
 }
+
+export interface IResponseHistoryVoting {
+  id: number
+  image_id: string
+  sub_id: null | string
+  created_at: string
+  value: number
+  country_code: string
+}
