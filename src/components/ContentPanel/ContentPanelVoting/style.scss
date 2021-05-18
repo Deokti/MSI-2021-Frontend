@@ -9,6 +9,7 @@
 
 .content-panel-voting__header {
   position: relative;
+  margin-top: 20px;
 
   div {
     background-position: center;
@@ -41,7 +42,7 @@
   padding: 0 10px;
   margin-top: 59px;
   margin-bottom: 10px;
-  max-height: 350px;
+  max-height: 275px;
   overflow: auto;
 
   &::-webkit-scrollbar {

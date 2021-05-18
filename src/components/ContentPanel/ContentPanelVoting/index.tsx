@@ -7,6 +7,7 @@ import { IVoting } from '../../../interfaces/reducers';
 import { BeatLoader } from 'react-spinners';
 import { BUTTONS } from './buttons';
 import { addedByVoting } from '../../../utils/added-by-voting';
+import Navigation from '../../Navigation';
 import './style.scss';
 
 interface ContentPanelVotingProps {
@@ -28,6 +29,7 @@ function ContentPanelVoting({ getVotingRequest, getVotingHistory, voting }: Cont
         ? <BeatLoader size={20} />
         : (
           <React.Fragment>
+            <Navigation />
             <header className="content-panel-voting__header">
               <div className="content-panel-voting__image"
                 style={{ backgroundImage: `url('${voting.VOTING && voting.VOTING.url}')` }}

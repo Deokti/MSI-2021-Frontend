@@ -1,0 +1,23 @@
+@import '../../assets/styles/theme.scss';
+
+.navigation {
+  display: flex;
+}
+
+.navigation__button {
+  background-color: rgba(var(--background-search), var(--background-search-opacity));
+  margin-right: 10px;
+}
+
+.navigation__link {
+  height: 40px;
+  min-width: 146px;
+  padding: 5px 30px;
+  background-color: #FF868E;
+  border-radius: 10px;
+
+  font-weight: 500;
+  font-size: 20px;
+  color: #fff;
+  text-align: center;
+}

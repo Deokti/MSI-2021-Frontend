@@ -3,7 +3,6 @@ import clsx from 'clsx';
 import Button from '../../Button';
 
 import './style.scss';
-import { useParams, useHistory } from 'react-router-dom';
 
 interface ManagementItemProps {
   backgroundColor: string
