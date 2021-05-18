@@ -4,8 +4,9 @@ import { connect } from 'react-redux';
 import { IStore } from '../../../interfaces/store';
 import { IManagementState } from '../../../interfaces/reducers';
 import { setActiveControl } from '../../../actions';
-import { Link } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import './style.scss';
+import { useEffect } from 'react';
 
 interface ControlPanelListProps {
   management: IManagementState
@@ -13,6 +14,9 @@ interface ControlPanelListProps {
 }
 
 function ControlPanelList({ management, setActiveControl }: ControlPanelListProps): ReactElement<ControlPanelListProps> {
+  const { location } = useHistory();
+  useEffect(() => setActiveControl(location.pathname), [location.pathname, setActiveControl]);
+
 
   return (
     <div className="control-list">

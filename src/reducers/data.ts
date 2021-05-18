@@ -2,7 +2,8 @@ import { getDarkTheme, setDarkTheme } from '../actions';
 import { IDataState } from '../interfaces/reducers';
 
 const initialState: IDataState = {
-  darkTheme: false
+  darkTheme: false,
+  navigation: null
 }
 
 function data(state: IDataState = initialState, action: any) {

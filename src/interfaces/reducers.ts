@@ -3,6 +3,7 @@ import { IResponseHistoryVoting, IResponseVoting } from "./response";
 // Data
 export interface IDataState {
   darkTheme: boolean
+  navigation: any[] | null
 }
 
 // Management

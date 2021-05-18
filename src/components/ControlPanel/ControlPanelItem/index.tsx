@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import Button from '../../Button';
 
 import './style.scss';
+import { useParams, useHistory } from 'react-router-dom';
 
 interface ManagementItemProps {
   backgroundColor: string
@@ -12,7 +13,6 @@ interface ManagementItemProps {
 }
 
 export function ControlPanelItem({ backgroundColor, text, image, active }: ManagementItemProps): ReactElement<ManagementItemProps> {
-
   return (
     <span className="control-panel-item">
       <span className="control-panel-item__image" style={{ backgroundColor }}>
