@@ -9,6 +9,7 @@ import { setActiveControl } from '../../actions';
 import Button from '../Button';
 
 import './style.scss';
+import { translateNavigation } from '../../utils/translate-navation';
 
 interface NavigationProsp {
   active: null | string
@@ -35,7 +36,7 @@ function Navigation({ active, setActiveControl }: NavigationProsp): ReactElement
       </Link>
 
       <span className="navigation__link">
-        {active && active.slice(1).toUpperCase()}
+        {translateNavigation(active || '')}
       </span>
     </div>
   )

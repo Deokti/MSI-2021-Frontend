@@ -52,8 +52,7 @@
     background-color: rgba(#F8F8F7, var(--background-plug-opacity));
   }
   &::-webkit-scrollbar-thumb {
-    background-color: var(--main-background);
-    border: 2px solid var(--main-background);
+    background-color: rgba(var(--scroll-bar), 0.2);
     border-radius: 2px;
   }
 }
