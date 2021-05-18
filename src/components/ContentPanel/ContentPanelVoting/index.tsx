@@ -1,35 +1,66 @@
 import React, { ReactElement, useEffect } from 'react';
 import Button from '../../Button';
-import { getVotingRequest, getVotingHistory } from '../../../actions';
 import { connect } from 'react-redux';
 import { IStore } from '../../../interfaces/store';
 import { IVoting } from '../../../interfaces/reducers';
 import { BeatLoader } from 'react-spinners';
-import { BUTTONS } from './buttons';
+
+import { AiOutlineHeart } from "react-icons/ai";
+import { CgSmileSad } from "react-icons/cg";
+import { FiSmile } from "react-icons/fi";
 import { addedByVoting } from '../../../utils/added-by-voting';
 import Navigation from '../../Navigation';
+import { getVotingRequest, getVotingHistory, sendVotingRequest } from '../../../actions';
+
 import './style.scss';
 
 interface ContentPanelVotingProps {
   getVotingRequest: () => any
   getVotingHistory: () => any
+  sendVotingRequest: ({ image_id, vote }: { image_id: string, vote: number }) => any
   voting: IVoting
 }
 
-function ContentPanelVoting({ getVotingRequest, getVotingHistory, voting }: ContentPanelVotingProps): ReactElement<ContentPanelVotingProps> {
+function ContentPanelVoting({ getVotingRequest, getVotingHistory, sendVotingRequest, voting }: ContentPanelVotingProps): ReactElement<ContentPanelVotingProps> {
+
   useEffect(() => {
     getVotingRequest();
     getVotingHistory();
   }, [getVotingHistory, getVotingRequest]);
 
+  const vote = (vote: number) => ({ image_id: voting.VOTING?.id || '', vote })
+
+  const BUTTONS = [
+    {
+      id: 'onLikes',
+      children: <FiSmile size={35} color="#fff" />,
+      onClick: () => sendVotingRequest(vote(1)),
+      backgroundColor: '#97EAB9',
+      borderRadius: "20px 0 0 20px"
+    },
+    {
+      id: 'onFavourites',
+      children: <AiOutlineHeart size={35} color="#fff" />,
+      backgroundColor: '#FF868E',
+      borderRadius: "0 0 0 0"
+    },
+    {
+      id: 'onDislikes',
+      children: <CgSmileSad size={35} color="#fff" />,
+      onClick: () => sendVotingRequest(vote(0)),
+      backgroundColor: '#FFD280',
+      borderRadius: "0 20px 20px 0"
+    }
+  ];
 
   return (
     <div className="content-panel-voting">
+      <Navigation />
+
       {voting.loading
         ? <BeatLoader size={20} />
         : (
           <React.Fragment>
-            <Navigation />
             <header className="content-panel-voting__header">
               <div className="content-panel-voting__image"
                 style={{ backgroundImage: `url('${voting.VOTING && voting.VOTING.url}')` }}
@@ -49,7 +80,7 @@ function ContentPanelVoting({ getVotingRequest, getVotingHistory, voting }: Cont
             </header>
 
             <ul className="content-panel-voting__actions">
-              {voting && voting.votingHistory.map((history) => {
+              {voting && voting.history.map((history) => {
                 const { text, icon } = addedByVoting(history.value);
 
                 return (
@@ -75,4 +106,4 @@ function ContentPanelVoting({ getVotingRequest, getVotingHistory, voting }: Cont
 
 const mapStateToProps = ({ voting }: IStore) => ({ voting });
 
-export default connect(mapStateToProps, { getVotingRequest, getVotingHistory })(ContentPanelVoting)
+export default connect(mapStateToProps, { getVotingRequest, getVotingHistory, sendVotingRequest })(ContentPanelVoting)

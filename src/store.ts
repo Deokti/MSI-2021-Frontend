@@ -5,6 +5,7 @@ import { reducers } from './reducers';
 import { isDarkTheme } from './middlewares/is-dark-theme';
 import { votingRequest } from './middlewares/voting-request';
 import { votingHistory } from './middlewares/get-voting-history';
+import ReduxThunk from 'redux-thunk';
 
 const composeEnhancers = composeWithDevTools({
   trace: true,
@@ -12,6 +13,7 @@ const composeEnhancers = composeWithDevTools({
 });
 
 const store = createStore(reducers, compose(
+  applyMiddleware(ReduxThunk),
   applyMiddleware(votingHistory),
   applyMiddleware(votingRequest),
   applyMiddleware(isDarkTheme),

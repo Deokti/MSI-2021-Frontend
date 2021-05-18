@@ -5,6 +5,8 @@ import { API_KEY } from '../config/API_KEY';
 export const votingRequest = (store: MiddlewareAPI) => (next: Dispatch) => (action: Action) => {
 
   if (action.type === getVotingRequest.toString()) {
+    console.log('Работает');
+
     fetch('https://api.thedogapi.com/v1/images/search', { headers: { 'x-api-key': API_KEY } })
       .then((response) => response.json())
       .then((voting) => {

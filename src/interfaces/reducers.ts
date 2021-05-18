@@ -21,5 +21,6 @@ export interface IVoting {
   VOTING: null | IResponseVoting,
   error: any
   loading: boolean | null
-  votingHistory: Array<IResponseHistoryVoting>
+  history: Array<IResponseHistoryVoting>
+  historyError: any
 }

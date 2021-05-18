@@ -1,11 +1,12 @@
-import { getVotingFailure, getVotingHistory, getVotingHistorySucsess, getVotingRequest, getVotingSucsess } from "../actions";
+import { getVotingFailure, getVotingHistory, getVotingHistoryFailure, getVotingHistorySucsess, getVotingRequest, getVotingSucsess } from "../actions";
 import { IVoting } from "../interfaces/reducers";
 
 const initialState: IVoting = {
   VOTING: null,
   error: null,
   loading: null,
-  votingHistory: [],
+  history: [],
+  historyError: null,
 }
 
 export function voting(state: IVoting = initialState, action: any): IVoting {
@@ -14,7 +15,7 @@ export function voting(state: IVoting = initialState, action: any): IVoting {
 
     case getVotingRequest.toString(): {
       return {
-        votingHistory: [],
+        ...state,
         VOTING: null,
         error: null,
         loading: true,
@@ -23,8 +24,7 @@ export function voting(state: IVoting = initialState, action: any): IVoting {
 
     case getVotingSucsess.toString(): {
       return {
-        votingHistory: [],
-        error: null,
+        ...state,
         loading: false,
         VOTING: action.payload
       }
@@ -32,7 +32,8 @@ export function voting(state: IVoting = initialState, action: any): IVoting {
 
     case getVotingFailure.toString(): {
       return {
-        votingHistory: [],
+        history: [],
+        historyError: null,
         VOTING: null,
         error: action.payload,
         loading: false,
@@ -40,15 +41,20 @@ export function voting(state: IVoting = initialState, action: any): IVoting {
     }
 
     case getVotingHistory.toString(): {
-      return {
-        ...state
-      }
+      return { ...state }
     }
 
     case getVotingHistorySucsess.toString(): {
       return {
         ...state,
-        votingHistory: action.payload
+        history: action.payload
+      }
+    }
+
+    case getVotingHistoryFailure.toString(): {
+      return {
+        ...state,
+        historyError: action.payload
       }
     }
 
