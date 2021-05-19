@@ -15,7 +15,7 @@ export function ControlPanelItem({ backgroundColor, text, image, active }: Manag
   return (
     <span className="control-panel-item">
       <span className="control-panel-item__image" style={{ backgroundColor }}>
-        <img src={image} alt="text" />
+        <img src={image} alt={text} />
       </span>
       <Button
         width="100%"

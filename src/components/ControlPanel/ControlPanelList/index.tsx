@@ -24,6 +24,7 @@ function ControlPanelList({ management, setActiveControl }: ControlPanelListProp
       <ul className="control-list__items">
         {management && management.controls.map((item) => {
           const { id } = item;
+          const active = management.path && management.path.includes(id);
 
           return (
             <li key={id}
@@ -31,7 +32,7 @@ function ControlPanelList({ management, setActiveControl }: ControlPanelListProp
               onClick={() => setActiveControl(id)}
             >
               <Link to={id}>
-                <ControlPanelItem {...item} active={id === management.active} />
+                <ControlPanelItem {...item} active={active || false} />
               </Link>
             </li>
           )

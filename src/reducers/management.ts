@@ -2,7 +2,7 @@ import voitingImage from '../assets/image/voting-image.png';
 import breedsImage from '../assets/image/breeds-image.png';
 import galleryImage from '../assets/image/gallery-image.png';
 import { IManagementState } from '../interfaces/reducers';
-import { setActiveControl } from '../actions/management';
+import { setActiveControl, setSupActiveControl } from '../actions/management';
 
 interface IManagementAction {
   type: string
@@ -10,7 +10,8 @@ interface IManagementAction {
 }
 
 const initialState: IManagementState = {
-  active: null,
+  path: null,
+  supPath: null,
   controls: [
     {
       id: '/votes',
@@ -39,7 +40,14 @@ export function management(state: IManagementState = initialState, action: IMana
     case setActiveControl.toString(): {
       return {
         ...state,
-        active: action.payload
+        path: action.payload
+      }
+    }
+
+    case setSupActiveControl.toString(): {
+      return {
+        ...state,
+        supPath: action.payload
       }
     }
 

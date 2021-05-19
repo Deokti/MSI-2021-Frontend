@@ -8,7 +8,8 @@ export interface IDataState {
 
 // Management
 export interface IManagementState {
-  active: string | null
+  path: string | null
+  supPath: string | null | number
   controls: Array<{
     id: string,
     text: string

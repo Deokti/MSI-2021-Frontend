@@ -1,6 +1,5 @@
 import React, { ReactElement, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { HeaderSearch } from '../../HeaderSearch';
 import Navigation from '../../Navigation';
 import { getBreedsRequest, setBreedsActiveDog } from '../../../actions/breeds';
 
@@ -19,52 +18,46 @@ interface ContentPanelBreedsProps {
 }
 
 function ContentPanelBreeds({ getBreedsRequest, breeds, setBreedsActiveDog }: ContentPanelBreedsProps): ReactElement<ContentPanelBreedsProps> {
-  useEffect(() => getBreedsRequest(10), [getBreedsRequest]);
-
+  useEffect(() => breeds.data === null ? getBreedsRequest(breeds.limit) : null, [breeds, getBreedsRequest]);
 
   return (
-    <React.Fragment>
-      <HeaderSearch />
+    <div className="content-panel-breeds content-panel-background">
+      <header>
+        <Navigation />
+      </header>
 
-      <div className="content-panel-breeds">
-        <header>
-          <Navigation />
-        </header>
-
-        {breeds.loading
-          ? <LoadingSpinner />
-          : (
-            <ul className="content-panel-breeds__list">
-              {
-                breeds.data && breeds.data.map((breed) => {
-                  return (
-                    <li
-                      className="content-panel-breeds__item"
-                      key={breed.id}
-                      onClick={() => setBreedsActiveDog(breed)}
-                    >
-                      <Link to={`/breeds/${breed.id}`}>
-                        <div style={{ backgroundImage: `url('${breed.image.url}')` }}>
-                          <Button
-                            backgroundColor="#fff"
-                            borderRadius={10}
-                            width={180}
-                            color="#FF868E"
-                            fontSize={16}
-                            className="content-panel-breeds__button"
-                          >
-                            {breed.name}
-                          </Button>
-                        </div>
-                      </Link>
-                    </li>
-                  )
-                })
-              }
-            </ul>
-          )}
-      </div>
-    </React.Fragment>
+      {breeds.loading
+        ? <LoadingSpinner />
+        : (
+          <ul className="content-panel-breeds__list">
+            {
+              breeds.data && breeds.data.map((breed) => {
+                return (
+                  <li
+                    className="content-panel-breeds__item"
+                    key={breed.id}
+                  >
+                    <Link to={`/breeds/${breed.id}`} onClick={() => setBreedsActiveDog(breed)}>
+                      <div style={{ backgroundImage: `url('${breed.image.url}')` }}>
+                        <Button
+                          backgroundColor="#fff"
+                          borderRadius={10}
+                          width={180}
+                          color="#FF868E"
+                          fontSize={16}
+                          className="content-panel-breeds__button"
+                        >
+                          {breed.name}
+                        </Button>
+                      </div>
+                    </Link>
+                  </li>
+                )
+              })
+            }
+          </ul>
+        )}
+    </div>
   )
 }
 
