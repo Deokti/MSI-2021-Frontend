@@ -3,7 +3,7 @@ import { ControlPanelItem } from '../ControlPanelItem';
 import { connect } from 'react-redux';
 import { IStore } from '../../../interfaces/store';
 import { IManagementState } from '../../../interfaces/reducers';
-import { setActiveControl } from '../../../actions';
+import { setActiveControl } from '../../../actions/management';
 import { Link, useHistory } from 'react-router-dom';
 import './style.scss';
 import { useEffect } from 'react';

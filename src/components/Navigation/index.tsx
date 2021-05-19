@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { IStore } from '../../interfaces/store';
 
 import { useHistory } from 'react-router';
-import { setActiveControl } from '../../actions';
+import { setActiveControl } from '../../actions/management';
 import Button from '../Button';
 
 import './style.scss';

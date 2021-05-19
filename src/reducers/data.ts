@@ -1,4 +1,4 @@
-import { getDarkTheme, setDarkTheme } from '../actions';
+import { getDarkTheme, setDarkTheme } from '../actions/data';
 import { IDataState } from '../interfaces/reducers';
 
 const initialState: IDataState = {

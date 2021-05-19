@@ -1,32 +1,33 @@
-import { getVotingFailure, getVotingHistory, getVotingHistoryFailure, getVotingHistorySucsess, getVotingRequest, getVotingSucsess } from "../actions";
+import { getVotingFailure, getVotingHistory, getVotingHistoryFailure, getVotingHistorySucsess, getVotingLoading, getVotingSucsess } from "../actions/voting";
 import { IVoting } from "../interfaces/reducers";
+import { IResponseHistoryVoting, IResponseVoting } from "../interfaces/response";
 
 const initialState: IVoting = {
-  VOTING: null,
+  data: null,
   error: null,
-  loading: null,
+  loading: true,
   history: [],
   historyError: null,
 }
 
-export function voting(state: IVoting = initialState, action: any): IVoting {
+interface ActionProps {
+  type: 'string'
+  payload: null | IResponseVoting | any | boolean | Array<IResponseHistoryVoting>
+}
+
+export function voting(state: IVoting = initialState, action: ActionProps): IVoting {
 
   switch (action.type) {
 
-    case getVotingRequest.toString(): {
-      return {
-        ...state,
-        VOTING: null,
-        error: null,
-        loading: true,
-      }
+    case getVotingLoading.toString(): {
+      return initialState
     }
 
     case getVotingSucsess.toString(): {
       return {
         ...state,
         loading: false,
-        VOTING: action.payload
+        data: action.payload
       }
     }
 
@@ -34,7 +35,7 @@ export function voting(state: IVoting = initialState, action: any): IVoting {
       return {
         history: [],
         historyError: null,
-        VOTING: null,
+        data: null,
         error: action.payload,
         loading: false,
       }

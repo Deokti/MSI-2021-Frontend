@@ -18,7 +18,7 @@ export interface IManagementState {
 }
 
 export interface IVoting {
-  VOTING: null | IResponseVoting,
+  data: null | IResponseVoting,
   error: any
   loading: boolean | null
   history: Array<IResponseHistoryVoting>

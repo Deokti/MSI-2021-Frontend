@@ -1,5 +1,5 @@
 import { MiddlewareAPI, Dispatch, Action } from 'redux';
-import { getDarkTheme, setDarkTheme } from '../actions';
+import { getDarkTheme, setDarkTheme } from '../actions/data';
 import { getThemeLocalStorage, setThemeLocalStorage } from '../utils/theme-local-storage';
 
 export const isDarkTheme = (store: MiddlewareAPI) => (next: Dispatch) => (action: Action) => {
