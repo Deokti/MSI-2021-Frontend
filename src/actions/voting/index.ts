@@ -4,7 +4,7 @@ import { ThunkDispatch } from "redux-thunk";
 import { API_KEY } from "../../config/API_KEY";
 import { API_URL } from "../../config/API_URL";
 
-export const getVotingLoading = createAction('GET_VOTING_LOADED');
+export const getVotingLoading = createAction('GET_VOTING_LOADING');
 export const getVotingSucsess = createAction('GET_VOTING_SUCCSESS');
 export const getVotingFailure = createAction('GET_VOTING_FAILURE');
 

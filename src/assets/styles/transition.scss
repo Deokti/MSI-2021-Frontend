@@ -1,3 +1,5 @@
-.management-item__button {
+.management-item__button,
+.content-panel-breeds__item::before,
+.content-panel-breeds__button {
   transition: all .3s ease;
 }

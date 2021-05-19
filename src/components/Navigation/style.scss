@@ -9,9 +9,15 @@
   margin-right: 10px;
 }
 
+.navigation__links {
+  display: flex;
+}
+
 .navigation__link {
+  pointer-events: none;
   height: 40px;
   min-width: 146px;
+  margin-right: 10px;
   padding: 5px 30px;
   background-color: #FF868E;
   border-radius: 10px;
@@ -20,4 +26,12 @@
   font-size: 20px;
   color: #fff;
   text-align: center;
+
+  text-decoration: none;
+}
+
+.navigation__link.no-active {
+  pointer-events: all;
+  background-color: rgba(var(--background-search), var(--background-search-opacity));
+  color: rgba(255, 255, 255, var(--background-search-opacity));
 }

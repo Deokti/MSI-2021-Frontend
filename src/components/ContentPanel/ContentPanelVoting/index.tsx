@@ -3,7 +3,6 @@ import Button from '../../Button';
 import { connect } from 'react-redux';
 import { IStore } from '../../../interfaces/store';
 import { IVoting } from '../../../interfaces/reducers';
-import { BeatLoader } from 'react-spinners';
 
 import { AiOutlineHeart } from "react-icons/ai";
 import { CgSmileSad } from "react-icons/cg";
@@ -11,9 +10,8 @@ import { FiSmile } from "react-icons/fi";
 import { addedByVoting } from '../../../utils/added-by-voting';
 import Navigation from '../../Navigation';
 import { getVotingRequest, getVotingHistory, sendVotingRequest } from '../../../actions/voting';
-
+import { LoadingSpinner } from '../../LoadingSpinner';
 import './style.scss';
-import { HeaderSearch } from '../../HeaderSearch';
 
 interface ContentPanelVotingProps {
   getVotingRequest: () => any
@@ -55,55 +53,52 @@ function ContentPanelVoting({ getVotingRequest, getVotingHistory, sendVotingRequ
   ];
 
   return (
-    <React.Fragment>
-      <HeaderSearch />
-      <div className="content-panel-voting">
-        <Navigation />
+    <div className="content-panel-voting content-panel-background">
+      <Navigation />
 
-        {voting.loading
-          ? <BeatLoader size={20} />
-          : (
-            <React.Fragment>
-              <header className="content-panel-voting__header">
-                <div className="content-panel-voting__image"
-                  style={{ backgroundImage: `url('${voting.data && voting.data.url}')` }}
-                />
+      {voting.loading
+        ? <LoadingSpinner />
+        : (
+          <React.Fragment>
+            <header className="content-panel-voting__header">
+              <div className="content-panel-voting__image"
+                style={{ backgroundImage: `url('${voting.data && voting.data.url}')` }}
+              />
 
-                <ul className="content-panel-voting__buttons">
-                  {BUTTONS.map((button) => {
-                    const { id } = button;
-                    return (
-                      <li key={id} className="content-panel-voting__button">
-                        <Button width={80} height={80} {...button} />
-                      </li>
-                    )
-                  })}
-
-                </ul>
-              </header>
-
-              <ul className="content-panel-voting__actions">
-                {voting && voting.history.map((history) => {
-                  const { text, icon } = addedByVoting(history.value);
-
+              <ul className="content-panel-voting__buttons">
+                {BUTTONS.map((button) => {
+                  const { id } = button;
                   return (
-                    <li className="content-panel-voting__action" key={history.id}>
-                      <span className="content-panel-voting__time">
-                        {new Date(history.created_at).toLocaleTimeString()}
-                      </span>
-                      Изображение с ID: <span className="content-panel-voting__id">{history.image_id}</span> {text}
-                      <span className="content-panel-voting__icon">
-                        {icon}
-                      </span>
+                    <li key={id} className="content-panel-voting__button">
+                      <Button width={80} height={80} {...button} />
                     </li>
                   )
                 })}
+
               </ul>
-            </React.Fragment>
-          )
-        }
-      </div>
-    </React.Fragment>
+            </header>
+
+            <ul className="content-panel-voting__actions">
+              {voting && voting.history.map((history) => {
+                const { text, icon } = addedByVoting(history.value);
+
+                return (
+                  <li className="content-panel-voting__action" key={history.id}>
+                    <span className="content-panel-voting__time">
+                      {new Date(history.created_at).toLocaleTimeString()}
+                    </span>
+                    Изображение с ID: <span className="content-panel-voting__id">{history.image_id}</span> {text}
+                    <span className="content-panel-voting__icon">
+                      {icon}
+                    </span>
+                  </li>
+                )
+              })}
+            </ul>
+          </React.Fragment>
+        )
+      }
+    </div>
   )
 }
 

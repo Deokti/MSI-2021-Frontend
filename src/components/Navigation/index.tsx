@@ -10,13 +10,16 @@ import Button from '../Button';
 
 import './style.scss';
 import { translateNavigation } from '../../utils/translate-navation';
+import { ROUTER_PATH } from '../../config/ROUTER_PATH';
+import clsx from 'clsx';
 
 interface NavigationProsp {
-  active: null | string
+  path: null | string
   setActiveControl: (path: string) => any
+  supPath: null | string | number
 }
 
-function Navigation({ active, setActiveControl }: NavigationProsp): ReactElement<NavigationProsp> {
+function Navigation({ path, setActiveControl, supPath }: NavigationProsp): ReactElement<NavigationProsp> {
   const { push } = useHistory();
 
   function onClick(event: React.MouseEvent<HTMLAnchorElement>) {
@@ -29,19 +32,24 @@ function Navigation({ active, setActiveControl }: NavigationProsp): ReactElement
 
   return (
     <div className="navigation">
-      <Link to="/" onClick={onClick}>
+      <Link to={ROUTER_PATH.root} onClick={onClick}>
         <Button width={40} height={40} borderRadius={10} className="navigation__button">
           <RiArrowLeftSLine color="#FF868E" size={40} />
         </Button>
       </Link>
 
-      <span className="navigation__link">
-        {translateNavigation(active || '')}
-      </span>
+      <div className="navigation__links">
+
+        <Link to={ROUTER_PATH.breeds} className={clsx('navigation__link', { 'no-active': supPath !== null })}>
+          <span>{translateNavigation(path || '')}</span>
+        </Link>
+
+        {supPath && <span className="navigation__link">{supPath}</span>}
+      </div>
     </div>
   )
 }
 
-const mapStateToProps = ({ management: { active } }: IStore) => ({ active })
+const mapStateToProps = ({ management: { path, supPath } }: IStore) => ({ path, supPath })
 
 export default connect(mapStateToProps, { setActiveControl })(Navigation)

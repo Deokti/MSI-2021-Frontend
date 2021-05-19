@@ -1,0 +1,9 @@
+@import '../../assets/styles/theme.scss';
+
+.css-0 {
+  display: flex;
+  justify-content: center;
+  & > span {
+    background-color: var(--color);
+  }
+}
