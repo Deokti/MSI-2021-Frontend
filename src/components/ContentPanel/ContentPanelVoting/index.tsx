@@ -3,7 +3,6 @@ import Button from '../../Button';
 import { connect } from 'react-redux';
 import { IStore } from '../../../interfaces/store';
 import { IVoting } from '../../../interfaces/reducers';
-import { BeatLoader } from 'react-spinners';
 
 import { AiOutlineHeart } from "react-icons/ai";
 import { CgSmileSad } from "react-icons/cg";
@@ -12,8 +11,9 @@ import { addedByVoting } from '../../../utils/added-by-voting';
 import Navigation from '../../Navigation';
 import { getVotingRequest, getVotingHistory, sendVotingRequest } from '../../../actions/voting';
 
-import './style.scss';
 import { HeaderSearch } from '../../HeaderSearch';
+import { LoadingSpinner } from '../../LoadingSpinner';
+import './style.scss';
 
 interface ContentPanelVotingProps {
   getVotingRequest: () => any
@@ -61,7 +61,7 @@ function ContentPanelVoting({ getVotingRequest, getVotingHistory, sendVotingRequ
         <Navigation />
 
         {voting.loading
-          ? <BeatLoader size={20} />
+          ? <LoadingSpinner />
           : (
             <React.Fragment>
               <header className="content-panel-voting__header">

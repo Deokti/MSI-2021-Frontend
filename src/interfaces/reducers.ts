@@ -1,4 +1,4 @@
-import { IResponseHistoryVoting, IResponseVoting } from "./response";
+import { IResponseBreed, IResponseHistoryVoting, IResponseVoting } from "./response";
 
 // Data
 export interface IDataState {
@@ -17,10 +17,20 @@ export interface IManagementState {
   }>
 }
 
+// Voting
 export interface IVoting {
   data: null | IResponseVoting,
   error: any
-  loading: boolean | null
+  loading: boolean
   history: Array<IResponseHistoryVoting>
   historyError: any
+}
+
+// Breeds
+export interface IBreeds {
+  data: null | Array<IResponseBreed>
+  error: any
+  loading: boolean
+  limit: number
+  activeDog: IResponseBreed | null
 }
