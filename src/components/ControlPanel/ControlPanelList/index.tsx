@@ -3,19 +3,19 @@ import { ControlPanelItem } from '../ControlPanelItem';
 import { connect } from 'react-redux';
 import { IStore } from '../../../interfaces/store';
 import { IManagementState } from '../../../interfaces/reducers';
-import { setActiveControl } from '../../../actions/management';
+import { setActiveControlPath } from '../../../actions/management';
 import { Link, useHistory } from 'react-router-dom';
 import './style.scss';
 import { useEffect } from 'react';
 
 interface ControlPanelListProps {
   management: IManagementState
-  setActiveControl: (text: string) => void
+  setActiveControlPath: (text: string) => void
 }
 
-function ControlPanelList({ management, setActiveControl }: ControlPanelListProps): ReactElement<ControlPanelListProps> {
+function ControlPanelList({ management, setActiveControlPath }: ControlPanelListProps): ReactElement<ControlPanelListProps> {
   const { location } = useHistory();
-  useEffect(() => setActiveControl(location.pathname), [location.pathname, setActiveControl]);
+  useEffect(() => setActiveControlPath(location.pathname), [location.pathname, setActiveControlPath]);
 
   return (
     <div className="control-list">
@@ -23,15 +23,19 @@ function ControlPanelList({ management, setActiveControl }: ControlPanelListProp
 
       <ul className="control-list__items">
         {management && management.controls.map((item) => {
-          const { id } = item;
-          const active = management.path && management.path.includes(id);
+          const { path } = item;
+
+          // Преобразуем первый элемент path из managment, 
+          // который является массивом текущего пути, например ['breeds', '2']
+          // в похожий на путь к странице, например /breeds или /votes
+          const active = (`/${management.currentPath && management.currentPath[0]}`) === path;
 
           return (
-            <li key={id}
+            <li key={path}
               className='control-list__item'
-              onClick={() => setActiveControl(id)}
+              onClick={() => setActiveControlPath(path)}
             >
-              <Link to={id}>
+              <Link to={path}>
                 <ControlPanelItem {...item} active={active || false} />
               </Link>
             </li>
@@ -44,4 +48,4 @@ function ControlPanelList({ management, setActiveControl }: ControlPanelListProp
 
 const mapStateToProps = ({ management }: IStore) => ({ management });
 
-export default connect(mapStateToProps, { setActiveControl })(ControlPanelList);
+export default connect(mapStateToProps, { setActiveControlPath })(ControlPanelList);

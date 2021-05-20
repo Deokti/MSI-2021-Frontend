@@ -5,51 +5,63 @@ import { Link } from 'react-router-dom';
 import { IStore } from '../../interfaces/store';
 
 import { useHistory } from 'react-router';
-import { setActiveControl } from '../../actions/management';
+import { setActiveControlPath } from '../../actions/management';
 import Button from '../Button';
 
-import './style.scss';
 import { translateNavigation } from '../../utils/translate-navation';
 import { ROUTER_PATH } from '../../config/ROUTER_PATH';
+
+import './style.scss';
 import clsx from 'clsx';
 
 interface NavigationProsp {
-  path: null | string
-  setActiveControl: (path: string) => any
-  supPath: null | string | number
+  currentPath: null | Array<string>
+  setActiveControlPath: (path: string) => any
 }
 
-function Navigation({ path, setActiveControl, supPath }: NavigationProsp): ReactElement<NavigationProsp> {
+function Navigation({ currentPath, setActiveControlPath }: NavigationProsp): ReactElement<NavigationProsp> {
   const { push } = useHistory();
 
-  function onClick(event: React.MouseEvent<HTMLAnchorElement>) {
+  function onClickHomePage(event: React.MouseEvent<HTMLAnchorElement>) {
     event.preventDefault();
+    const currentPathLenght = (currentPath && currentPath.length);
 
-    const pathname: string = '/';
-    setActiveControl(pathname);
+    const pathname: string = (currentPathLenght as number) >= 2 ? `/${currentPath && currentPath[0]}` : '/';
+    setActiveControlPath(pathname);
     push(pathname);
   }
 
   return (
     <div className="navigation">
-      <Link to={ROUTER_PATH.root} onClick={onClick}>
+      <Link to={ROUTER_PATH.root} onClick={onClickHomePage}>
         <Button width={40} height={40} borderRadius={10} className="navigation__button">
           <RiArrowLeftSLine color="#FF868E" size={40} />
         </Button>
       </Link>
 
-      <div className="navigation__links">
+      <ul className="navigation__links">
+        {
+          currentPath && currentPath.map((item, index, array) => {
+            const currentIndex = index + 1;
+            const arrayLength = array.length;
+            const noActive = (arrayLength >= 2) && (currentIndex === 1);
 
-        <Link to={ROUTER_PATH.breeds} className={clsx('navigation__link', { 'no-active': supPath !== null })}>
-          <span>{translateNavigation(path || '')}</span>
-        </Link>
+            return (
+              <li className={clsx('navigation__link', { 'no-active': noActive })} key={item}>
+                {translateNavigation(item)}
+              </li>
+            )
+          })
+        }
 
-        {supPath && <span className="navigation__link">{supPath}</span>}
-      </div>
+        {/* <Link to={ROUTER_PATH.breeds} className={clsx('navigation__link', { 'no-active': supPath !== null })}>
+          {/* <span>{translateNavigation(path as string)}</span> */}
+        {/* </Link> */}
+      </ul>
     </div>
   )
 }
 
-const mapStateToProps = ({ management: { path, supPath } }: IStore) => ({ path, supPath })
+const mapStateToProps = ({ management: { currentPath } }: IStore) => ({ currentPath })
 
-export default connect(mapStateToProps, { setActiveControl })(Navigation)
+export default connect(mapStateToProps, { setActiveControlPath })(Navigation)

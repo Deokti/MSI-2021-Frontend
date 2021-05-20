@@ -3,15 +3,13 @@ import { IResponseBreed, IResponseHistoryVoting, IResponseVoting } from "./respo
 // Data
 export interface IDataState {
   darkTheme: boolean
-  navigation: string[] | null
 }
 
 // Management
 export interface IManagementState {
-  path: string | null
-  supPath: string | null | number
+  currentPath: null | Array<string>
   controls: Array<{
-    id: string,
+    path: string,
     text: string
     backgroundColor: string
     image: string

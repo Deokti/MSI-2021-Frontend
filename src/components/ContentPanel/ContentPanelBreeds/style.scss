@@ -1,10 +1,18 @@
 .content-panel-breeds__list {
+  padding-right: 20px;
   margin-top: 20px;
   list-style: none;
  
   display: grid;
   grid-template-columns: repeat(3, minmax(140px, 200px));
   gap: 20px 20px;
+
+  max-height: 705px;
+  overflow: auto;
+}
+
+.content-panel-breeds.content-panel-background {
+  padding-right: 0;
 }
 
 .content-panel-breeds__item {
@@ -24,8 +32,8 @@
     background-repeat: no-repeat;
     background-size: cover;
   }
-  z-index: 1;
   &::before {
+    pointer-events: none;
     content: '';
     position: absolute;
     width: 100%;
@@ -34,7 +42,6 @@
     top: 0;
     left: 0;
     transform: translateX(100%);
-    z-index: -1;
   }
   &:hover {
     .content-panel-breeds__button {

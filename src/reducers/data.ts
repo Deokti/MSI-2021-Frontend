@@ -3,7 +3,6 @@ import { IDataState } from '../interfaces/reducers';
 
 const initialState: IDataState = {
   darkTheme: false,
-  navigation: null
 }
 
 function data(state: IDataState = initialState, action: any) {
