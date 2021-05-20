@@ -3,13 +3,15 @@ import { connect } from 'react-redux';
 import Navigation from '../../Navigation';
 import { getBreedsRequest, setBreedsActiveDog } from '../../../actions/breeds';
 
-import './style.scss';
 import { IStore } from '../../../interfaces/store';
 import { IBreeds } from '../../../interfaces/reducers';
 import { LoadingSpinner } from '../../LoadingSpinner';
 import Button from '../../Button';
 import { IResponseBreed } from '../../../interfaces/response';
 import { Link } from 'react-router-dom';
+
+import './style.scss';
+import '../../../assets/styles/scroll.scss';
 
 interface ContentPanelBreedsProps {
   getBreedsRequest: (limit: number) => any
@@ -29,7 +31,7 @@ function ContentPanelBreeds({ getBreedsRequest, breeds, setBreedsActiveDog }: Co
       {breeds.loading
         ? <LoadingSpinner />
         : (
-          <ul className="content-panel-breeds__list">
+          <ul className="content-panel-breeds__list scroll">
             {
               breeds.data && breeds.data.map((breed) => {
                 return (

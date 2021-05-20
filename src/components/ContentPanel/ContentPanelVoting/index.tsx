@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement, useCallback, useEffect } from 'react';
 import Button from '../../Button';
 import { connect } from 'react-redux';
 import { IStore } from '../../../interfaces/store';
@@ -12,6 +12,7 @@ import Navigation from '../../Navigation';
 import { getVotingRequest, getVotingHistory, sendVotingRequest } from '../../../actions/voting';
 import { LoadingSpinner } from '../../LoadingSpinner';
 import './style.scss';
+import '../../../assets/styles/scroll.scss';
 
 interface ContentPanelVotingProps {
   getVotingRequest: () => any
@@ -21,13 +22,15 @@ interface ContentPanelVotingProps {
 }
 
 function ContentPanelVoting({ getVotingRequest, getVotingHistory, sendVotingRequest, voting }: ContentPanelVotingProps): ReactElement<ContentPanelVotingProps> {
+  const onLoad = useCallback(() => {
+    return voting.data === null
+      ? (getVotingRequest(), getVotingHistory())
+      : null
+  }, [getVotingHistory, getVotingRequest, voting.data])
 
-  useEffect(() => {
-    getVotingRequest();
-    getVotingHistory();
-  }, [getVotingHistory, getVotingRequest]);
+  useEffect(onLoad, [onLoad]);
 
-  const vote = (vote: number) => ({ image_id: voting.data?.id || '', vote })
+  const vote = (vote: number) => ({ image_id: voting.data?.id || '', vote });
 
   const BUTTONS = [
     {
@@ -78,7 +81,7 @@ function ContentPanelVoting({ getVotingRequest, getVotingHistory, sendVotingRequ
               </ul>
             </header>
 
-            <ul className="content-panel-voting__actions">
+            <ul className="content-panel-voting__actions scroll">
               {voting && voting.history.map((history) => {
                 const { text, icon } = addedByVoting(history.value);
 

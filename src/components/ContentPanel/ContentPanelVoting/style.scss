@@ -37,17 +37,6 @@
   margin-bottom: 10px;
   max-height: 275px;
   overflow: auto;
-
-  &::-webkit-scrollbar {
-    width: 5px;
-  }
-  &::-webkit-scrollbar-track {
-    background-color: rgba(#F8F8F7, var(--background-plug-opacity));
-  }
-  &::-webkit-scrollbar-thumb {
-    background-color: rgba(var(--scroll-bar), 0.2);
-    border-radius: 2px;
-  }
 }
 
 .content-panel-voting__action {

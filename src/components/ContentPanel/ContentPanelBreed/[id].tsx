@@ -4,37 +4,42 @@ import { connect } from 'react-redux';
 import { IBreeds } from '../../../interfaces/reducers';
 import { IStore } from '../../../interfaces/store';
 import Navigation from '../../Navigation';
-import { setSupActiveControl } from '../../../actions/management';
+import { setActiveControlPath } from '../../../actions/management';
 
 
-import './style.scss';
+// Когда нажимаем на brreds, то переходим на /breeds
+// Когда нажимаем на собаку в одном из breeds, то переходим на /breeds/1
+// Таким образом можно записывать эти данные в путь и затем в Navigation обрабатываеть его, 
+// разбивая на массив и затем показывания текущий путь
+
 import { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import { ROUTER_PATH } from '../../../config/ROUTER_PATH';
+import './style.scss';
+import { IResponseBreed } from '../../../interfaces/response';
+import { translateTemparement } from '../../../utils/translate-temperament';
 
 interface ContentPanelBreedProps {
-  breeds: IBreeds
-  setSupActiveControl: (root: null | string | number) => any
+  activeDog: IResponseBreed | null
+  setActiveControlPath: (path: null | string | Array<string>) => any
 }
 
-function ContentPanelBreed({ breeds, setSupActiveControl }: ContentPanelBreedProps): ReactElement<ContentPanelBreedProps> {
+function ContentPanelBreed({ activeDog, setActiveControlPath }: ContentPanelBreedProps): ReactElement<ContentPanelBreedProps> {
   const { push } = useHistory();
 
   const onLoadComponent = useCallback(() => {
-    const sup = breeds.activeDog && breeds.activeDog?.id;
+    const sup = activeDog && activeDog?.id;
 
     if (sup === null) {
       return push(ROUTER_PATH.breeds);
     }
 
-    setSupActiveControl(sup);
-  }, [breeds.activeDog, push, setSupActiveControl])
+    setActiveControlPath(`/${ROUTER_PATH.breeds}/${String(sup)}`);
+  }, [activeDog, push, setActiveControlPath])
 
   useEffect(() => {
     onLoadComponent();
-
-    return () => setSupActiveControl(null);
-  }, [breeds.activeDog, onLoadComponent, setSupActiveControl]);
+  }, [onLoadComponent, setActiveControlPath]);
 
   return (
     <article className="content-panel-breed content-panel-background">
@@ -43,14 +48,43 @@ function ContentPanelBreed({ breeds, setSupActiveControl }: ContentPanelBreedPro
       <div className="content-panel-breed__content">
         <span
           className="content-panel-breed__image"
-          style={{ backgroundImage: `url('${breeds.activeDog && breeds.activeDog.image.url}')` }}
+          style={{ backgroundImage: `url('${activeDog && activeDog.image.url}')` }}
         />
 
+        <div className="content-panel-breed__description">
+          <h2 className="content-panel-breed__name">{activeDog && activeDog.name}</h2>
+          <h3 className="content-panel-breed__family">{activeDog && activeDog.breed_group}</h3>
+
+          <div className="content-panel-breed__detailed">
+            <div className="content-panel-breed__title">
+              Темперамент:
+              <span className="content-panel-breed__subtitle content-panel-breed__subtitle--relocate">
+                {activeDog && translateTemparement(activeDog.temperament)}
+              </span>
+
+            </div>
+
+            <ul className="content-panel-breed__list">
+              <li className="content-panel-breed__title">
+                Высота: <span className="content-panel-breed__subtitle"> {activeDog && activeDog.height.metric} см в холке</span>
+              </li>
+              <li className="content-panel-breed__title">
+                Вес: <span className="content-panel-breed__subtitle"> {activeDog && activeDog.weight.metric} кг</span>
+              </li>
+              <li className="content-panel-breed__title">
+                Продолжительность жизни: <span className="content-panel-breed__subtitle"> {`${activeDog && activeDog.life_span.slice(0, -5)} лет`}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </article>
   )
 }
 
-const mapStateToProps = ({ breeds }: IStore) => ({ breeds })
 
-export default connect(mapStateToProps, { setSupActiveControl })(ContentPanelBreed);
+
+
+const mapStateToProps = ({ breeds: { activeDog } }: IStore) => ({ activeDog })
+
+export default connect(mapStateToProps, { setActiveControlPath })(ContentPanelBreed);

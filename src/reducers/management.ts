@@ -2,7 +2,7 @@ import voitingImage from '../assets/image/voting-image.png';
 import breedsImage from '../assets/image/breeds-image.png';
 import galleryImage from '../assets/image/gallery-image.png';
 import { IManagementState } from '../interfaces/reducers';
-import { setActiveControl, setSupActiveControl } from '../actions/management';
+import { setActiveControlPath } from '../actions/management';
 
 interface IManagementAction {
   type: string
@@ -10,23 +10,22 @@ interface IManagementAction {
 }
 
 const initialState: IManagementState = {
-  path: null,
-  supPath: null,
+  currentPath: null,
   controls: [
     {
-      id: '/votes',
+      path: '/votes',
       text: "ГОЛОСОВАНИЕ",
       backgroundColor: "#B4B7FF",
       image: voitingImage
     },
     {
-      id: '/breeds',
+      path: '/breeds',
       text: "ПОРОДЫ",
       backgroundColor: "#97EAB9",
       image: breedsImage
     },
     {
-      id: '/gallery',
+      path: '/gallery',
       text: "ГАЛЕРЕЯ",
       backgroundColor: "#FFD280",
       image: galleryImage
@@ -37,17 +36,17 @@ const initialState: IManagementState = {
 export function management(state: IManagementState = initialState, action: IManagementAction) {
 
   switch (action.type) {
-    case setActiveControl.toString(): {
-      return {
-        ...state,
-        path: action.payload
-      }
-    }
+    case setActiveControlPath.toString(): {
+      const custonPath = typeof action.payload === 'string'
+        ? action.payload
+          .replaceAll('/', ' ')
+          .trim()
+          .split(' ')
+        : action.payload
 
-    case setSupActiveControl.toString(): {
       return {
         ...state,
-        supPath: action.payload
+        currentPath: custonPath
       }
     }
 

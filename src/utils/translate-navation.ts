@@ -1,8 +1,13 @@
 import { ROUTER_PATH } from "../config/ROUTER_PATH";
 
 export function translateNavigation(navigation: string) {
-  if (navigation === ROUTER_PATH.votes) return 'Голосование'.toUpperCase();
-  if (navigation.includes(ROUTER_PATH.breeds)) return 'Породы'.toUpperCase();
+
+  // Преобразуем попадающую строку в путь, добавляя /, например votes или breeds
+  // преобразовывая в нечто похожее на путь из роутера, например /votes или /breeds
+  const custonNavigation = `/${navigation}`;
+
+  if (custonNavigation === ROUTER_PATH.votes) return 'Голосование'.toUpperCase();
+  if (custonNavigation === ROUTER_PATH.breeds) return 'Породы'.toUpperCase();
 
   return navigation;
 }
