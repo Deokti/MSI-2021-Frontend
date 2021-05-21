@@ -32,4 +32,5 @@ export interface IBreeds {
   loading: boolean
   limit: number
   activeDog: IResponseBreed | null
+  filterDogName: string
 }

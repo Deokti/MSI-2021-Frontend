@@ -17,7 +17,7 @@
 .content-panel-breed__description {
   position: relative;
   margin-top: 50px;
-  border: 2px solid rgba(255, 134, 142, 0.2);
+  border: 2px solid rgba(var(--background-search), var(--background-search-opacity));
   border-radius: 20px;
 
   padding: 20px 40px 60px 40px;
@@ -27,9 +27,9 @@
   position: absolute;
   font-weight: 500;
   font-size: 36px;
-  color: #FFFFFF;
+  color: var(--color);
   display: block;
-  background: #282828;
+  background: var(--breeds-name-background);
   left: 50%;
   transform: translate(-50%);
   text-align: center;
@@ -61,7 +61,7 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 23px;
-  color: #FFFFFF;
+  color: var(--color);
 }
 
 .content-panel-breed__subtitle {

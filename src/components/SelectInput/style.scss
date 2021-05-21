@@ -1,0 +1,51 @@
+@import '../../assets/styles/theme.scss';
+
+.select-input {
+  position: relative;
+  cursor: pointer;
+  border-radius: 30px;
+  padding: 7px 10px;
+  padding-right: 40px;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  background-color: rgba(var(--select-input-background), var(--background-plug-opacity));
+  font-size: 16px;
+  color: #8C8C8C;
+  margin-right: 10px;
+
+  &:hover {
+    border: 2px solid rgba(var(--background-search), var(--background-search-opacity));
+  }
+}
+
+.select-input__active {
+  color: #8C8C8C;
+}
+
+.select-input__arrow {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.select-input__list {
+  position: absolute;
+  left: 0;
+  top: 110%;
+  list-style: none;
+  z-index: 9;
+
+  background-color: var(--breeds-name-background);
+  padding: 15px;
+  padding-right: 160px;
+  width: max-content;
+  border-radius: 10px;
+
+  max-height: 50vh;
+  overflow: auto;
+}
+
+.select-input__item {
+  padding: 5px 0;
+}
