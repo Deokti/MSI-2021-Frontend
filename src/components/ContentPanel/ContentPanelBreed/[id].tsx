@@ -23,9 +23,7 @@ function ContentPanelBreed({ activeDog, setActiveControlPath }: ContentPanelBree
   const onLoadComponent = useCallback(() => {
     const sup = activeDog && activeDog?.id;
 
-    if (sup === null) {
-      return push(ROUTER_PATH.breeds);
-    }
+    if (sup === null) return push(ROUTER_PATH.breeds);
 
     setActiveControlPath(`/${ROUTER_PATH.breeds}/${String(sup)}`);
   }, [activeDog, push, setActiveControlPath])

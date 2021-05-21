@@ -36,13 +36,13 @@ function ContentPanelBreeds({ getBreedsRequest, breeds, setBreedsActiveDog, setL
 
   function getDogsBreeds(): Array<string> | null {
     const result = ['Все породы'];
-    breeds.data && breeds.data.forEach((item) => result.push(item.name))
+    breeds.data && breeds.data.forEach((item) => result.push(translateNameDogs(item.name)))
     return result;
   }
 
   function filterDogs(filter: string, breeds: Array<IResponseBreed>): Array<IResponseBreed> {
     if (filter === 'Все породы') return breeds;
-    return breeds.filter((breed) => breed.name === filter);
+    return breeds.filter((breed) => translateNameDogs(breed.name) === filter);
   }
 
   return (
