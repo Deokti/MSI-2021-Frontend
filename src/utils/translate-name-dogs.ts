@@ -5,7 +5,7 @@ function translate(name: string) {
     case "Afghan Hound": { return 'Афганская борзая' }
     case "African Hunting Dog": { return 'Африканская охотничья собака' }
     case "Airedale Terrier": { return 'Эрдельтерьер' }
-    case "Akbash Dog": { return 'Акбаш Собака' }
+    case "Akbash Dog": { return 'Акбаш' }
     case "Akita": { return 'Акита' }
     case "Alapaha Blue Blood Bulldog": { return 'Алапахский чистокровный бульдог' }
     case "Alaskan Husky": { return 'Аляскинский хаски' }
@@ -13,7 +13,7 @@ function translate(name: string) {
     case "American Bulldog": { return 'Американский бульдог' }
     case "American Bully": { return 'Американский хулиган' }
     case "American Eskimo Dog": { return 'Американская эскимосская собака' }
-    case "American Eskimo Dog (Miniature)": { return 'Американская эскимосская собака (в миниатюре)' }
+    case "American Eskimo Dog (Miniature)": { return 'Американский эскимосский шпиц' }
     case "American Foxhound": { return 'Американский фоксхаунд' }
     case "American Pit Bull Terrier": { return 'Американский питбультерьер' }
     case "American Staffordshire Terrier": { return 'Американский стаффордширский терьер' }
@@ -38,141 +38,141 @@ function translate(name: string) {
     case "Bernese Mountain Dog": { return 'Бернский зенненхунд' }
     case "Bichon Frise": { return 'Бишон фризе' }
     case "Black and Tan Coonhound": { return 'Чёрно-подпалый кунхаунд' }
-    // case "Bloodhound": { return '' }
-    // case "Bluetick Coonhound": { return '' }
-    // case "Boerboel": { return '' }
-    // case "Border Collie": { return '' }
-    // case "Border Terrier": { return '' }
-    // case "Boston Terrier": { return '' }
-    // case "Bouvier des Flandres": { return '' }
-    // case "Boxer": { return '' }
-    // case "Boykin Spaniel": { return '' }
-    // case "Bracco Italiano": { return '' }
-    // case "Briard": { return '' }
-    // case "Brittany": { return '' }
-    // case "Bull Terrier": { return '' }
-    // case "Bull Terrier (Miniature)": { return '' }
-    // case "Bullmastiff": { return '' }
-    // case "Cairn Terrier": { return '' }
-    // case "Cane Corso": { return '' }
-    // case "Cardigan Welsh Corgi": { return '' }
-    // case "Catahoula Leopard Dog": { return '' }
-    // case "Caucasian Shepherd (Ovcharka)": { return '' }
-    // case "Cavalier King Charles Spaniel": { return '' }
-    // case "Chesapeake Bay Retriever": { return '' }
-    // case "Chinese Crested": { return '' }
-    // case "Chinese Shar-Pei": { return '' }
-    // case "Chinook": { return '' }
-    // case "Chow Chow": { return '' }
-    // case "Clumber Spaniel": { return '' }
-    // case "Cocker Spaniel": { return '' }
-    // case "Cocker Spaniel (American)": { return '' }
-    // case "Coton de Tulear": { return '' }
-    // case "Dalmatian": { return '' }
-    // case "Doberman Pinscher": { return '' }
-    // case "Dogo Argentino": { return '' }
-    // case "Dutch Shepherd": { return '' }
-    // case "English Setter": { return '' }
-    // case "English Shepherd": { return '' }
-    // case "English Springer Spaniel": { return '' }
-    // case "English Toy Spaniel": { return '' }
-    // case "English Toy Terrier": { return '' }
-    // case "Eurasier": { return '' }
-    // case "Field Spaniel": { return '' }
-    // case "Finnish Lapphund": { return '' }
-    // case "Finnish Spitz": { return '' }
-    // case "French Bulldog": { return '' }
-    // case "German Pinscher": { return '' }
-    // case "German Shepherd Dog": { return '' }
-    // case "German Shorthaired Pointer": { return '' }
-    // case "Giant Schnauzer": { return '' }
-    // case "Glen of Imaal Terrier": { return '' }
-    // case "Golden Retriever": { return '' }
-    // case "Gordon Setter": { return '' }
-    // case "Great Dane": { return '' }
-    // case "Great Pyrenees": { return '' }
-    // case "Greyhound": { return '' }
-    // case "Griffon Bruxellois": { return '' }
-    // case "Harrier": { return '' }
-    // case "Havanese": { return '' }
-    // case "Irish Setter": { return '' }
-    // case "Irish Terrier": { return '' }
-    // case "Irish Wolfhound": { return '' }
-    // case "Italian Greyhound": { return '' }
-    // case "Japanese Chin": { return '' }
-    // case "Japanese Spitz": { return '' }
-    // case "Keeshond": { return '' }
-    // case "Komondor": { return '' }
-    // case "Kooikerhondje": { return '' }
-    // case "Kuvasz": { return '' }
-    // case "Labrador Retriever": { return '' }
-    // case "Lagotto Romagnolo": { return '' }
-    // case "Lancashire Heeler": { return '' }
-    // case "Leonberger": { return '' }
-    // case "Lhasa Apso": { return '' }
-    // case "Maltese": { return '' }
-    // case "Miniature American Shepherd": { return '' }
-    // case "Miniature Pinscher": { return '' }
-    // case "Miniature Schnauzer": { return '' }
-    // case "Newfoundland": { return '' }
-    // case "Norfolk Terrier": { return '' }
-    // case "Norwich Terrier": { return '' }
-    // case "Nova Scotia Duck Tolling Retriever": { return '' }
-    // case "Old English Sheepdog": { return '' }
-    // case "Olde English Bulldogge": { return '' }
-    // case "Papillon": { return '' }
-    // case "Pekingese": { return '' }
-    // case "Pembroke Welsh Corgi": { return '' }
-    // case "Perro de Presa Canario": { return '' }
-    // case "Pharaoh Hound": { return '' }
-    // case "Plott": { return '' }
-    // case "Pomeranian": { return '' }
-    // case "Poodle (Miniature)": { return '' }
-    // case "Poodle (Toy)": { return '' }
-    // case "Pug": { return '' }
-    // case "Puli": { return '' }
-    // case "Pumi": { return '' }
-    // case "Rat Terrier": { return '' }
-    // case "Redbone Coonhound": { return '' }
-    // case "Rhodesian Ridgeback": { return '' }
-    // case "Rottweiler": { return '' }
-    // case "Russian Toy": { return '' }
-    // case "Saint Bernard": { return '' }
-    // case "Saluki": { return '' }
-    // case "Samoyed": { return '' }
-    // case "Schipperke": { return '' }
-    // case "Scottish Deerhound": { return '' }
-    // case "Scottish Terrier": { return '' }
-    // case "Shetland Sheepdog": { return '' }
-    // case "Shiba Inu": { return '' }
-    // case "Shih Tzu": { return '' }
-    // case "Shiloh Shepherd": { return '' }
-    // case "Siberian Husky": { return '' }
-    // case "Silky Terrier": { return '' }
-    // case "Smooth Fox Terrier": { return '' }
-    // case "Soft Coated Wheaten Terrier": { return '' }
-    // case "Spanish Water Dog": { return '' }
-    // case "Spinone Italiano": { return '' }
-    // case "Staffordshire Bull Terrier": { return '' }
-    // case "Standard Schnauzer": { return '' }
-    // case "Swedish Vallhund": { return '' }
-    // case "Thai Ridgeback": { return '' }
-    // case "Tibetan Mastiff": { return '' }
-    // case "Tibetan Spaniel": { return '' }
-    // case "Tibetan Terrier": { return '' }
-    // case "Toy Fox Terrier": { return '' }
-    // case "Treeing Walker Coonhound": { return '' }
-    // case "Vizsla": { return '' }
-    // case "Weimaraner": { return '' }
-    // case "Welsh Springer Spaniel": { return '' }
-    // case "West Highland White Terrier": { return '' }
-    // case "Whippet": { return '' }
-    // case "White Shepherd": { return '' }
-    // case "Wire Fox Terrier": { return '' }
-    // case "Wirehaired Pointing Griffon": { return '' }
-    // case "Wirehaired Vizsla": { return '' }
-    // case "Xoloitzcuintli": { return '' }
-    // case "Yorkshire Terrier": { return '' }
+    case "Bloodhound": { return 'Ищейка' }
+    case "Bluetick Coonhound": { return 'Голубая енотовидная борзая' }
+    case "Boerboel": { return 'Бурбуль' }
+    case "Border Collie": { return 'Бордер-колли' }
+    case "Border Terrier": { return 'Бордер терьер' }
+    case "Boston Terrier": { return 'Бостон терьер' }
+    case "Bouvier des Flandres": { return 'Бувье-де-Фландр' }
+    case "Boxer": { return 'Боксер' }
+    case "Boykin Spaniel": { return 'Бойкин-спаниель' }
+    case "Bracco Italiano": { return 'Итальянский бракк' }
+    case "Briard": { return 'Бриар' }
+    case "Brittany": { return 'Бретань' }
+    case "Bull Terrier": { return 'Бультерьер' }
+    case "Bull Terrier (Miniature)": { return 'Миниатюрный бультерьер' }
+    case "Bullmastiff": { return 'Бульмастиф' }
+    case "Cairn Terrier": { return 'Керн-терьер' }
+    case "Cane Corso": { return 'Кане-корсо' }
+    case "Cardigan Welsh Corgi": { return 'Вельш-корги кардиган' }
+    case "Catahoula Leopard Dog": { return 'Леопардовая собака Катахулы' }
+    case "Caucasian Shepherd (Ovcharka)": { return 'Кавказская овчарка' }
+    case "Cavalier King Charles Spaniel": { return 'Кавалер кинг чарльз спаниель' }
+    case "Chesapeake Bay Retriever": { return 'Чесапик-бей-ретривер' }
+    case "Chinese Crested": { return 'Китайская хохлатая' }
+    case "Chinese Shar-Pei": { return 'Шарпей' }
+    case "Chinook": { return 'Чинук' }
+    case "Chow Chow": { return 'Чау-чау' }
+    case "Clumber Spaniel": { return 'Кламбер-спаниель' }
+    case "Cocker Spaniel": { return 'Английский кокер-спаниель' }
+    case "Cocker Spaniel (American)": { return 'Американский кокер-спаниель' }
+    case "Coton de Tulear": { return 'Котон-де-тулеар' }
+    case "Dalmatian": { return 'Далматинец' }
+    case "Doberman Pinscher": { return 'Доберман' }
+    case "Dogo Argentino": { return 'Аргентинский дог' }
+    case "Dutch Shepherd": { return 'Голландская овчарка' }
+    case "English Setter": { return 'Английский сеттер' }
+    case "English Shepherd": { return 'Английская овчарка' }
+    case "English Springer Spaniel": { return 'Английский спрингер-спаниель' }
+    case "English Toy Spaniel": { return 'Кинг чарльз спаниель' }
+    case "English Toy Terrier": { return 'Английский той-терьер' }
+    case "Eurasier": { return 'Евразиер' }
+    case "Field Spaniel": { return 'Филд-спаниель' }
+    case "Finnish Lapphund": { return 'Финский лаппхунд' }
+    case "Finnish Spitz": { return 'Финский шпиц' }
+    case "French Bulldog": { return 'Французский бульдог' }
+    case "German Pinscher": { return 'Немецкий пинчер' }
+    case "German Shepherd Dog": { return 'Немецкая овчарка' }
+    case "German Shorthaired Pointer": { return 'Курцхаар' }
+    case "Giant Schnauzer": { return 'Ризеншнауцер' }
+    case "Glen of Imaal Terrier": { return 'Глен оф Имаал терьер' }
+    case "Golden Retriever": { return 'Золотистый ретривер' }
+    case "Gordon Setter": { return 'Шотландский сеттер' }
+    case "Great Dane": { return 'Немецкий дог' }
+    case "Great Pyrenees": { return 'Пиренейская горная собака' }
+    case "Greyhound": { return 'Борзая' }
+    case "Griffon Bruxellois": { return 'Малая бельгийская' }
+    case "Harrier": { return 'Харьер' }
+    case "Havanese": { return 'Гаванский бишон' }
+    case "Irish Setter": { return 'Ирландский сеттер' }
+    case "Irish Terrier": { return 'Ирландский терьер' }
+    case "Irish Wolfhound": { return 'Ирландский волкодав' }
+    case "Italian Greyhound": { return 'Левретка' }
+    case "Japanese Chin": { return 'Японский хин' }
+    case "Japanese Spitz": { return 'Японский шпиц' }
+    case "Keeshond": { return 'Вольфшпиц' }
+    case "Komondor": { return 'Комондор' }
+    case "Kooikerhondje": { return 'Коикерхондье' }
+    case "Kuvasz": { return 'Кувас' }
+    case "Labrador Retriever": { return 'Лабрадор ретривер' }
+    case "Lagotto Romagnolo": { return 'Лаготто-романьоло' }
+    case "Lancashire Heeler": { return 'Ланкаширский хилер' }
+    case "Leonberger": { return 'Леонбергер' }
+    case "Lhasa Apso": { return 'Лхаса апсо' }
+    case "Maltese": { return 'Мальтийская болонка' }
+    case "Miniature American Shepherd": { return 'Миниатюрная американская овчарка' }
+    case "Miniature Pinscher": { return 'Карликовый пинчер' }
+    case "Miniature Schnauzer": { return 'Цвергшнауцер' }
+    case "Newfoundland": { return 'Ньюфаундленд' }
+    case "Norfolk Terrier": { return 'Норфолк-терьер' }
+    case "Norwich Terrier": { return 'Норвич-терьер' }
+    case "Nova Scotia Duck Tolling Retriever": { return 'Новошотландский ретривер' }
+    case "Old English Sheepdog": { return 'Бобтейл' }
+    case "Olde English Bulldogge": { return 'Староанглийский бульдог' }
+    case "Papillon": { return 'Континентальный той-спаниель' }
+    case "Pekingese": { return 'Пекинес' }
+    case "Pembroke Welsh Corgi": { return 'Вельш-корги пемброк' }
+    case "Perro de Presa Canario": { return 'Канарский дог' }
+    case "Pharaoh Hound": { return 'Фараонова собака' }
+    case "Plott": { return 'Плотт' }
+    case "Pomeranian": { return 'Померанский шпиц' }
+    case "Poodle (Miniature)": { return 'Миниатюрный пудель' }
+    case "Poodle (Toy)": { return 'Той пудель' }
+    case "Pug": { return 'Мопс' }
+    case "Puli": { return 'Пули' }
+    case "Pumi": { return 'Пуми' }
+    case "Rat Terrier": { return 'Рэт-терьер' }
+    case "Redbone Coonhound": { return 'Редбон кунхаунд' }
+    case "Rhodesian Ridgeback": { return 'Родезийский риджбек' }
+    case "Rottweiler": { return 'Ротвейлер' }
+    case "Russian Toy": { return 'Русский той' }
+    case "Saint Bernard": { return 'Сенбернар' }
+    case "Saluki": { return 'Салюки' }
+    case "Samoyed": { return 'Самоедская собака' }
+    case "Schipperke": { return 'Шипперке' }
+    case "Scottish Deerhound": { return 'Дирхаунд' }
+    case "Scottish Terrier": { return 'Шотландский терьер' }
+    case "Shetland Sheepdog": { return 'Шелти' }
+    case "Shiba Inu": { return 'Сиба-ину' }
+    case "Shih Tzu": { return 'Ши-тцу' }
+    case "Shiloh Shepherd": { return 'Шилонская овчарка' }
+    case "Siberian Husky": { return 'Сибирский хаски' }
+    case "Silky Terrier": { return 'Австралийский шелковистый терьер' }
+    case "Smooth Fox Terrier": { return 'Гладкошёрстный фокстерьер' }
+    case "Soft Coated Wheaten Terrier": { return 'Ирландский мягкошёрстный пшеничный терьер' }
+    case "Spanish Water Dog": { return 'Испанская водяная собака' }
+    case "Spinone Italiano": { return 'Итальянский спиноне' }
+    case "Staffordshire Bull Terrier": { return 'Стаффордширский бультерьер' }
+    case "Standard Schnauzer": { return 'Миттельшнауцер' }
+    case "Swedish Vallhund": { return 'Шведский вальхунд' }
+    case "Thai Ridgeback": { return 'Тайский риджбек' }
+    case "Tibetan Mastiff": { return 'Тибетский мастиф' }
+    case "Tibetan Spaniel": { return 'Тибетский спаниель' }
+    case "Tibetan Terrier": { return 'Тибетский терьер' }
+    case "Toy Fox Terrier": { return 'Той-фокстерьер' }
+    case "Treeing Walker Coonhound": { return 'Древесная Енотовая Гончая Уолкера' }
+    case "Vizsla": { return 'Венгерская выжла' }
+    case "Weimaraner": { return 'Веймаранер' }
+    case "Welsh Springer Spaniel": { return 'Вельш-спрингер-спаниель' }
+    case "West Highland White Terrier": { return 'Вест-хайленд-уайт-терьер' }
+    case "Whippet": { return 'Уиппет' }
+    case "White Shepherd": { return 'Белая швейцарская овчарка' }
+    case "Wire Fox Terrier": { return 'Жесткошёрстный фокстерьер' }
+    case "Wirehaired Pointing Griffon": { return 'Гриффон Кортальса' }
+    case "Wirehaired Vizsla": { return 'Венгерская жесткошёрстная выжла' }
+    case "Xoloitzcuintli": { return 'Ксолоитцкуинтли' }
+    case "Yorkshire Terrier": { return 'Йоркширский терьер' }
 
     default: { return name }
   }
