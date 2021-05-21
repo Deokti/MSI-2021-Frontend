@@ -1,23 +1,16 @@
 import React, { ReactElement } from 'react';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { IBreeds } from '../../../interfaces/reducers';
 import { IStore } from '../../../interfaces/store';
 import Navigation from '../../Navigation';
 import { setActiveControlPath } from '../../../actions/management';
-
-
-// Когда нажимаем на brreds, то переходим на /breeds
-// Когда нажимаем на собаку в одном из breeds, то переходим на /breeds/1
-// Таким образом можно записывать эти данные в путь и затем в Navigation обрабатываеть его, 
-// разбивая на массив и затем показывания текущий путь
-
 import { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import { ROUTER_PATH } from '../../../config/ROUTER_PATH';
 import './style.scss';
 import { IResponseBreed } from '../../../interfaces/response';
 import { translateTemparement } from '../../../utils/translate-temperament';
+import { translateNameDogs } from '../../../utils/translate-name-dogs';
 
 interface ContentPanelBreedProps {
   activeDog: IResponseBreed | null
@@ -52,7 +45,7 @@ function ContentPanelBreed({ activeDog, setActiveControlPath }: ContentPanelBree
         />
 
         <div className="content-panel-breed__description">
-          <h2 className="content-panel-breed__name">{activeDog && activeDog.name}</h2>
+          <h2 className="content-panel-breed__name">{activeDog && translateNameDogs(activeDog.name)}</h2>
           <h3 className="content-panel-breed__family">{activeDog && activeDog.breed_group}</h3>
 
           <div className="content-panel-breed__detailed">

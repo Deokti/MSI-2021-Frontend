@@ -12,7 +12,6 @@ import { HeaderSearch } from '../HeaderSearch';
 export function ContentPanel() {
   const { pathname } = useLocation();
 
-
   return (
     <div className="content-panel">
       {pathname !== ROUTER_PATH.root && <HeaderSearch />}

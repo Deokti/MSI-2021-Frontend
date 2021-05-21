@@ -9,12 +9,12 @@ export const getBreedsSucsess = createAction('GET_BREEDS_SUCCSESS');
 export const getBreedsFailure = createAction('GET_BREEDS_FAILURE');
 
 // Ассинхронный запрос для получения Пород 
-export const getBreedsRequest = (limit: number) => async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
+export const getBreedsRequest = () => async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
   dispatch(getBreedsLoading());
 
   const PARAMS = { headers: { 'x-api-key': API_KEY } };
 
-  return fetch(`${API_URL.BREEDS_URL}?limit=${limit}`, PARAMS)
+  return fetch(`${API_URL.BREEDS_URL}`, PARAMS)
     .then((response) => response.json())
     .then(data => dispatch(getBreedsSucsess(data)))
     .catch((error) => {
@@ -24,3 +24,6 @@ export const getBreedsRequest = (limit: number) => async (dispatch: ThunkDispatc
 };
 
 export const setBreedsActiveDog = createAction('SET_BREEDS_ACTIVE_DOG');
+
+export const setLimit = createAction('SET_LIMIT');
+export const setFilterDogName = createAction('SET_FILTER_DOG_NAME');

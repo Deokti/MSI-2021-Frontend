@@ -25,8 +25,8 @@ export const getVotingRequest = () => {
 };
 
 
-export const getVotingHistorySucsess = createAction('GET_VOTING_SUCSESS');
-export const getVotingHistoryFailure = createAction('GET_VOTING_FAILURE');
+export const getVotingHistorySucsess = createAction('GET_VOTING_HISTORY_SUCSESS');
+export const getVotingHistoryFailure = createAction('GET_VOTING_HISTORY_FAILURE');
 
 // Ассинхронный запрос на получение истории голосования
 export const getVotingHistory = () => {
@@ -62,8 +62,11 @@ export const sendVotingRequest = ({ image_id, vote }: { image_id: string, vote: 
 
     await fetch(API_URL.VOTES_URL_POST, PARAMS)
       .then(() => {
-        dispatch(getVotingRequest())
-        dispatch(getVotingHistory())
+        // В компоненте ContentPanelVoting проходит логика,
+        // что если voting.data равна null, отправляем запрос и получаем новые данные
+        // Для достижения этого эффекта, после отправления мы обнуляем voting.data 
+        // dispatch(getVotingSucsess(null));
+        dispatch(getVotingSucsess(null));
       })
       .catch((error) => console.error(error))
   }

@@ -38,6 +38,13 @@ function translate(temperament: string) {
     case 'Composed': { return 'Невозмутимый'; }
     case 'Receptive': { return 'Восприимчивый'; }
     case 'Faithful': { return 'Верный'; }
+    case 'Tenacious': { return 'Цепкий'; }
+    case 'Attentive': { return 'Внимательный'; }
+    case 'Reliable': { return 'Надёжный'; }
+    case 'Fearless': { return 'Бесстрашный'; }
+    case 'Lively': { return 'Энергичный'; }
+    case 'Self-assured': { return 'Самоуверенный'; }
+    case 'Obedient': { return 'Покорный'; }
 
     default: { return temperament }
   }

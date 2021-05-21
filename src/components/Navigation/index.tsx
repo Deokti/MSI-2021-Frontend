@@ -9,7 +9,6 @@ import { setActiveControlPath } from '../../actions/management';
 import Button from '../Button';
 
 import { translateNavigation } from '../../utils/translate-navation';
-import { ROUTER_PATH } from '../../config/ROUTER_PATH';
 
 import './style.scss';
 import clsx from 'clsx';
@@ -24,16 +23,19 @@ function Navigation({ currentPath, setActiveControlPath }: NavigationProsp): Rea
 
   function onClickHomePage(event: React.MouseEvent<HTMLAnchorElement>) {
     event.preventDefault();
-    const currentPathLenght = (currentPath && currentPath.length);
 
-    const pathname: string = (currentPathLenght as number) >= 2 ? `/${currentPath && currentPath[0]}` : '/';
-    setActiveControlPath(pathname);
-    push(pathname);
+    setActiveControlPath(currentRoutePath());
+    push(currentRoutePath());
+  }
+
+  function currentRoutePath() {
+    const currentPathLenght = (currentPath && currentPath.length);
+    return (currentPathLenght as number) >= 2 ? `/${currentPath && currentPath[0]}` : '/';
   }
 
   return (
     <div className="navigation">
-      <Link to={ROUTER_PATH.root} onClick={onClickHomePage}>
+      <Link to={currentRoutePath()} onClick={onClickHomePage}>
         <Button width={40} height={40} borderRadius={10} className="navigation__button">
           <RiArrowLeftSLine color="#FF868E" size={40} />
         </Button>
@@ -53,10 +55,6 @@ function Navigation({ currentPath, setActiveControlPath }: NavigationProsp): Rea
             )
           })
         }
-
-        {/* <Link to={ROUTER_PATH.breeds} className={clsx('navigation__link', { 'no-active': supPath !== null })}>
-          {/* <span>{translateNavigation(path as string)}</span> */}
-        {/* </Link> */}
       </ul>
     </div>
   )

@@ -3,10 +3,12 @@
   --color: #1D1D1D;
   --white: 255, 255, 255;
   --background-plug: 251, 224, 220;
-  --background-plug-opacity: 100%;
+  --background-plug-opacity: 1;
   --background-search: 251, 224, 220;
   --background-search-opacity: 1;
-  --scroll-bar: 29, 29, 29
+  --scroll-bar: 29, 29, 29;
+  --breeds-name-background: #fff;
+  --select-input-background: 248, 248, 247;
 }
 
 [data-theme="dark"] {
@@ -17,5 +19,7 @@
   --background-plug-opacity: 0.05;
   --background-search: 255, 134, 142;
   --background-search-opacity: 0.2;
-  --scroll-bar: 255, 255, 255
+  --scroll-bar: 255, 255, 255;
+  --breeds-name-background: #282828;
+  --select-input-background: 255, 255, 255;
 }
