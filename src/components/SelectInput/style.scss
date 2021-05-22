@@ -5,6 +5,7 @@
   cursor: pointer;
   border-radius: 30px;
   padding: 7px 10px;
+  max-width: 200px;
   padding-right: 40px;
   border: 2px solid transparent;
   border-radius: 10px;
@@ -19,7 +20,10 @@
 }
 
 .select-input__active {
+  display: block;
   color: #8C8C8C;
+  overflow: hidden;
+  max-height: 23px;
 }
 
 .select-input__arrow {
@@ -47,5 +51,21 @@
 }
 
 .select-input__item {
+  position: relative;
   padding: 5px 0;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: -10px;
+    opacity: 0;
+    border-radius: 100%;
+    width: 4px;
+    height: 4px;
+    background-color: rgba(var(--background-search), var(--background-search-opacity));
+  }
+  &:hover::before {
+    opacity: 1;
+  }
 }

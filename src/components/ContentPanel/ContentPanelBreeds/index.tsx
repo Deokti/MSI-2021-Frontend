@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect } from 'react';
 import { connect } from 'react-redux';
 import Navigation from '../../Navigation';
-import { getBreedsRequest, setBreedsActiveDog, setLimit, setFilterDogName } from '../../../actions/breeds';
+import { getBreedsRequest, setBreedsActiveDog, setLimit, setFilterDogName, setSortedBreeds } from '../../../actions/breeds';
 
 import { IStore } from '../../../interfaces/store';
 import { IBreeds } from '../../../interfaces/reducers';
@@ -14,6 +14,10 @@ import './style.scss';
 import '../../../assets/styles/scroll.scss';
 import { SelectInput } from '../../SelectInput';
 import { translateNameDogs } from '../../../utils/translate-name-dogs';
+import { AiOutlineSortAscending, AiOutlineSortDescending } from 'react-icons/ai';
+import { filterDogsByName } from '../../../utils/filter-dogs-by-name';
+import clsx from 'clsx';
+import { getSortedBreeds } from '../../../utils/get-sorted-breeds';
 
 interface ContentPanelBreedsProps {
   getBreedsRequest: () => any
@@ -21,9 +25,10 @@ interface ContentPanelBreedsProps {
   breeds: IBreeds
   setLimit: (limit: number) => any
   setFilterDogName: (dogName: string) => any
+  setSortedBreeds: (sort: 'ASC' | 'DESC') => any
 }
 
-function ContentPanelBreeds({ getBreedsRequest, breeds, setBreedsActiveDog, setLimit, setFilterDogName }: ContentPanelBreedsProps): ReactElement<ContentPanelBreedsProps> {
+function ContentPanelBreeds({ getBreedsRequest, breeds, setBreedsActiveDog, setLimit, setFilterDogName, setSortedBreeds }: ContentPanelBreedsProps): ReactElement<ContentPanelBreedsProps> {
   useEffect(() => getBreedsRequest(), [getBreedsRequest]);
 
   function onSetLimit(defaultValue: number | string) {
@@ -34,15 +39,19 @@ function ContentPanelBreeds({ getBreedsRequest, breeds, setBreedsActiveDog, setL
     setFilterDogName(defaultValue as string);
   }
 
-  function getDogsBreeds(): Array<string> | null {
-    const result = ['Все породы'];
-    breeds.data && breeds.data.forEach((item) => result.push(translateNameDogs(item.name)))
-    return result;
-  }
+  function getBreedsAllDogs(): Array<string> | null {
+    const result = breeds.data && breeds.data.reduce((acc, value) => {
+      acc.push(translateNameDogs(value.name))
+      return acc;
+    }, ['Все породы'])
 
-  function filterDogs(filter: string, breeds: Array<IResponseBreed>): Array<IResponseBreed> {
-    if (filter === 'Все породы') return breeds;
-    return breeds.filter((breed) => translateNameDogs(breed.name) === filter);
+    if (result) {
+      // Сортируем все элементы, кроме первого
+      const [first, ...other] = result && result;
+      return [first, ...other.sort()];
+    }
+
+    return [];
   }
 
   return (
@@ -50,7 +59,7 @@ function ContentPanelBreeds({ getBreedsRequest, breeds, setBreedsActiveDog, setL
       <header className="content-panel-breeds__header">
         <Navigation />
         <SelectInput
-          values={getDogsBreeds()}
+          values={getBreedsAllDogs()}
           defaultValue={breeds && breeds.filterDogName as string}
           onClick={onSetFilterDogName}
         />
@@ -61,6 +70,13 @@ function ContentPanelBreeds({ getBreedsRequest, breeds, setBreedsActiveDog, setL
           defaultValue={breeds && breeds.limit}
           onClick={onSetLimit}
         />
+        <Button className={clsx('content-panel-breeds__sort', { 'is-active': breeds.sorted === 'DESC' })} onClick={() => setSortedBreeds("DESC")}>
+          <AiOutlineSortDescending color="#8C8C8C" size={25} />
+        </Button>
+
+        <Button className={clsx('content-panel-breeds__sort', { 'is-active': breeds.sorted === 'ASC' })} onClick={() => setSortedBreeds('ASC')}>
+          <AiOutlineSortAscending color="#8C8C8C" size={25} />
+        </Button>
       </header>
 
       {breeds.loading
@@ -68,8 +84,12 @@ function ContentPanelBreeds({ getBreedsRequest, breeds, setBreedsActiveDog, setL
         : (
           <ul className="content-panel-breeds__list scroll">
             {
-              breeds.data && filterDogs(breeds && breeds.filterDogName, breeds && breeds.data)
-                .slice(0, breeds.limit).map((breed) => {
+              breeds.data && filterDogsByName(
+                breeds && breeds.filterDogName,
+                getSortedBreeds(breeds && breeds.sorted, breeds && breeds.data)
+              )
+                .slice(0, breeds.limit)
+                .map((breed) => {
                   return (
                     <li
                       className="content-panel-breeds__item"
@@ -101,4 +121,4 @@ function ContentPanelBreeds({ getBreedsRequest, breeds, setBreedsActiveDog, setL
 
 const mapStateToProps = ({ breeds }: IStore) => ({ breeds });
 
-export default connect(mapStateToProps, { getBreedsRequest, setBreedsActiveDog, setLimit, setFilterDogName })(ContentPanelBreeds);
+export default connect(mapStateToProps, { getBreedsRequest, setBreedsActiveDog, setLimit, setFilterDogName, setSortedBreeds })(ContentPanelBreeds);

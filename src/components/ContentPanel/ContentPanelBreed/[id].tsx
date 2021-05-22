@@ -37,10 +37,9 @@ function ContentPanelBreed({ activeDog, setActiveControlPath }: ContentPanelBree
       <Navigation />
 
       <div className="content-panel-breed__content">
-        <span
-          className="content-panel-breed__image"
-          style={{ backgroundImage: `url('${activeDog && activeDog.image.url}')` }}
-        />
+        <div className="content-panel-breed__image">
+          <img src={(activeDog && activeDog.image.url) as string} alt={(activeDog && activeDog.name) as string} />
+        </div>
 
         <div className="content-panel-breed__description">
           <h2 className="content-panel-breed__name">{activeDog && translateNameDogs(activeDog.name)}</h2>
