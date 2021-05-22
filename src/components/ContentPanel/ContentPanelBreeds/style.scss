@@ -1,3 +1,5 @@
+@import '../../../assets/styles/theme.scss';
+
 .content-panel-breeds__header {
   display: flex;
   align-items: center;
@@ -89,4 +91,23 @@
   min-height: 34px;
   left: 50%;
   transform: translate(-50%) translateY(150%);
+}
+
+.content-panel-breeds__sort {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(var(--select-input-background), var(--background-plug-opacity));
+  margin-right: 10px;
+  border: 2px solid transparent;
+  border-radius: 10px;
+
+  &:hover {
+    border: 2px solid rgba(var(--background-search), var(--background-search-opacity)) !important;
+  }
+
+  &.is-active {
+    & > * {
+      fill: #FF868E;
+    }
+  }
 }

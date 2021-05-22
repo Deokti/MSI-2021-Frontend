@@ -33,4 +33,5 @@ export interface IBreeds {
   limit: number
   activeDog: IResponseBreed | null
   filterDogName: string
+  sorted: 'ASC' | 'DESC'
 }

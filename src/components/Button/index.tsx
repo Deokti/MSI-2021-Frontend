@@ -33,7 +33,7 @@ function Button({
   color,
   fontSize = 16,
   fontWeight,
-  borderRadius = 0,
+  borderRadius,
   onClick,
   LoadingIcon,
   isLoading = false,

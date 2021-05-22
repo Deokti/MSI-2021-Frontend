@@ -1,4 +1,4 @@
-import { getBreedsFailure, getBreedsLoading, getBreedsSucsess, setBreedsActiveDog, setFilterDogName, setLimit } from "../actions/breeds";
+import { getBreedsFailure, getBreedsLoading, getBreedsSucsess, setBreedsActiveDog, setFilterDogName, setLimit, setSortedBreeds } from "../actions/breeds";
 import { IBreeds } from "../interfaces/reducers";
 import { IResponseBreed } from "../interfaces/response";
 
@@ -8,7 +8,8 @@ const initialState: IBreeds = {
   limit: 10,
   error: null,
   activeDog: null,
-  filterDogName: 'Все породы'
+  filterDogName: 'Все породы',
+  sorted: 'ASC'
 }
 
 interface ActionProps {
@@ -60,6 +61,13 @@ export function breeds(state: IBreeds = initialState, action: ActionProps) {
       return {
         ...state,
         filterDogName: action.payload
+      }
+    }
+
+    case setSortedBreeds.toString(): {
+      return {
+        ...state,
+        sorted: action.payload
       }
     }
 

@@ -1,8 +1,9 @@
 import { AnyAction } from "redux";
 import { createAction } from "redux-actions";
 import { ThunkDispatch } from "redux-thunk";
-import { API_KEY } from "../../config/API_KEY";
 import { API_URL } from "../../config/API_URL";
+
+import { axios } from '../../config/axios';
 
 export const getVotingLoading = createAction('GET_VOTING_LOADING');
 export const getVotingSucsess = createAction('GET_VOTING_SUCCSESS');
@@ -13,10 +14,13 @@ export const getVotingRequest = () => {
   return async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
     dispatch(getVotingLoading());
 
-    fetch(API_URL.VOTES_URL, { headers: { 'x-api-key': API_KEY } })
-      .then((response) => response.json())
+    const PARAMS = {
+      params: { limit: 1, },
+    }
+
+    axios.get(API_URL.VOTES_URL, PARAMS)
       .then((voting) => {
-        dispatch(getVotingSucsess(voting[0]));
+        dispatch(getVotingSucsess(voting.data[0]));
       })
       .catch((error) => {
         dispatch(getVotingFailure(error));
@@ -24,20 +28,19 @@ export const getVotingRequest = () => {
   }
 };
 
-
 export const getVotingHistorySucsess = createAction('GET_VOTING_HISTORY_SUCSESS');
 export const getVotingHistoryFailure = createAction('GET_VOTING_HISTORY_FAILURE');
 
 // Ассинхронный запрос на получение истории голосования
 export const getVotingHistory = () => {
   return async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
-    const PARAMS = { headers: { 'x-api-key': API_KEY } };
+    const PARAMS = {
+      params: { order: "DESC", limit: 25 }
+    }
 
-    fetch(API_URL.VOTES_URL_POST, PARAMS)
-      .then((response) => response.json())
+    axios.get(API_URL.VOTES_URL_POST, PARAMS)
       .then((voting) => {
-        const votingReverse = voting.reverse();
-        dispatch(getVotingHistorySucsess(votingReverse));
+        dispatch(getVotingHistorySucsess(voting.data));
       })
       .catch((error) => {
         dispatch(getVotingHistoryFailure(error));
@@ -51,22 +54,15 @@ export const sendVotingRequest = ({ image_id, vote }: { image_id: string, vote: 
   return async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
     const voice = { image_id, value: vote };
 
-    const PARAMS = {
-      method: 'POST',
-      headers: {
-        'x-api-key': API_KEY,
-        'Content-Type': 'application/json;charset=utf-8'
-      },
-      body: JSON.stringify(voice),
-    }
-
-    await fetch(API_URL.VOTES_URL_POST, PARAMS)
-      .then(() => {
-        // В компоненте ContentPanelVoting проходит логика,
-        // что если voting.data равна null, отправляем запрос и получаем новые данные
-        // Для достижения этого эффекта, после отправления мы обнуляем voting.data 
-        // dispatch(getVotingSucsess(null));
-        dispatch(getVotingSucsess(null));
+    await axios.post(API_URL.VOTES_URL_POST, voice)
+      .then((data) => {
+        if (data.status === 200) {
+          // В компоненте ContentPanelVoting проходит логика,
+          // что если voting.data равна null, отправляем запрос и получаем новые данные
+          // Для достижения этого эффекта, после отправления мы обнуляем voting.data 
+          // dispatch(getVotingSucsess(null));
+          dispatch(getVotingSucsess(null));
+        }
       })
       .catch((error) => console.error(error))
   }

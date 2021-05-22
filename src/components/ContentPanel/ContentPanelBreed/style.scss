@@ -7,11 +7,12 @@
 .content-panel-breed__image {
   width: 640px;
   height: 360px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  display: block;
+  overflow: hidden;
   border-radius: 20px;
+  img {
+    width: 100%;
+    height: auto;
+  }
 }
 
 .content-panel-breed__description {
@@ -36,7 +37,7 @@
   top: -30px;
 
   width: fit-content;
-  padding: 0 40px;
+  padding: 0 20px;
 }
 
 .content-panel-breed__family {
