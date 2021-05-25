@@ -21,7 +21,7 @@ function ContentPanelBreed({ activeDog, setActiveControlPath }: ContentPanelBree
   const { push } = useHistory();
 
   const onLoadComponent = useCallback(() => {
-    const sup = activeDog && activeDog?.id;
+    const sup = activeDog && activeDog.id;
 
     if (sup === null) return push(ROUTER_PATH.breeds);
 
@@ -71,9 +71,6 @@ function ContentPanelBreed({ activeDog, setActiveControlPath }: ContentPanelBree
     </article>
   )
 }
-
-
-
 
 const mapStateToProps = ({ breeds: { activeDog } }: IStore) => ({ activeDog })
 

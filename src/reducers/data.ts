@@ -3,6 +3,7 @@ import { IDataState } from '../interfaces/reducers';
 
 const initialState: IDataState = {
   darkTheme: false,
+  breedsAllDogs: null
 }
 
 function data(state: IDataState = initialState, action: any) {

@@ -4,10 +4,11 @@ import ContentPanelVoting from './ContentPanelVoting';
 import ContentPanelBreeds from './ContentPanelBreeds';
 import { Switch, Route, useLocation } from 'react-router-dom';
 
-import './style.scss';
 import { ROUTER_PATH } from '../../config/ROUTER_PATH';
 import ContentPanelBreed from './ContentPanelBreed/[id]';
 import { HeaderSearch } from '../HeaderSearch';
+import ContentPanelGallery from './ContentPanelGallery';
+import './style.scss';
 
 export function ContentPanel() {
   const { pathname } = useLocation();
@@ -20,6 +21,8 @@ export function ContentPanel() {
         <Route path={ROUTER_PATH.root} exact component={ContentPanelPlug} />
         <Route path={ROUTER_PATH.votes} exact component={ContentPanelVoting} />
         <Route path={ROUTER_PATH.breeds} exact component={ContentPanelBreeds} />
+        <Route path={ROUTER_PATH.gallery} exact component={ContentPanelGallery} />
+
         <Route path={`${ROUTER_PATH.breeds}/:id`} exact component={ContentPanelBreed} />
 
         <Route component={ContentPanelPlug} />
