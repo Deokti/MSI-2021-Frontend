@@ -3,6 +3,7 @@ import { IResponseBreed, IResponseHistoryVoting, IResponseVoting } from "./respo
 // Data
 export interface IDataState {
   darkTheme: boolean
+  breedsAllDogs: Array<string> | null
 }
 
 // Management
@@ -34,4 +35,15 @@ export interface IBreeds {
   activeDog: IResponseBreed | null
   filterDogName: string
   sorted: 'ASC' | 'DESC'
+}
+
+// Gallery
+export interface IGallery {
+  data: null | Array<string>
+  order: 'Random' | 'Desc' | 'Asc'
+  type: 'All' | 'Static' | 'Animated'
+  breed: null | Array<string>,
+  limit: 5
+  error: any
+  loading: boolean
 }

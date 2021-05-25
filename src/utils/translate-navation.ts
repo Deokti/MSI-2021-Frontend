@@ -8,6 +8,7 @@ export function translateNavigation(navigation: string) {
 
   if (custonNavigation === ROUTER_PATH.votes) return 'Голосование'.toUpperCase();
   if (custonNavigation === ROUTER_PATH.breeds) return 'Породы'.toUpperCase();
+  if (custonNavigation === ROUTER_PATH.gallery) return 'Галерея'.toUpperCase();
 
   return navigation;
 }

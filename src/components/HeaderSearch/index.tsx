@@ -1,9 +1,29 @@
 import React from 'react';
 import Button from '../Button';
 import { BiSearch } from 'react-icons/bi';
-import { ICONS } from './icons';
+import { AiOutlineHeart } from 'react-icons/ai';
+import { FiSmile } from 'react-icons/fi';
+import { CgSmileSad } from 'react-icons/cg';
 
 import './style.scss';
+
+
+const sizeIcon: number = 25;
+const colorUcon: string = '#FF868E'
+const ICONS = [
+  {
+    id: 0,
+    children: <FiSmile size={sizeIcon} color={colorUcon} />,
+  },
+  {
+    id: 1,
+    children: <AiOutlineHeart size={sizeIcon} color={colorUcon} />,
+  },
+  {
+    id: 2,
+    children: <CgSmileSad size={sizeIcon} color={colorUcon} />,
+  },
+];
 
 export function HeaderSearch(): React.ReactElement {
 
