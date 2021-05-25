@@ -8,6 +8,7 @@ import Navigation from '../../Navigation';
 import { getGalleryRequest } from '../../../actions/gallery';
 
 import './style.scss';
+import { ContentPanelGallerySelect } from './ContentPanelGallerySelect';
 
 interface ContentPanelGalleryProps {
   gallery: IGallery
@@ -35,7 +36,34 @@ function ContentPanelGallery({ gallery, getGalleryRequest }: ContentPanelGallery
       </header>
 
       <div className="content-panel-gallery_selects">
-
+        <ContentPanelGallerySelect
+          title="Порядок"
+          maxWidth={300}
+          minWidth={290}
+          defaultValue="Случайно"
+          values={['Случайно', 'ASC', 'DESK']}
+        />
+        <ContentPanelGallerySelect
+          title="Типы"
+          defaultValue="Случайно"
+          maxWidth={300}
+          minWidth={290}
+          values={['Случайно', 'ASC', 'DESK']}
+        />
+        <ContentPanelGallerySelect
+          title="Порода"
+          maxWidth={300}
+          minWidth={290}
+          defaultValue="Случайно"
+          values={['Первая порода', 'Вторая порода', 'Третья порода']}
+        />
+        <ContentPanelGallerySelect
+          title="Лимит"
+          maxWidth={300}
+          minWidth={290}
+          defaultValue="5 элементов на странице"
+          values={['5 элементов на странице', '10 элементов на странице', '15 элементов на странице', '20 элементов на странице']}
+        />
       </div>
 
 

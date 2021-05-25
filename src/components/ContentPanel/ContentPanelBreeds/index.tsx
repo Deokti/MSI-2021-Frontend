@@ -61,14 +61,16 @@ function ContentPanelBreeds({ getBreedsRequest, breeds, setBreedsActiveDog, setL
         <SelectInput
           values={getBreedsAllDogs()}
           defaultValue={breeds && breeds.filterDogName as string}
-          onClick={onSetFilterDogName}
+          getValueByList={onSetFilterDogName}
+          margin="0 10px 0 0"
         />
 
         <SelectInput
           values={[5, 10, 15, 20]}
           label="Лимит"
           defaultValue={breeds && breeds.limit}
-          onClick={onSetLimit}
+          getValueByList={onSetLimit}
+          margin="0 10px 0 0"
         />
         <Button className={clsx('content-panel-breeds__sort', { 'is-active': breeds.sorted === 'DESC' })} onClick={() => setSortedBreeds("DESC")}>
           <AiOutlineSortDescending color="#8C8C8C" size={25} />

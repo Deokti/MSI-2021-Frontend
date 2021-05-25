@@ -15,9 +15,16 @@
 }
 
 .content-panel-gallery_selects {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   margin-top: 20px;
   padding: 10px 20px;
 
   background: rgba(var(--select-input-background), var(--background-plug-opacity));
   border-radius: 20px;
+
+  .select-input {
+    margin-bottom: 10px;
+  }
 }

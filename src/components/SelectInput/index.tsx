@@ -14,10 +14,13 @@ export interface SelectInputProps {
   defaultValue?: string | number
   values?: Array<string | number> | null
   label?: string
-  onClick: (defaultValue: string | number) => void
+  getValueByList?: (value: string | number) => void
+  maxWidth?: number | string
+  minWidth?: number | string
+  margin?: string
 }
 
-export function SelectInput({ values, label, defaultValue, onClick }: SelectInputProps): ReactElement<SelectInputProps> {
+export function SelectInput({ values, label, defaultValue, getValueByList, maxWidth = 200, minWidth, margin }: SelectInputProps): ReactElement<SelectInputProps> {
   const selectInputRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState<boolean>(false);
 
@@ -43,7 +46,7 @@ export function SelectInput({ values, label, defaultValue, onClick }: SelectInpu
 
 
   return (
-    <div className="select-input" onClick={onSetActive} ref={selectInputRef}>
+    <div className="select-input" onClick={onSetActive} ref={selectInputRef} style={{ maxWidth, minWidth, margin }}>
       <span className="select-input__active" key={Date.now()}>{label && `${label}:`} {defaultValue}</span>
 
       <MdKeyboardArrowDown fontSize={20} className="select-input__arrow" />
@@ -57,7 +60,7 @@ export function SelectInput({ values, label, defaultValue, onClick }: SelectInpu
                 return (
                   <li key={value}
                     className="select-input__item"
-                    onClick={() => onClick(value)}
+                    onClick={() => getValueByList && getValueByList(value)}
                   >
                     {label && `${label}:`} {value}
                   </li>

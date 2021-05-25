@@ -5,15 +5,13 @@
   cursor: pointer;
   border-radius: 30px;
   padding: 7px 10px;
-  max-width: 200px;
   padding-right: 40px;
   border: 2px solid transparent;
   border-radius: 10px;
   background-color: rgba(var(--select-input-background), var(--background-plug-opacity));
   font-size: 16px;
   color: #8C8C8C;
-  margin-right: 10px;
-
+  
   &:hover {
     border: 2px solid rgba(var(--background-search), var(--background-search-opacity));
   }
