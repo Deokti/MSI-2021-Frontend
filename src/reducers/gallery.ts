@@ -1,10 +1,10 @@
-import { getGalleryFailure, getGalleryLoading, getGallerySucsess } from "../actions/gallery";
+import { getGalleryFailure, getGalleryLoading, getGallerySucsess, setGalleryLimit } from "../actions/gallery";
 import { IGallery } from "../interfaces/reducers";
 
 const initialState: IGallery = {
   data: null,
-  order: 'Random',
-  type: 'Static',
+  order: 'Случайно',
+  type: 'Все',
   breed: 'Все породы',
   limit: 5,
   error: null,
@@ -34,6 +34,13 @@ export function gallery(state: IGallery = initialState, action: any): IGallery {
         loading: false,
         data: null,
         error: action.payload
+      }
+    }
+
+    case setGalleryLimit.toString(): {
+      return {
+        ...state,
+        limit: action.payload
       }
     }
 

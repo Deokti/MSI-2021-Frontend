@@ -1,7 +1,7 @@
 import React, { useCallback, ReactElement, useEffect } from 'react';
 import { connect } from 'react-redux';
 import Navigation from '../../Navigation';
-import { getBreedsRequest, setBreedsActiveDog, setLimit, setFilterDogName, setSortedBreeds } from '../../../actions/breeds';
+import { getBreedsRequest, setBreedsActiveDog, setBreedsLimit, setFilterDogName, setSortedBreeds } from '../../../actions/breeds';
 import { IStore } from '../../../interfaces/store';
 import { IBreeds, IData } from '../../../interfaces/reducers';
 import { LoadingSpinner } from '../../LoadingSpinner';
@@ -25,7 +25,7 @@ interface ContentPanelBreedsProps {
   setBreedsActiveDog: (dog: IResponseBreed) => any
   breeds: IBreeds
   data: IData
-  setLimit: (limit: number) => any
+  setBreedsLimit: (limit: number) => any
   setFilterDogName: (dogName: string) => any
   setSortedBreeds: (sort: 'ASC' | 'DESC') => any
   getBreedsAllDogsRequest: () => any
@@ -37,7 +37,7 @@ function ContentPanelBreeds({
   breeds,
   data,
   setBreedsActiveDog,
-  setLimit,
+  setBreedsLimit,
   setFilterDogName,
   setSortedBreeds
 }: ContentPanelBreedsProps): ReactElement<ContentPanelBreedsProps> {
@@ -51,7 +51,7 @@ function ContentPanelBreeds({
   useEffect(() => { getBreeds(); getBreedsAllDogs() }, [getBreeds, getBreedsAllDogs]);
 
   function onSetLimit(defaultValue: number | string) {
-    setLimit(Number(defaultValue));
+    setBreedsLimit(Number(defaultValue));
   }
 
   function onSetFilterDogName(defaultValue: string | number) {
@@ -132,7 +132,7 @@ export default connect(
   {
     getBreedsRequest,
     setBreedsActiveDog,
-    setLimit,
+    setBreedsLimit,
     setFilterDogName,
     setSortedBreeds,
     getBreedsAllDogsRequest

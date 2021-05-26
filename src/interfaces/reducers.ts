@@ -40,8 +40,8 @@ export interface IBreeds {
 // Gallery
 export interface IGallery {
   data: null | Array<IResponseVoting>
-  order: 'Random' | 'Desc' | 'Asc'
-  type: 'All' | 'Static' | 'Animated'
+  order: 'Случайно' | 'Desc' | 'Asc'
+  type: 'Все' | 'Статические' | 'Анимационные'
   breed: string,
   limit: 5
   error: any
