@@ -1,4 +1,4 @@
-import { getBreedsFailure, getBreedsLoading, getBreedsSucsess, setBreedsActiveDog, setFilterDogName, setLimit, setSortedBreeds } from "../actions/breeds";
+import { getBreedsFailure, getBreedsLoading, getBreedsSucsess, setBreedsActiveDog, setFilterDogName, setBreedsLimit, setSortedBreeds } from "../actions/breeds";
 import { IBreeds } from "../interfaces/reducers";
 import { IResponseBreed } from "../interfaces/response";
 
@@ -50,7 +50,7 @@ export function breeds(state: IBreeds = initialState, action: ActionProps) {
       }
     }
 
-    case setLimit.toString(): {
+    case setBreedsLimit.toString(): {
       return {
         ...state,
         limit: action.payload

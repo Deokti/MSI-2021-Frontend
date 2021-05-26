@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, ReactElement } from 'react';
-import { AiOutlineHeart, AiOutlineUpload } from 'react-icons/ai';
+import { AiOutlineHeart, AiOutlineReload, AiOutlineUpload } from 'react-icons/ai';
 import { connect } from 'react-redux';
 import { IData, IGallery } from '../../../interfaces/reducers';
 import { IStore } from '../../../interfaces/store';
@@ -7,26 +7,41 @@ import Button from '../../Button';
 import Navigation from '../../Navigation';
 import { getGalleryRequest } from '../../../actions/gallery';
 import { getBreedsAllDogsRequest } from '../../../actions/data';
+import { setGalleryLimit } from '../../../actions/gallery';
 
-import './style.scss';
 import { ContentPanelGallerySelect } from './ContentPanelGallerySelect';
 import { LoadingSpinner } from '../../LoadingSpinner';
+import './style.scss';
 
 interface ContentPanelGalleryProps {
   gallery: IGallery
   data: IData
-  getGalleryRequest: () => any
+  getGalleryRequest: ({ limit }: { limit: number }) => any
   getBreedsAllDogsRequest: () => any
+  setGalleryLimit: (limit: number) => any
 }
 
-function ContentPanelGallery({ gallery, getGalleryRequest, data, getBreedsAllDogsRequest }: ContentPanelGalleryProps): ReactElement<ContentPanelGalleryProps> {
-  const getGallery = useCallback(() => gallery.data === null ? getGalleryRequest() : null, [gallery.data, getGalleryRequest]);
+function ContentPanelGallery({ gallery, getGalleryRequest, data, getBreedsAllDogsRequest, setGalleryLimit }: ContentPanelGalleryProps): ReactElement<ContentPanelGalleryProps> {
+  const getGallery = useCallback(() => gallery.data === null
+    ? getGalleryRequest({ limit: gallery.limit })
+    : null,
+    [gallery.data, gallery.limit, getGalleryRequest]);
+
   const getBreedsAllDogs = useCallback(() => data.breedsAllDogs === null
     ? getBreedsAllDogsRequest()
     : null,
     [data.breedsAllDogs, getBreedsAllDogsRequest]);
 
   useEffect(() => { getGallery(); getBreedsAllDogs() }, [getBreedsAllDogs, getGallery]);
+
+  function onSetLimit(value: number | string): void {
+    setGalleryLimit(parseInt(value as string));
+  }
+
+  function onReload() {
+    const { limit } = gallery;
+    getGalleryRequest({ limit });
+  }
 
   return (
     <div className="content-panel-gallery content-panel-background">
@@ -49,17 +64,17 @@ function ContentPanelGallery({ gallery, getGalleryRequest, data, getBreedsAllDog
         ? <LoadingSpinner />
         : (
           <React.Fragment>
-            <div className="content-panel-gallery_selects">
+            <div className="content-panel-gallery__selects">
               <ContentPanelGallerySelect
                 title="Порядок"
                 maxWidth={300}
                 minWidth={290}
-                defaultValue="Случайно"
+                defaultValue={gallery.order}
                 values={['Случайно', 'ASC', 'DESK']}
               />
               <ContentPanelGallerySelect
                 title="Тип"
-                defaultValue="Все"
+                defaultValue={gallery.type}
                 maxWidth={300}
                 minWidth={290}
                 values={['Все', 'Статическая', 'Анимационная']}
@@ -73,11 +88,21 @@ function ContentPanelGallery({ gallery, getGalleryRequest, data, getBreedsAllDog
               />
               <ContentPanelGallerySelect
                 title="Лимит"
-                maxWidth={300}
-                minWidth={290}
-                defaultValue="20 элементов на странице"
+                maxWidth={240}
+                minWidth={240}
+                defaultValue={`${gallery.limit} элементов на странице`}
+                getValueByList={onSetLimit}
                 values={['5 элементов на странице', '10 элементов на странице', '15 элементов на странице', '20 элементов на странице']}
               />
+              <Button
+                width={40}
+                height={40}
+                borderRadius={10}
+                className="content-panel-gallery__reload"
+                onClick={onReload}
+              >
+                <AiOutlineReload color="#FF868E" size={22} />
+              </Button>
             </div>
 
             <ul className="content-panel-gallery__list scroll">
@@ -111,4 +136,4 @@ function ContentPanelGallery({ gallery, getGalleryRequest, data, getBreedsAllDog
 
 const mapStateToProps = ({ gallery, data }: IStore) => ({ gallery, data })
 
-export default connect(mapStateToProps, { getGalleryRequest, getBreedsAllDogsRequest })(ContentPanelGallery)
+export default connect(mapStateToProps, { getGalleryRequest, getBreedsAllDogsRequest, setGalleryLimit })(ContentPanelGallery)

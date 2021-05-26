@@ -9,7 +9,7 @@ export const getBreedsSucsess = createAction('GET_BREEDS_SUCCSESS');
 export const getBreedsFailure = createAction('GET_BREEDS_FAILURE');
 
 export const setBreedsActiveDog = createAction('SET_BREEDS_ACTIVE_DOG');
-export const setLimit = createAction('SET_LIMIT');
+export const setBreedsLimit = createAction('SET_BREEDS_LIMIT');
 export const setFilterDogName = createAction('SET_FILTER_DOG_NAME');
 export const setSortedBreeds = createAction('SET_SORTED_BREEDS');
 
