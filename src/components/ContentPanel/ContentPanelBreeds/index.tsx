@@ -1,17 +1,13 @@
-import React, { ReactElement, useEffect } from 'react';
+import React, { useCallback, ReactElement, useEffect } from 'react';
 import { connect } from 'react-redux';
 import Navigation from '../../Navigation';
 import { getBreedsRequest, setBreedsActiveDog, setLimit, setFilterDogName, setSortedBreeds } from '../../../actions/breeds';
-
 import { IStore } from '../../../interfaces/store';
-import { IBreeds } from '../../../interfaces/reducers';
+import { IBreeds, IData } from '../../../interfaces/reducers';
 import { LoadingSpinner } from '../../LoadingSpinner';
 import Button from '../../Button';
 import { IResponseBreed } from '../../../interfaces/response';
 import { Link } from 'react-router-dom';
-
-import './style.scss';
-import '../../../assets/styles/scroll.scss';
 import { SelectInput } from '../../SelectInput';
 import { translateNameDogs } from '../../../utils/translate-name-dogs';
 import { AiOutlineSortAscending, AiOutlineSortDescending } from 'react-icons/ai';
@@ -19,17 +15,40 @@ import { filterDogsByName } from '../../../utils/filter-dogs-by-name';
 import clsx from 'clsx';
 import { getSortedBreeds } from '../../../utils/get-sorted-breeds';
 
+import './style.scss';
+import '../../../assets/styles/scroll.scss';
+import { getBreedsAllDogsRequest } from '../../../actions/data';
+
+
 interface ContentPanelBreedsProps {
   getBreedsRequest: () => any
   setBreedsActiveDog: (dog: IResponseBreed) => any
   breeds: IBreeds
+  data: IData
   setLimit: (limit: number) => any
   setFilterDogName: (dogName: string) => any
   setSortedBreeds: (sort: 'ASC' | 'DESC') => any
+  getBreedsAllDogsRequest: () => any
 }
 
-function ContentPanelBreeds({ getBreedsRequest, breeds, setBreedsActiveDog, setLimit, setFilterDogName, setSortedBreeds }: ContentPanelBreedsProps): ReactElement<ContentPanelBreedsProps> {
-  useEffect(() => getBreedsRequest(), [getBreedsRequest]);
+function ContentPanelBreeds({
+  getBreedsRequest,
+  getBreedsAllDogsRequest,
+  breeds,
+  data,
+  setBreedsActiveDog,
+  setLimit,
+  setFilterDogName,
+  setSortedBreeds
+}: ContentPanelBreedsProps): ReactElement<ContentPanelBreedsProps> {
+
+  const getBreeds = useCallback(() => breeds.data === null ? getBreedsRequest() : null, [breeds.data, getBreedsRequest])
+  const getBreedsAllDogs = useCallback(() => data.breedsAllDogs === null
+    ? getBreedsAllDogsRequest()
+    : null,
+    [data.breedsAllDogs, getBreedsAllDogsRequest]);
+
+  useEffect(() => { getBreeds(); getBreedsAllDogs() }, [getBreeds, getBreedsAllDogs]);
 
   function onSetLimit(defaultValue: number | string) {
     setLimit(Number(defaultValue));
@@ -39,27 +58,12 @@ function ContentPanelBreeds({ getBreedsRequest, breeds, setBreedsActiveDog, setL
     setFilterDogName(defaultValue as string);
   }
 
-  function getBreedsAllDogs(): Array<string> | null {
-    const result = breeds.data && breeds.data.reduce((acc, value) => {
-      acc.push(translateNameDogs(value.name))
-      return acc;
-    }, ['Все породы'])
-
-    if (result) {
-      // Сортируем все элементы, кроме первого
-      const [first, ...other] = result && result;
-      return [first, ...other.sort()];
-    }
-
-    return [];
-  }
-
   return (
     <div className="content-panel-breeds content-panel-background">
       <header className="content-panel-breeds__header">
         <Navigation />
         <SelectInput
-          values={getBreedsAllDogs()}
+          values={data.breedsAllDogs}
           defaultValue={breeds && breeds.filterDogName as string}
           getValueByList={onSetFilterDogName}
           margin="0 10px 0 0"
@@ -121,6 +125,17 @@ function ContentPanelBreeds({ getBreedsRequest, breeds, setBreedsActiveDog, setL
   )
 }
 
-const mapStateToProps = ({ breeds }: IStore) => ({ breeds });
+const mapStateToProps = ({ breeds, data }: IStore) => ({ breeds, data });
 
-export default connect(mapStateToProps, { getBreedsRequest, setBreedsActiveDog, setLimit, setFilterDogName, setSortedBreeds })(ContentPanelBreeds);
+export default connect(
+  mapStateToProps,
+  {
+    getBreedsRequest,
+    setBreedsActiveDog,
+    setLimit,
+    setFilterDogName,
+    setSortedBreeds,
+    getBreedsAllDogsRequest
+  }
+)
+  (ContentPanelBreeds);

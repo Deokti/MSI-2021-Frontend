@@ -4,5 +4,9 @@ import { BeatLoader } from 'react-spinners';
 import './style.scss';
 
 export function LoadingSpinner() {
-  return <BeatLoader size={20} />;
+  return (
+    <div className="loading-spinner">
+      <BeatLoader size={20} />
+    </div>
+  );
 }

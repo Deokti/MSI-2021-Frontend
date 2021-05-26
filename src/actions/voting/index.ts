@@ -18,7 +18,7 @@ export const getVotingRequest = () => {
       params: { limit: 1, },
     }
 
-    axios.get(API_URL.VOTES_URL, PARAMS)
+    axios.get(API_URL.IMAGES_SEARCH_URL, PARAMS)
       .then((voting) => {
         dispatch(getVotingSucsess(voting.data[0]));
       })
