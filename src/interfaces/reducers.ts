@@ -1,7 +1,7 @@
 import { IResponseBreed, IResponseHistoryVoting, IResponseVoting } from "./response";
 
 // Data
-export interface IDataState {
+export interface IData {
   darkTheme: boolean
   breedsAllDogs: Array<string> | null
 }
@@ -39,10 +39,10 @@ export interface IBreeds {
 
 // Gallery
 export interface IGallery {
-  data: null | Array<string>
+  data: null | Array<IResponseVoting>
   order: 'Random' | 'Desc' | 'Asc'
   type: 'All' | 'Static' | 'Animated'
-  breed: null | Array<string>,
+  breed: string,
   limit: 5
   error: any
   loading: boolean

@@ -12,10 +12,8 @@ export const getGalleryRequest = () => {
   return async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
     dispatch(getGalleryLoading());
 
-    axios(`${API_URL.VOTES_URL}?limit=20`)
-      .then((data) => {
-        console.log(data);
-      })
+    axios(`${API_URL.IMAGES_SEARCH_URL}?limit=20`)
+      .then(({ data }) => dispatch(getGallerySucsess(data)))
       .catch((error) => {
         console.log('ОШИБКА:', error);
         dispatch(getGalleryFailure(error));

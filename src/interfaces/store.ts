@@ -1,7 +1,7 @@
-import { IBreeds, IDataState, IGallery, IManagementState, IVoting } from "./reducers";
+import { IBreeds, IData, IGallery, IManagementState, IVoting } from "./reducers";
 
 export interface IStore {
-  data: IDataState
+  data: IData
   management: IManagementState
   voting: IVoting
   breeds: IBreeds

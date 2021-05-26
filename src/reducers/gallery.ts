@@ -1,11 +1,11 @@
-import { getGalleryFailure, getGalleryLoading, getGalleryRequest } from "../actions/gallery";
+import { getGalleryFailure, getGalleryLoading, getGallerySucsess } from "../actions/gallery";
 import { IGallery } from "../interfaces/reducers";
 
 const initialState: IGallery = {
   data: null,
   order: 'Random',
   type: 'Static',
-  breed: null,
+  breed: 'Все породы',
   limit: 5,
   error: null,
   loading: true,
@@ -16,13 +16,10 @@ export function gallery(state: IGallery = initialState, action: any): IGallery {
   switch (action.type) {
 
     case getGalleryLoading.toString(): {
-      console.log('getGalleryLoading action -->', action);
       return state;
     }
 
-    case getGalleryRequest.toString(): {
-      console.log('getGalleryRequest action -->', action);
-
+    case getGallerySucsess.toString(): {
       return {
         ...state,
         loading: false,

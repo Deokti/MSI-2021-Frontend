@@ -8,7 +8,7 @@ import { useHistory } from 'react-router';
 import { setActiveControlPath } from '../../actions/management';
 import Button from '../Button';
 
-import { translateNavigation } from '../../utils/translate-navation';
+import { translateNavigation } from '../../utils/translate-navagation';
 
 import './style.scss';
 import clsx from 'clsx';

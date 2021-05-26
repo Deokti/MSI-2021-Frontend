@@ -1,9 +1,13 @@
 @import '../../assets/styles/theme.scss';
 
-.css-0 {
-  display: flex;
-  justify-content: center;
-  & > span {
-    background-color: var(--color);
+.loading-spinner {
+  padding: 30px;
+
+  .css-0 {
+    display: flex;
+    justify-content: center;
+    & > span {
+      background-color: var(--color);
+    }
   }
 }
