@@ -1,18 +1,21 @@
 @import '../../../assets/styles/theme.scss';
 
 .welcome {
-  padding-top: 80px;
+	padding-top: 80px;
 }
 
 .title {
-  color: var(--color);
-  font-weight: 500;
-  font-size: 58px;
+	color: var(--color);
+
+	font-size: 58px;
+	font-weight: 500;
 }
 
 .subtitle {
-  display: block;
-  color: #8C8C8C;
-  font-size: 20px;
-  font-weight: 400;
+	display: block;
+
+	color: #8C8C8C;
+
+	font-size: 20px;
+	font-weight: 400;
 }

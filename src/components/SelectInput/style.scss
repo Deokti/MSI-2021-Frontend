@@ -1,69 +1,86 @@
 @import '../../assets/styles/theme.scss';
 
 .select-input {
-  position: relative;
-  cursor: pointer;
-  border-radius: 30px;
-  padding: 7px 10px;
-  padding-right: 40px;
-  border: 2px solid transparent;
-  border-radius: 10px;
-  background-color: rgba(var(--select-input-background), var(--background-plug-opacity));
-  font-size: 16px;
-  color: #8C8C8C;
-  
-  &:hover {
-    border: 2px solid rgba(var(--background-search), var(--background-search-opacity));
-  }
+	position: relative;
+
+	padding: 7px 10px;
+	padding-right: 40px;
+
+	cursor: pointer;
+
+	color: #8C8C8C;
+	border: 2px solid transparent;
+	border-radius: 30px;
+	border-radius: 10px;
+	background-color: rgba(var(--select-input-background), var(--background-plug-opacity));
+
+	font-size: 16px;
+
+	&:hover {
+		border: 2px solid rgba(var(--background-search), var(--background-search-opacity));
+	}
 }
 
 .select-input__active {
-  display: block;
-  color: #8C8C8C;
-  overflow: hidden;
-  max-height: 23px;
+	display: block;
+	overflow: hidden;
+
+	max-height: 23px;
+
+	color: #8C8C8C;
 }
 
 .select-input__arrow {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
+	position: absolute;
+	top: 50%;
+	right: 10px;
+
+	transform: translateY(-50%);
 }
 
 .select-input__list {
-  position: absolute;
-  left: 0;
-  top: 110%;
-  list-style: none;
-  z-index: 9;
+	position: absolute;
+	z-index: 9;
+	top: 110%;
+	left: 0;
 
-  background-color: var(--breeds-name-background);
-  padding: 15px;
-  padding-right: 50px;
-  width: max-content;
-  border-radius: 10px;
+	overflow: auto;
 
-  max-height: 50vh;
-  overflow: auto;
+	width: max-content;
+
+	max-height: 50vh;
+	padding: 15px;
+	padding-right: 50px;
+
+	list-style: none;
+
+	border-radius: 10px;
+
+	background-color: var(--breeds-name-background);
 }
 
 .select-input__item {
-  position: relative;
-  padding: 5px 0;
-  &::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: -10px;
-    opacity: 0;
-    border-radius: 100%;
-    width: 4px;
-    height: 4px;
-    background-color: rgba(var(--background-search), var(--background-search-opacity));
-  }
-  &:hover::before {
-    opacity: 1;
-  }
+	position: relative;
+
+	padding: 5px 0;
+
+	&::before {
+		position: absolute;
+		top: 50%;
+		left: -10px;
+
+		width: 4px;
+		height: 4px;
+
+		content: "";
+		transform: translateY(-50%);
+
+		opacity: 0;
+		border-radius: 100%;
+		background-color: rgba(var(--background-search), var(--background-search-opacity));
+	}
+
+	&:hover::before {
+		opacity: 1;
+	}
 }

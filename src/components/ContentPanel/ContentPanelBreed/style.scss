@@ -1,78 +1,93 @@
 @import '../../../assets/styles/theme.scss';
 
 .content-panel-breed__content {
-  margin-top: 15px;
+	margin-top: 15px;
 }
 
 .content-panel-breed__image {
-  width: 640px;
-  height: 360px;
-  overflow: hidden;
-  border-radius: 20px;
-  img {
-    width: 100%;
-    height: auto;
-  }
+	overflow: hidden;
+
+	width: 640px;
+	height: 360px;
+
+	border-radius: 20px;
+
+	img {
+		width: 100%;
+		height: auto;
+	}
 }
 
 .content-panel-breed__description {
-  position: relative;
-  margin-top: 50px;
-  border: 2px solid rgba(var(--background-search), var(--background-search-opacity));
-  border-radius: 20px;
+	position: relative;
 
-  padding: 20px 40px 60px 40px;
+	margin-top: 50px;
+
+	padding: 20px 40px 60px 40px;
+
+	border: 2px solid rgba(var(--background-search), var(--background-search-opacity));
+	border-radius: 20px;
 }
 
 .content-panel-breed__name {
-  position: absolute;
-  font-weight: 500;
-  font-size: 36px;
-  color: var(--color);
-  display: block;
-  background: var(--breeds-name-background);
-  left: 50%;
-  transform: translate(-50%);
-  text-align: center;
-  top: -30px;
+	position: absolute;
+	top: -30px;
+	left: 50%;
 
-  width: fit-content;
-  padding: 0 20px;
+	display: block;
+
+	width: fit-content;
+	padding: 0 20px;
+
+	transform: translate(-50%);
+	text-align: center;
+
+	color: var(--color);
+	background: var(--breeds-name-background);
+
+	font-size: 36px;
+	font-weight: 500;
 }
 
 .content-panel-breed__family {
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 29px;
-  color: #8C8C8C;
-  text-align: center;
+	text-align: center;
+
+	color: #8C8C8C;
+
+	font-size: 20px;
+	font-weight: 500;
+	line-height: 29px;
 }
 
 .content-panel-breed__detailed {
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
+
+	margin-top: 20px;
 }
 
 .content-panel-breed__list {
-  list-style: none;
+	list-style: none;
 }
 
 .content-panel-breed__title {
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 23px;
-  color: var(--color);
+	color: var(--color);
+
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 23px;
 }
 
 .content-panel-breed__subtitle {
-  font-size: 16px;
-  line-height: 23px;
-  font-weight: 400;
-  color: #8C8C8C;
-  
-  &--relocate {
-    display: block; 
-    max-width: 260px;
-  }
+	color: #8C8C8C;
+
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 23px;
+
+	&--relocate {
+		display: block;
+
+		max-width: 260px;
+	}
 }

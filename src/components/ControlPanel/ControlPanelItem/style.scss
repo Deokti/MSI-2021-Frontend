@@ -1,34 +1,41 @@
 @import '../../../assets/styles/theme.scss';
 
+.control-panel-item__button {
+	margin-top: 10px;
+
+	letter-spacing: 2px;
+
+	color: #FF868E;
+	background-color: transparent;
+	background-color: rgba(var(--white), 0.1);
+}
+
 .control-panel-item {
-  cursor: pointer;
-  display: block;
-  min-width: 138px;
-  max-width: 138px;
-  &:hover > .control-panel-item__button:not(.active) {
-    background: #FBE0DC;
-  }
-  
-  .active {
-    background-color: #FF868E;
-    color: #fff;
-  }
+	display: block;
+
+	min-width: 138px;
+	max-width: 138px;
+
+	cursor: pointer;
+
+	&:hover > .control-panel-item__button:not(.active) {
+		background: #FBE0DC;
+	}
+
+	.active {
+		color: #FFF;
+		background-color: #FF868E;
+	}
 }
 
 .control-panel-item__image {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 4px solid rgba(255, 255, 255, 0.6);
-  width: 100%;
-  height: 198px;
-  border-radius: 20px;
-}
+	display: flex;
+	align-items: center;
+	justify-content: center;
 
-.control-panel-item__button {
-  margin-top: 10px;
-  letter-spacing: 2px;
-  background-color: transparent;
-  background-color: rgba(var(--white), .10);
-  color: #FF868E;
+	width: 100%;
+	height: 198px;
+
+	border: 4px solid rgba(255, 255, 255, 0.6);
+	border-radius: 20px;
 }
