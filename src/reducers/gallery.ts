@@ -1,9 +1,12 @@
-import { getGalleryFailure, getGalleryLoading, getGallerySucsess, setGalleryLimit, setGalleryType } from "../actions/gallery";
+import { getGalleryFailure, getGalleryLoading, getGallerySucsess, setGalleryLimit, setGalleryOrder, setGalleryType } from "../actions/gallery";
 import { IAction, IGallery } from "../interfaces/reducers";
 
 const initialState: IGallery = {
   data: null,
-  order: 'Случайно',
+  order: {
+    request: 'rand',
+    value: 'Случайно',
+  },
   type: {
     request: 'gif,jpg,png',
     value: 'Все'
@@ -51,6 +54,13 @@ export function gallery(state: IGallery = initialState, action: IAction): IGalle
       return {
         ...state,
         type: action.payload
+      }
+    }
+
+    case setGalleryOrder.toString(): {
+      return {
+        ...state,
+        order: action.payload
       }
     }
 

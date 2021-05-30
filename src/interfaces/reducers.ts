@@ -43,15 +43,20 @@ export interface IBreeds {
   sorted: 'ASC' | 'DESC'
 }
 
-export type IGalleryType = {
+export interface IGalleryType {
   request: 'gif,jpg,png' | 'jpg,png' | 'gif',
   value: 'Все' | 'Статические' | 'Анимационные'
+}
+
+export interface IGalleryOrder {
+  request: 'rand' | 'desc' | 'asc',
+  value: 'Случайно' | 'DESK' | 'ASC'
 }
 
 // Gallery
 export interface IGallery {
   data: null | Array<IResponseVoting>
-  order: 'Случайно' | 'Desc' | 'Asc'
+  order: IGalleryOrder
   type: IGalleryType
   breed: string,
   limit: 5

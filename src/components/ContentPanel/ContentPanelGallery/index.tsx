@@ -1,13 +1,12 @@
 import React, { useCallback, useEffect, ReactElement } from 'react';
 import { AiOutlineHeart, AiOutlineReload, AiOutlineUpload } from 'react-icons/ai';
 import { connect } from 'react-redux';
-import { IData, IGallery, IGalleryType } from '../../../interfaces/reducers';
+import { IData, IGallery, IGalleryOrder, IGalleryType } from '../../../interfaces/reducers';
 import { IStore } from '../../../interfaces/store';
 import Button from '../../Button';
 import Navigation from '../../Navigation';
-import { getGalleryRequest, IGetGalleryRequestParams } from '../../../actions/gallery';
+import { getGalleryRequest, IGetGalleryRequestParams, setGalleryType, setGalleryLimit, setGalleryOrder } from '../../../actions/gallery';
 import { getBreedsAllDogsRequest } from '../../../actions/data';
-import { setGalleryLimit, setGalleryType } from '../../../actions/gallery';
 
 import { ContentPanelGallerySelect } from './ContentPanelGallerySelect';
 import { LoadingSpinner } from '../../LoadingSpinner';
@@ -20,13 +19,14 @@ interface ContentPanelGalleryProps {
   getBreedsAllDogsRequest: () => any
   setGalleryLimit: (limit: number) => any
   setGalleryType: (type: IGalleryType) => any
+  setGalleryOrder: (order: IGalleryOrder) => any
 }
 
-function ContentPanelGallery({ gallery, getGalleryRequest, data, getBreedsAllDogsRequest, setGalleryLimit, setGalleryType }: ContentPanelGalleryProps): ReactElement<ContentPanelGalleryProps> {
+function ContentPanelGallery({ gallery, getGalleryRequest, data, getBreedsAllDogsRequest, setGalleryLimit, setGalleryType, setGalleryOrder }: ContentPanelGalleryProps): ReactElement<ContentPanelGalleryProps> {
   const getGallery = useCallback(() => gallery.data === null
-    ? getGalleryRequest({ limit: gallery.limit, type: gallery.type.request })
+    ? getGalleryRequest({ limit: gallery.limit, type: gallery.type.request, order: gallery.order.request })
     : null,
-    [gallery.data, gallery.limit, gallery.type, getGalleryRequest]);
+    [gallery.data, gallery.limit, gallery.order.request, gallery.type.request, getGalleryRequest]);
 
   const getBreedsAllDogs = useCallback(() => data.breedsAllDogs === null
     ? getBreedsAllDogsRequest()
@@ -39,7 +39,7 @@ function ContentPanelGallery({ gallery, getGalleryRequest, data, getBreedsAllDog
     setGalleryLimit(parseInt(value as string));
   }
 
-  function onSetType(value: string | number) {
+  function onGalleryType(value: string | number) {
 
     switch (value) {
       case 'Все': {
@@ -63,9 +63,32 @@ function ContentPanelGallery({ gallery, getGalleryRequest, data, getBreedsAllDog
     }
   }
 
+  function onGalleryOrder(value: string | number) {
+    switch (value) {
+      case 'Случайно': {
+        return setGalleryOrder({
+          request: 'rand',
+          value: 'Случайно'
+        });
+      }
+      case 'ASC': {
+        return setGalleryOrder({
+          request: 'asc',
+          value: 'ASC'
+        });
+      }
+      case 'DESK': {
+        return setGalleryOrder({
+          request: 'desc',
+          value: 'DESK'
+        });
+      }
+    }
+  }
+
   function onReload() {
-    const { limit, type: { request: type } } = gallery;
-    getGalleryRequest({ limit, type: type });
+    const { limit, type: { request: type }, order: { request: order } } = gallery;
+    getGalleryRequest({ limit, type, order });
   }
 
   return (
@@ -94,8 +117,9 @@ function ContentPanelGallery({ gallery, getGalleryRequest, data, getBreedsAllDog
                 title="Порядок"
                 maxWidth={300}
                 minWidth={290}
-                defaultValue={gallery.order}
+                defaultValue={gallery.order.value}
                 values={['Случайно', 'ASC', 'DESK']}
+                getValueByList={onGalleryOrder}
               />
               <ContentPanelGallerySelect
                 title="Тип"
@@ -103,7 +127,7 @@ function ContentPanelGallery({ gallery, getGalleryRequest, data, getBreedsAllDog
                 maxWidth={300}
                 minWidth={290}
                 values={['Все', 'Статическая', 'Анимационная']}
-                getValueByList={onSetType}
+                getValueByList={onGalleryType}
               />
               <ContentPanelGallerySelect
                 title="Порода"
@@ -162,4 +186,4 @@ function ContentPanelGallery({ gallery, getGalleryRequest, data, getBreedsAllDog
 
 const mapStateToProps = ({ gallery, data }: IStore) => ({ gallery, data })
 
-export default connect(mapStateToProps, { getGalleryRequest, getBreedsAllDogsRequest, setGalleryLimit, setGalleryType })(ContentPanelGallery)
+export default connect(mapStateToProps, { getGalleryRequest, getBreedsAllDogsRequest, setGalleryLimit, setGalleryType, setGalleryOrder })(ContentPanelGallery)

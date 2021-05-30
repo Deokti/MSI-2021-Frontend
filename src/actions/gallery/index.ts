@@ -11,19 +11,21 @@ export const getGalleryFailure = createAction('GET_GALLERY_FAILURE');
 
 export const setGalleryLimit = createAction('SET_GALLERY_LIMIT');
 export const setGalleryType = createAction('SET_GALLERY_TYPE');
+export const setGalleryOrder = createAction('SET_GALLERY_ORDER');
 
 
 export interface IGetGalleryRequestParams {
   limit: number
-  type: 'gif,jpg,png' | 'jpg,png' | 'gif'
+  type: 'gif,jpg,png' | 'jpg,png' | 'gif',
+  order: 'rand' | 'desc' | 'asc'
 }
 
 
-export const getGalleryRequest = ({ limit, type }: IGetGalleryRequestParams) => {
+export const getGalleryRequest = ({ limit, type, order }: IGetGalleryRequestParams) => {
   return async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
     dispatch(getGalleryLoading());
 
-    axios(`${API_URL.IMAGES_SEARCH_URL}?limit=${limit}&mime_types=${type}`)
+    axios(`${API_URL.IMAGES_SEARCH_URL}?limit=${limit}&mime_types=${type}&order=${order}`)
       .then(({ data }) => dispatch(getGallerySucsess(data)))
       .catch((error) => {
         console.log('ОШИБКА:', error);
