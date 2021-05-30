@@ -1,12 +1,12 @@
 import { getBreedsAllDogsLoading, getBreedsAllDogsSucsess, getDarkTheme, setDarkTheme } from '../actions/data';
-import { IData } from '../interfaces/reducers';
+import { IAction, IData } from '../interfaces/reducers';
 
 const initialState: IData = {
   darkTheme: false,
   breedsAllDogs: null
 }
 
-function data(state: IData = initialState, action: any): IData {
+function data(state: IData = initialState, action: IAction): IData {
 
   switch (action.type) {
 

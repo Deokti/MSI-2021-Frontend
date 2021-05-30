@@ -1,12 +1,14 @@
 .scroll {
-  &::-webkit-scrollbar {
-    width: 5px;
-  }
-  &::-webkit-scrollbar-track {
-    background-color: rgba(#F8F8F7, var(--background-plug-opacity));
-  }
-  &::-webkit-scrollbar-thumb {
-    background-color: rgba(var(--scroll-bar), 0.2);
-    border-radius: 2px;
-  }
+	&::-webkit-scrollbar {
+		width: 5px;
+	}
+
+	&::-webkit-scrollbar-track {
+		background-color: rgba(#F8F8F7, var(--background-plug-opacity));
+	}
+
+	&::-webkit-scrollbar-thumb {
+		border-radius: 2px;
+		background-color: rgba(var(--scroll-bar), 0.2);
+	}
 }

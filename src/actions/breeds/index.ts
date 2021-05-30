@@ -24,7 +24,7 @@ export const getBreedsRequest = () => async (dispatch: ThunkDispatch<{}, {}, Any
     .catch((error) => {
       console.error(error);
       dispatch(getBreedsFailure(error));
-    })
+    });
 };
 
 

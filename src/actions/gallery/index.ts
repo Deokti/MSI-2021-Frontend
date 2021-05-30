@@ -10,13 +10,20 @@ export const getGalleryFailure = createAction('GET_GALLERY_FAILURE');
 
 
 export const setGalleryLimit = createAction('SET_GALLERY_LIMIT');
+export const setGalleryType = createAction('SET_GALLERY_TYPE');
 
 
-export const getGalleryRequest = ({ limit }: { limit: number }) => {
+export interface IGetGalleryRequestParams {
+  limit: number
+  type: 'gif,jpg,png' | 'jpg,png' | 'gif'
+}
+
+
+export const getGalleryRequest = ({ limit, type }: IGetGalleryRequestParams) => {
   return async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
     dispatch(getGalleryLoading());
 
-    axios(`${API_URL.IMAGES_SEARCH_URL}?limit=${limit}`)
+    axios(`${API_URL.IMAGES_SEARCH_URL}?limit=${limit}&mime_types=${type}`)
       .then(({ data }) => dispatch(getGallerySucsess(data)))
       .catch((error) => {
         console.log('ОШИБКА:', error);

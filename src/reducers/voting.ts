@@ -1,6 +1,5 @@
 import { getVotingFailure, getVotingHistory, getVotingHistoryFailure, getVotingHistorySucsess, getVotingLoading, getVotingSucsess } from "../actions/voting";
-import { IVoting } from "../interfaces/reducers";
-import { IResponseHistoryVoting, IResponseVoting } from "../interfaces/response";
+import { IAction, IVoting } from "../interfaces/reducers";
 
 const initialState: IVoting = {
   data: null,
@@ -10,12 +9,8 @@ const initialState: IVoting = {
   historyError: null,
 }
 
-interface ActionProps {
-  type: 'string'
-  payload: null | IResponseVoting | any | boolean | Array<IResponseHistoryVoting>
-}
 
-export function voting(state: IVoting = initialState, action: ActionProps): IVoting {
+export function voting(state: IVoting = initialState, action: IAction): IVoting {
 
   switch (action.type) {
 
