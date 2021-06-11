@@ -41,9 +41,13 @@ export function voting(state: IVoting = initialState, action: IAction): IVoting 
     }
 
     case getVotingHistorySucsess.toString(): {
+      const sortedByData = action.payload.slice()
+        .sort((a: any, b: any) => new Date(a.created_at).valueOf() - new Date(b.created_at).valueOf())
+        .reverse();
+
       return {
         ...state,
-        history: action.payload
+        history: sortedByData
       }
     }
 

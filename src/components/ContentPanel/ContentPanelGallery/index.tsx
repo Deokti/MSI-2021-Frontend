@@ -134,7 +134,7 @@ function ContentPanelGallery({ gallery, getGalleryRequest, data, getBreedsAllDog
                 maxWidth={300}
                 minWidth={290}
                 defaultValue={gallery.breed}
-                values={data.breedsAllDogs}
+                values={['Отсутствует']}
               />
               <ContentPanelGallerySelect
                 title="Лимит"
