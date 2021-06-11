@@ -1,6 +1,5 @@
 import { getBreedsFailure, getBreedsLoading, getBreedsSucsess, setBreedsActiveDog, setFilterDogName, setBreedsLimit, setSortedBreeds } from "../actions/breeds";
-import { IBreeds } from "../interfaces/reducers";
-import { IResponseBreed } from "../interfaces/response";
+import { IAction, IBreeds } from "../interfaces/reducers";
 
 const initialState: IBreeds = {
   data: null,
@@ -12,12 +11,8 @@ const initialState: IBreeds = {
   sorted: 'ASC'
 }
 
-interface ActionProps {
-  type: string
-  payload: null | boolean | number | Array<IResponseBreed> | string | IResponseBreed
-}
 
-export function breeds(state: IBreeds = initialState, action: ActionProps) {
+export function breeds(state: IBreeds = initialState, action: IAction): IBreeds {
 
   switch (action.type) {
 

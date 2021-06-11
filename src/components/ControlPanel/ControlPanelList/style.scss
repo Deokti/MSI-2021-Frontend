@@ -1,22 +1,25 @@
 @import '../../../assets/styles/theme.scss';
 
 .control-list {
-  margin-top: 60px;
+	margin-top: 60px;
 }
 
 .control-list__title {
-  color: var(--color);
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 29px;
+	color: var(--color);
+
+	font-size: 20px;
+	font-weight: 500;
+	line-height: 29px;
 }
 
 .control-list__items {
-  margin-top: 20px;
-  list-style: none;
-  display: flex;
+	display: flex;
+
+	margin-top: 20px;
+
+	list-style: none;
 }
 
 .control-list__item:not(:last-child) {
-  margin-right: 16px;
+	margin-right: 16px;
 }
