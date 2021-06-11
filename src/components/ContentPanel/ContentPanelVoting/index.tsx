@@ -9,7 +9,7 @@ import { CgSmileSad } from "react-icons/cg";
 import { FiSmile } from "react-icons/fi";
 import { addedByVoting } from '../../../utils/added-by-voting';
 import Navigation from '../../Navigation';
-import { getVotingRequest, getVotingHistory, sendVotingRequest } from '../../../actions/voting';
+import { getVotingRequest, getVotingHistory, sendVotingRequest, sendFavoriteRequest } from '../../../actions/voting';
 import { LoadingSpinner } from '../../LoadingSpinner';
 import './style.scss';
 import '../../../assets/styles/scroll.scss';
@@ -18,10 +18,13 @@ interface ContentPanelVotingProps {
   getVotingRequest: () => any
   getVotingHistory: () => any
   sendVotingRequest: ({ image_id, vote }: { image_id: string, vote: number }) => any
+  sendFavoriteRequest: (image_id: string) => any
   voting: IVoting
 }
 
-function ContentPanelVoting({ getVotingRequest, getVotingHistory, sendVotingRequest, voting }: ContentPanelVotingProps): ReactElement<ContentPanelVotingProps> {
+function ContentPanelVoting(
+  { getVotingRequest, getVotingHistory, sendVotingRequest, sendFavoriteRequest, voting
+  }: ContentPanelVotingProps): ReactElement<ContentPanelVotingProps> {
   const onLoad = useCallback(() => {
     return voting.data === null
       ? (getVotingRequest(), getVotingHistory())
@@ -43,6 +46,7 @@ function ContentPanelVoting({ getVotingRequest, getVotingHistory, sendVotingRequ
     {
       id: 'onFavourites',
       children: <AiOutlineHeart size={35} color="#fff" />,
+      onClick: () => sendFavoriteRequest((voting.data && voting.data.id) || ''),
       backgroundColor: '#FF868E',
       borderRadius: "0 0 0 0"
     },
@@ -108,4 +112,4 @@ function ContentPanelVoting({ getVotingRequest, getVotingHistory, sendVotingRequ
 
 const mapStateToProps = ({ voting }: IStore) => ({ voting });
 
-export default connect(mapStateToProps, { getVotingRequest, getVotingHistory, sendVotingRequest })(ContentPanelVoting)
+export default connect(mapStateToProps, { getVotingRequest, getVotingHistory, sendVotingRequest, sendFavoriteRequest })(ContentPanelVoting)

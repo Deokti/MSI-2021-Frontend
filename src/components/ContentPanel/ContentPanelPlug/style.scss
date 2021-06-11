@@ -1,10 +1,12 @@
 @import '../../../assets/styles/theme.scss';
 
 .content-panel-plug {
-  width: 100%;
-  background-color: rgba(var(--background-plug), var(--background-plug-opacity));
-  border-radius: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	width: 100%;
+
+	border-radius: 20px;
+	background-color: rgba(var(--background-plug), var(--background-plug-opacity));
 }

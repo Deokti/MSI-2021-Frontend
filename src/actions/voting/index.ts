@@ -38,10 +38,16 @@ export const getVotingHistory = () => {
       params: { order: "DESC", limit: 25 }
     }
 
-    axios.get(API_URL.VOTES_URL_POST, PARAMS)
-      .then((voting) => {
-        dispatch(getVotingHistorySucsess(voting.data));
-      })
+    const getVotes = () => axios.get(API_URL.VOTES_URL_POST, PARAMS);
+    const getFavorites = () => axios.get(API_URL.FAVORITES, PARAMS);
+    const request = [getVotes(), getFavorites()];
+
+    axios
+      .all(request)
+      .then(axios.spread(({ data: vote }, { data: favorite }) => {
+        const votes = [...vote, ...favorite];
+        dispatch(getVotingHistorySucsess(votes));
+      }))
       .catch((error) => {
         dispatch(getVotingHistoryFailure(error));
       });
@@ -61,6 +67,21 @@ export const sendVotingRequest = ({ image_id, vote }: { image_id: string, vote: 
           // что если voting.data равна null, отправляем запрос и получаем новые данные
           // Для достижения этого эффекта, после отправления мы обнуляем voting.data 
           // dispatch(getVotingSucsess(null));
+          dispatch(getVotingSucsess(null));
+        }
+      })
+      .catch((error) => console.error(error))
+  }
+}
+
+// Отправляем ассинхронный POST запрос для сохранения в Favorites
+export const sendFavoriteRequest = (image_id: string) => {
+  return async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
+    const voice = { image_id };
+
+    await axios.post(API_URL.FAVORITES, voice)
+      .then((data) => {
+        if (data.status === 200) {
           dispatch(getVotingSucsess(null));
         }
       })

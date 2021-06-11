@@ -8,4 +8,7 @@ export const API_URL = {
 
   // Получение изображений с породами
   BREEDS_URL: 'https://api.TheDogAPI.com/v1/breeds',
+
+  // Для добавления в изображений-фаворитов и их получение
+  FAVORITES: 'https://api.thedogapi.com/v1/favourites'
 }

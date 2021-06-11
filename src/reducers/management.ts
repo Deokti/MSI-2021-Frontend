@@ -1,13 +1,8 @@
 import voitingImage from '../assets/image/voting-image.png';
 import breedsImage from '../assets/image/breeds-image.png';
 import galleryImage from '../assets/image/gallery-image.png';
-import { IManagementState } from '../interfaces/reducers';
+import { IAction, IManagementState } from '../interfaces/reducers';
 import { setActiveControlPath } from '../actions/management';
-
-interface IManagementAction {
-  type: string
-  payload: string
-}
 
 const initialState: IManagementState = {
   currentPath: null,
@@ -33,10 +28,13 @@ const initialState: IManagementState = {
   ]
 }
 
-export function management(state: IManagementState = initialState, action: IManagementAction) {
+export function management(state: IManagementState = initialState, action: IAction): IManagementState {
 
   switch (action.type) {
     case setActiveControlPath.toString(): {
+      // Проверяем пришедший путь и делаем с ним преобразования
+      // Чтобы отдать его в качестве масива.
+      // Если приходит массив, то просто вернуть его
       const custonPath = typeof action.payload === 'string'
         ? action.payload
           .replaceAll('/', ' ')

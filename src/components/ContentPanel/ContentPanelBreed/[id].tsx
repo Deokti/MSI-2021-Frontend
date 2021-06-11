@@ -21,10 +21,13 @@ function ContentPanelBreed({ activeDog, setActiveControlPath }: ContentPanelBree
   const { push } = useHistory();
 
   const onLoadComponent = useCallback(() => {
+    // Проверяем, есть ли активная собака
     const sup = activeDog && activeDog.id;
 
+    // Если её нет, то переводм на страницу с breeds
     if (sup === null) return push(ROUTER_PATH.breeds);
 
+    // Устанавливем путь для REDUX, чтобы заем получить его в Navigation
     setActiveControlPath(`/${ROUTER_PATH.breeds}/${String(sup)}`);
   }, [activeDog, push, setActiveControlPath])
 

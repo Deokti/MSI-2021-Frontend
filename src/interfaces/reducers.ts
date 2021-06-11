@@ -1,5 +1,11 @@
 import { IResponseBreed, IResponseHistoryVoting, IResponseVoting } from "./response";
 
+// ACTIONS
+export interface IAction {
+  type: string
+  payload: any
+}
+
 // Data
 export interface IData {
   darkTheme: boolean
@@ -37,11 +43,21 @@ export interface IBreeds {
   sorted: 'ASC' | 'DESC'
 }
 
+export interface IGalleryType {
+  request: 'gif,jpg,png' | 'jpg,png' | 'gif',
+  value: 'Все' | 'Статические' | 'Анимационные'
+}
+
+export interface IGalleryOrder {
+  request: 'rand' | 'desc' | 'asc',
+  value: 'Случайно' | 'DESK' | 'ASC'
+}
+
 // Gallery
 export interface IGallery {
   data: null | Array<IResponseVoting>
-  order: 'Случайно' | 'Desc' | 'Asc'
-  type: 'Все' | 'Статические' | 'Анимационные'
+  order: IGalleryOrder
+  type: IGalleryType
   breed: string,
   limit: 5
   error: any
