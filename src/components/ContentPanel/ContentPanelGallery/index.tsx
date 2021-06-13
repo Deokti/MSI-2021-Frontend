@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, ReactElement } from 'react';
-import { AiOutlineHeart, AiOutlineReload, AiOutlineUpload } from 'react-icons/ai';
+import { AiOutlineReload, AiOutlineUpload } from 'react-icons/ai';
 import { connect } from 'react-redux';
 import { IData, IGallery, IGalleryOrder, IGalleryType } from '../../../interfaces/reducers';
 import { IStore } from '../../../interfaces/store';
