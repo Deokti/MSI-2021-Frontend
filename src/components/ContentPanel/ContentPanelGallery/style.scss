@@ -100,27 +100,3 @@
 
 	background-color: var(--select-input-gallery);
 }
-
-.content-panel-gallery__item:nth-child(2) {
-	width: 200px;
-	height: 300px;
-	grid-area: 1/1/span 2/1;
-}
-
-.content-panel-gallery__item:nth-child(5) {
-	width: 420px;
-	height: 300px;
-	grid-area: 2/2/span 2/span 2;
-}
-
-.content-panel-gallery__item:nth-child(7) {
-	width: 200px;
-	height: 300px;
-	grid-area: 4/3/span 2/4;
-}
-
-.content-panel-gallery__item:nth-child(10) {
-	width: 420px;
-	height: 300px;
-	grid-area: 5/1/span 2/span 2;
-}

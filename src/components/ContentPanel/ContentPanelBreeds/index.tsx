@@ -18,6 +18,7 @@ import { getSortedBreeds } from '../../../utils/get-sorted-breeds';
 import './style.scss';
 import '../../../assets/styles/scroll.scss';
 import { getBreedsAllDogsRequest } from '../../../actions/data';
+import { BreedsList } from '../../BreedsList';
 
 
 interface ContentPanelBreedsProps {
@@ -76,51 +77,30 @@ function ContentPanelBreeds({
           getValueByList={onSetLimit}
           margin="0 10px 0 0"
         />
-        <Button className={clsx('content-panel-breeds__sort', { 'is-active': breeds.sorted === 'DESC' })} onClick={() => setSortedBreeds("DESC")}>
+        <Button className={clsx('content-panel-breeds__sort', { 'is-active': breeds.sorted === 'DESC' })}
+          onClick={() => setSortedBreeds("DESC")}
+        >
           <AiOutlineSortDescending color="#8C8C8C" size={25} />
         </Button>
 
-        <Button className={clsx('content-panel-breeds__sort', { 'is-active': breeds.sorted === 'ASC' })} onClick={() => setSortedBreeds('ASC')}>
+        <Button className={clsx('content-panel-breeds__sort', { 'is-active': breeds.sorted === 'ASC' })}
+          onClick={() => setSortedBreeds('ASC')}
+        >
           <AiOutlineSortAscending color="#8C8C8C" size={25} />
         </Button>
       </header>
 
       {breeds.loading
         ? <LoadingSpinner />
-        : (
-          <ul className="content-panel-breeds__list scroll">
-            {
-              breeds.data && filterDogsByName(
-                breeds && breeds.filterDogName,
-                getSortedBreeds(breeds && breeds.sorted, breeds && breeds.data)
-              )
-                .slice(0, breeds.limit)
-                .map((breed) => {
-                  return (
-                    <li
-                      className="content-panel-breeds__item"
-                      key={breed.id}
-                    >
-                      <Link to={`/breeds/${breed.id}`} onClick={() => setBreedsActiveDog(breed)}>
-                        <div style={{ backgroundImage: `url('${breed.image.url}')` }}>
-                          <Button
-                            backgroundColor="#fff"
-                            borderRadius={10}
-                            width={180}
-                            color="#FF868E"
-                            fontSize={16}
-                            className="content-panel-breeds__button"
-                          >
-                            {translateNameDogs(breed.name)}
-                          </Button>
-                        </div>
-                      </Link>
-                    </li>
-                  )
-                })
-            }
-          </ul>
-        )}
+        : <BreedsList
+          onClick={(dog) => setBreedsActiveDog(dog as IResponseBreed)}
+          dogsList={
+            filterDogsByName(
+              breeds && breeds.filterDogName,
+              getSortedBreeds(breeds && breeds.sorted, (breeds.data || []))
+                .slice(0, breeds.limit))
+          } />
+      }
     </div>
   )
 }

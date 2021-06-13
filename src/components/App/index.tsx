@@ -3,9 +3,11 @@ import { useRef } from 'react';
 import { connect } from 'react-redux';
 import { IStore } from '../../interfaces/store';
 import { changeTheme } from '../../utils/change-theme';
-import { ContentPanel } from '../ContentPanel';
-import { ControlPanel } from '../ControlPanel';
+
 import { Row } from '../Row';
+import { ContentPanel } from '../../pages/ContentPanel';
+import { ControlPanel } from '../../pages/ControlPanel';
+
 import './app.scss';
 
 interface AppProsp {

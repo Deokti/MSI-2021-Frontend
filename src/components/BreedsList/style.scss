@@ -1,0 +1,117 @@
+.breeds-list {
+	display: grid;
+	overflow: auto;
+
+	max-height: 705px;
+	margin-top: 20px;
+	padding-right: 20px;
+
+	list-style: none;
+	grid-template-columns: repeat(3, minmax(140px, 200px));
+	gap: 20px 20px;
+}
+
+.breeds-list__button {
+	position: absolute;
+	bottom: 10px;
+	left: 50%;
+
+	min-height: 34px;
+	padding: 5px 30px;
+
+	transform: translate(-50%) translateY(150%);
+}
+
+.breeds-list__item {
+	position: relative;
+
+	display: block;
+	overflow: hidden;
+
+	min-width: 200px;
+	min-height: 140px;
+
+	cursor: pointer;
+
+	border-radius: 20px;
+
+	div {
+		width: 100%;
+		height: 100%;
+
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: cover;
+	}
+}
+
+.breeds-list__breeds {
+	&::before {
+		position: absolute;
+		top: 0;
+		left: 0;
+
+		width: 100%;
+		height: 100%;
+
+		content: '';
+		transform: translateX(100%);
+		pointer-events: none;
+
+		background-color: rgba(255, 134, 142, 0.6);
+	}
+
+	&:hover {
+		.breeds-list__button {
+			transform: translate(-50%) translateY(0);
+		}
+
+		&::before {
+			transform: translateX(0);
+		}
+	}
+}
+
+.breeds-list__item:nth-child(2) {
+	width: 200px;
+	height: 300px;
+	grid-area: 1/1/span 2/1;
+}
+
+.breeds-list__item:nth-child(5) {
+	width: 410px;
+	height: 300px;
+	grid-area: 2/2/span 2/span 2;
+}
+
+.breeds-list__item:nth-child(7) {
+	width: 200px;
+	height: 300px;
+	grid-area: 4/3/span 2/4;
+}
+
+.breeds-list__item:nth-child(10) {
+	width: 410px;
+	height: 300px;
+	grid-area: 5/1/span 2/span 2;
+}
+
+.breeds-list__favourite {
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	opacity: 0;
+
+	background-color: rgba(255, 134, 142, 0.6);
+}
+
+.breeds-list__gallery:hover {
+	.breeds-list__favourite {
+		opacity: 1;
+	}
+}
