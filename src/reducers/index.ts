@@ -4,5 +4,6 @@ import { management } from './management';
 import { voting } from './voting';
 import { breeds } from './breeds';
 import { gallery } from './gallery';
+import { votes } from './votes';
 
-export const reducers = combineReducers({ data, management, voting, breeds, gallery });
+export const reducers = combineReducers({ data, management, voting, breeds, gallery, votes });

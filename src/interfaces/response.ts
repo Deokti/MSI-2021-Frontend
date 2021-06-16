@@ -57,3 +57,21 @@ export interface IResponseBreed {
     metric: string
   }
 }
+
+// Ответ при обращении к истории голосования
+export interface IVote {
+  country_code: string
+  created_at: string
+  id: number
+  image_id: string
+  sub_id: null | string
+  value: number
+}
+
+export interface IFavorite {
+  id: number
+  user_id: string
+  image_id: string
+  sub_id: null | string
+  created_at: string
+}
