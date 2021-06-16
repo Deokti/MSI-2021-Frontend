@@ -1,31 +1,22 @@
 import React from 'react';
 import Button from '../Button';
 import { BiSearch } from 'react-icons/bi';
-import { AiOutlineHeart } from 'react-icons/ai';
-import { FiSmile } from 'react-icons/fi';
-import { CgSmileSad } from 'react-icons/cg';
+import { setActiveControlPath } from '../../actions/management';
 
 import './style.scss';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { ICONS } from './ICONS';
+import { IStore } from '../../interfaces/store';
+import { IManagementState } from '../../interfaces/reducers';
+import clsx from 'clsx';
 
+interface HeaderSearchProps {
+  setActiveControlPath: (path: string) => any
+  management: IManagementState
+}
 
-const sizeIcon: number = 25;
-const colorUcon: string = '#FF868E'
-const ICONS = [
-  {
-    id: 0,
-    children: <FiSmile size={sizeIcon} color={colorUcon} />,
-  },
-  {
-    id: 1,
-    children: <AiOutlineHeart size={sizeIcon} color={colorUcon} />,
-  },
-  {
-    id: 2,
-    children: <CgSmileSad size={sizeIcon} color={colorUcon} />,
-  },
-];
-
-export function HeaderSearch(): React.ReactElement {
+function HeaderSearch({ setActiveControlPath, management }: HeaderSearchProps): React.ReactElement<HeaderSearchProps> {
 
   return (
     <header className="header">
@@ -39,11 +30,15 @@ export function HeaderSearch(): React.ReactElement {
       <ul className="header__icons">
         {
           ICONS.map(icon => {
-            const { id } = icon;
+            const { id, route } = icon;
+
+            const active = (`/${management.currentPath && management.currentPath[0]}`) === route;
 
             return (
               <li className="header__icon" key={id}>
-                <Button {...icon} width={60} height={60} borderRadius={20} />
+                <Link to={route} onClick={() => setActiveControlPath(route)}>
+                  <Button {...icon} width={60} height={60} borderRadius={20} className={clsx({ 'active': active })} />
+                </Link>
               </li>
             );
           })
@@ -53,3 +48,7 @@ export function HeaderSearch(): React.ReactElement {
     </header>
   )
 }
+
+const mapStateToProps = ({ management }: IStore) => ({ management })
+
+export default connect(mapStateToProps, { setActiveControlPath })(HeaderSearch)

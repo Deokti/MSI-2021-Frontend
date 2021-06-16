@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, ReactElement } from 'react';
-import { AiOutlineHeart, AiOutlineReload, AiOutlineUpload } from 'react-icons/ai';
+import { AiOutlineReload, AiOutlineUpload } from 'react-icons/ai';
 import { connect } from 'react-redux';
 import { IData, IGallery, IGalleryOrder, IGalleryType } from '../../../interfaces/reducers';
 import { IStore } from '../../../interfaces/store';
@@ -11,6 +11,7 @@ import { getBreedsAllDogsRequest } from '../../../actions/data';
 import { ContentPanelGallerySelect } from './ContentPanelGallerySelect';
 import { LoadingSpinner } from '../../LoadingSpinner';
 import './style.scss';
+import { BreedsList } from '../../BreedsList';
 
 interface ContentPanelGalleryProps {
   gallery: IGallery
@@ -155,31 +156,10 @@ function ContentPanelGallery({ gallery, getGalleryRequest, data, getBreedsAllDog
               </Button>
             </div>
 
-            <ul className="content-panel-gallery__list scroll">
-              {
-                gallery.data && gallery.data.map((picture) => {
-                  return (
-                    <li
-                      className="content-panel-gallery__item"
-                      key={picture.id}
-                    >
-                      <div style={{ backgroundImage: `url('${picture.url}')` }} className="content-panel-gallery__image" />
-                      <div className="content-panel-gallery__favourite">
-                        <Button width={40} height={40} borderRadius={10} className="content-panel-gallery__button">
-                          <AiOutlineHeart color="#FF868E" size={25} />
-                        </Button>
-                      </div>
-                    </li>
-                  )
-                })
-              }
-            </ul>
+            <BreedsList dogsList={gallery.data} apperance="gallery" />
           </React.Fragment>
         )
       }
-
-
-
     </div>
   )
 }

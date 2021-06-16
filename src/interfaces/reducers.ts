@@ -1,4 +1,4 @@
-import { IResponseBreed, IResponseHistoryVoting, IResponseVoting } from "./response";
+import { IFavorite, IResponseBreed, IResponseHistoryVoting, IResponseVoting, IVote } from "./response";
 
 // ACTIONS
 export interface IAction {
@@ -62,4 +62,13 @@ export interface IGallery {
   limit: 5
   error: any
   loading: boolean
+}
+
+// Votes 
+export interface IVotes {
+  like: null | Array<IVote>
+  dislike: null | Array<IVote>
+  favorite: null | Array<IFavorite>
+  loading: boolean
+  error: any
 }

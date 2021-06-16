@@ -1,4 +1,4 @@
-import { IBreeds, IData, IGallery, IManagementState, IVoting } from "./reducers";
+import { IBreeds, IData, IGallery, IManagementState, IVotes, IVoting } from "./reducers";
 
 export interface IStore {
   data: IData
@@ -6,4 +6,5 @@ export interface IStore {
   voting: IVoting
   breeds: IBreeds
   gallery: IGallery
+  votes: IVotes
 }

@@ -1,9 +1,9 @@
 import React from 'react';
-import { Header } from './Header';
-import { Welcome } from './Welcome';
-import ControlPanelList from './ControlPanelList';
+import { Header } from './../components/ControlPanel/Header';
+import { Welcome } from './../components/ControlPanel/Welcome';
+import ControlPanelList from './../components/ControlPanel/ControlPanelList';
 
-import './style.scss';
+import '../components/ControlPanel/style.scss';
 
 export function ControlPanel(): React.ReactElement {
 

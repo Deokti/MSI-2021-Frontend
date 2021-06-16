@@ -57,7 +57,17 @@
 		margin-right: 10px;
 	}
 
-	& > button {
+	button {
+		display: block;
+
 		background-color: rgba(var(--white), var(--background-plug-opacity));
+	}
+}
+
+.header__icon button.active {
+	background-color: #FF868E;
+
+	svg {
+		color: #FFF !important;
 	}
 }

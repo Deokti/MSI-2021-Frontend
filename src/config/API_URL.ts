@@ -1,4 +1,6 @@
 export const API_URL = {
+  // Получение изображения при запрашивашии исходя из image_id
+  IMAGES_SEARCH_ID: 'https://api.thedogapi.com/v1/images',
 
   // Получение изображений при голосовании и для изображений в гелереи
   IMAGES_SEARCH_URL: 'https://api.thedogapi.com/v1/images/search',
