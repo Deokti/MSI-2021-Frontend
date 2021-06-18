@@ -31,8 +31,6 @@
 	min-width: 200px;
 	min-height: 140px;
 
-	cursor: pointer;
-
 	border-radius: 20px;
 
 	div {
@@ -43,6 +41,11 @@
 		background-position: center;
 		background-size: cover;
 	}
+}
+
+.breeds-list__breeds,
+.breeds-list__gallery {
+	cursor: pointer;
 }
 
 .breeds-list__breeds {

@@ -6,10 +6,12 @@ export function translateNavigation(navigation: string) {
   // преобразовывая в нечто похожее на путь из роутера, например /votes или /breeds
   const custonNavigation = `/${navigation}`;
 
-  if (custonNavigation === ROUTER_PATH.votes) return 'Голосование'.toUpperCase();
-  if (custonNavigation === ROUTER_PATH.breeds) return 'Породы'.toUpperCase();
-  if (custonNavigation === ROUTER_PATH.gallery) return 'Галерея'.toUpperCase();
-  if (custonNavigation === ROUTER_PATH.likes) return 'Понравилось'.toUpperCase();
-
+  switch (custonNavigation) {
+    case ROUTER_PATH.votes: return 'Голосование'.toUpperCase();
+    case ROUTER_PATH.breeds: return 'Породы'.toUpperCase();
+    case ROUTER_PATH.gallery: return 'Галерея'.toUpperCase();
+    case ROUTER_PATH.likes: return 'Понравилось'.toUpperCase();
+    case ROUTER_PATH.dislikes: return 'Не понравилось'.toUpperCase();
+  }
   return navigation;
 }
