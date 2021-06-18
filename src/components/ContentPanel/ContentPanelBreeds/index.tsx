@@ -93,6 +93,7 @@ function ContentPanelBreeds({
       {breeds.loading
         ? <LoadingSpinner />
         : <BreedsList
+          apperance="breeds"
           onClick={(dog) => setBreedsActiveDog(dog as IResponseBreed)}
           dogsList={
             filterDogsByName(

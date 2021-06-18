@@ -9,7 +9,8 @@ import HeaderSearch from '../components/HeaderSearch';
 import ContentPanelGallery from '../components/ContentPanel/ContentPanelGallery';
 import { BreedInfo } from './BreedInfo';
 import '../components/ContentPanel/style.scss';
-import LikesPage from './Likes';
+import LikesPage from './LikesPage';
+import DislikesPage from './DislikesPage';
 
 export function ContentPanel() {
   const { pathname } = useLocation();
@@ -24,6 +25,7 @@ export function ContentPanel() {
         <Route path={ROUTER_PATH.breeds} exact component={ContentPanelBreeds} />
         <Route path={ROUTER_PATH.gallery} exact component={ContentPanelGallery} />
         <Route path={`${ROUTER_PATH.likes}`} exact component={LikesPage} />
+        <Route path={`${ROUTER_PATH.dislikes}`} exact component={DislikesPage} />
 
         <Route path={`${ROUTER_PATH.breeds}/:id`} exact component={BreedInfo} />
 
