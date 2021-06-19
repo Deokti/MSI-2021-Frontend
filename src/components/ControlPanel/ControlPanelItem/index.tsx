@@ -3,15 +3,11 @@ import clsx from 'clsx';
 import Button from '../../Button';
 
 import './style.scss';
+import { ControlPanelItemProps } from './ControlPanelItem.props';
 
-interface ManagementItemProps {
-  backgroundColor: string
-  text: string
-  image: string
-  active: boolean
-}
 
-export function ControlPanelItem({ backgroundColor, text, image, active }: ManagementItemProps): ReactElement<ManagementItemProps> {
+
+export function ControlPanelItem({ backgroundColor, text, image, active }: ControlPanelItemProps): ReactElement<ControlPanelItemProps> {
   return (
     <span className="control-panel-item">
       <span className="control-panel-item__image" style={{ backgroundColor }}>

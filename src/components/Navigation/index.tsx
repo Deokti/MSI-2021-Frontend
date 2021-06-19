@@ -12,13 +12,11 @@ import { translateNavigation } from '../../utils/translate-navagation';
 
 import './style.scss';
 import clsx from 'clsx';
+import { NavigationProps } from './Navigation.props';
 
-interface NavigationProsp {
-  currentPath: null | Array<string>
-  setActiveControlPath: (path: string) => any
-}
 
-function Navigation({ currentPath, setActiveControlPath }: NavigationProsp): ReactElement<NavigationProsp> {
+
+function Navigation({ currentPath, setActiveControlPath }: NavigationProps): ReactElement<NavigationProps> {
   const { push } = useHistory();
 
   function onClickHomePage(event: React.MouseEvent<HTMLAnchorElement>) {

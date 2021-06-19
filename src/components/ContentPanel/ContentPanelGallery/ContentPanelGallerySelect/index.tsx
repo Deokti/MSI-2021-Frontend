@@ -1,5 +1,6 @@
 import React, { ReactElement } from "react";
-import { SelectInput, SelectInputProps } from "../../../SelectInput";
+import { SelectInput } from "../../../SelectInput";
+import { SelectInputProps } from "../../../SelectInput/SelectInput.props";
 
 import './style.scss';
 

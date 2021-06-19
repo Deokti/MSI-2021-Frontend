@@ -8,7 +8,7 @@ import clsx from 'clsx';
 import Button from '../Button';
 import { translateNameDogs } from '../../utils/translate-name-dogs';
 import { AiOutlineHeart } from 'react-icons/ai';
-import { BreedsListBreedsProps, BreedsListDefaultProps, BreedsListGalleryProps, BreedsListProps } from './BreedsList.interfaces';
+import { BreedsListBreedsProps, BreedsListDefaultProps, BreedsListGalleryProps, BreedsListProps } from './BreedsList.props';
 import { IVoteImage } from '../../interfaces/other';
 
 

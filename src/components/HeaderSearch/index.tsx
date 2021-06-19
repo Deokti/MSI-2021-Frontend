@@ -8,13 +8,9 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { ICONS } from './ICONS';
 import { IStore } from '../../interfaces/store';
-import { IManagementState } from '../../interfaces/reducers';
 import clsx from 'clsx';
+import { HeaderSearchProps } from './HeaderSearch.props';
 
-interface HeaderSearchProps {
-  setActiveControlPath: (path: string) => any
-  management: IManagementState
-}
 
 function HeaderSearch({ setActiveControlPath, management }: HeaderSearchProps): React.ReactElement<HeaderSearchProps> {
 

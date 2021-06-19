@@ -3,13 +3,10 @@ import { connect } from 'react-redux';
 import Navigation from '../../Navigation';
 import { getBreedsRequest, setBreedsActiveDog, setBreedsLimit, setFilterDogName, setSortedBreeds } from '../../../actions/breeds';
 import { IStore } from '../../../interfaces/store';
-import { IBreeds, IData } from '../../../interfaces/reducers';
 import { LoadingSpinner } from '../../LoadingSpinner';
 import Button from '../../Button';
 import { IResponseBreed } from '../../../interfaces/response';
-import { Link } from 'react-router-dom';
 import { SelectInput } from '../../SelectInput';
-import { translateNameDogs } from '../../../utils/translate-name-dogs';
 import { AiOutlineSortAscending, AiOutlineSortDescending } from 'react-icons/ai';
 import { filterDogsByName } from '../../../utils/filter-dogs-by-name';
 import clsx from 'clsx';
@@ -19,18 +16,8 @@ import './style.scss';
 import '../../../assets/styles/scroll.scss';
 import { getBreedsAllDogsRequest } from '../../../actions/data';
 import { BreedsList } from '../../BreedsList';
+import { ContentPanelBreedsProps } from './ContentPanelBreeds.props';
 
-
-interface ContentPanelBreedsProps {
-  getBreedsRequest: () => any
-  setBreedsActiveDog: (dog: IResponseBreed) => any
-  breeds: IBreeds
-  data: IData
-  setBreedsLimit: (limit: number) => any
-  setFilterDogName: (dogName: string) => any
-  setSortedBreeds: (sort: 'ASC' | 'DESC') => any
-  getBreedsAllDogsRequest: () => any
-}
 
 function ContentPanelBreeds({
   getBreedsRequest,

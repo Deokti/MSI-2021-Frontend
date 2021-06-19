@@ -1,21 +1,11 @@
 import React from 'react';
-
-type TRow = React.ReactElement | React.FC | JSX.Element
-
-interface RowProps {
-  left: TRow
-  right: TRow
-  display?: string
-  justifyContent?: 'initial' | 'space-between' | 'space-around' | 'space-evenly'
-  marginLeft?: number
-  marginRight?: number
-}
+import { RowProps, TRow } from './Row.props';
 
 export function Row(
   { left, right,
     display = 'flex',
     justifyContent = 'space-between',
-    marginLeft, marginRight
+    marginLeft = 0, marginRight = 0
   }: RowProps): React.ReactElement<RowProps> {
 
   function processСomponent(Component: TRow) {
@@ -25,12 +15,7 @@ export function Row(
   }
 
   return (
-    <div style={{
-      display,
-      justifyContent,
-      marginLeft,
-      marginRight
-    }}>
+    <div style={{ display, justifyContent, marginLeft, marginRight }}>
       {processСomponent(left)}
       {processСomponent(right)}
     </div>

@@ -1,11 +1,7 @@
 import React from 'react';
 
 import './style.scss';
-
-interface WelcomeProps {
-  title: string
-  subtitle: string
-}
+import { WelcomeProps } from './Welcome.props';
 
 export function Welcome({ title, subtitle }: WelcomeProps): React.ReactElement<WelcomeProps> {
 

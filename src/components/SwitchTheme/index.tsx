@@ -7,12 +7,9 @@ import { getDarkTheme, setDarkTheme } from '../../actions/data';
 import { connect } from 'react-redux';
 import { setThemeLocalStorage } from '../../utils/theme-local-storage';
 import './switch-theme.scss';
+import { SwitchThemeProps } from './SwitchTheme.props';
 
-interface SwitchThemeProps {
-  darkTheme: boolean
-  setDarkTheme: (value: boolean) => void;
-  getDarkTheme: () => any;
-}
+
 
 function SwitchTheme({ darkTheme, setDarkTheme, getDarkTheme }: SwitchThemeProps): React.ReactElement<SwitchThemeProps> {
 

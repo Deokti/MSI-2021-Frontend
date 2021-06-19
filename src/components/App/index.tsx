@@ -9,10 +9,8 @@ import { ContentPanel } from '../../pages/ContentPanel';
 import { ControlPanel } from '../../pages/ControlPanel';
 
 import './app.scss';
+import { AppProsp } from './App.props';
 
-interface AppProsp {
-  darkTheme: boolean
-}
 
 function App({ darkTheme }: AppProsp): ReactElement<AppProsp> {
   const appRef = useRef<HTMLDivElement>(null)

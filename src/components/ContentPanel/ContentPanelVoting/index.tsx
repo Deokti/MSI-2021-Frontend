@@ -2,7 +2,6 @@ import React, { ReactElement, useCallback, useEffect } from 'react';
 import Button from '../../Button';
 import { connect } from 'react-redux';
 import { IStore } from '../../../interfaces/store';
-import { IVoting } from '../../../interfaces/reducers';
 
 import { AiOutlineHeart } from "react-icons/ai";
 import { CgSmileSad } from "react-icons/cg";
@@ -13,14 +12,8 @@ import { getVotingRequest, getVotingHistory, sendVotingRequest, sendFavoriteRequ
 import { LoadingSpinner } from '../../LoadingSpinner';
 import './style.scss';
 import '../../../assets/styles/scroll.scss';
+import { ContentPanelVotingProps } from './ContentPanelVoting.props';
 
-interface ContentPanelVotingProps {
-  getVotingRequest: () => any
-  getVotingHistory: () => any
-  sendVotingRequest: ({ image_id, vote }: { image_id: string, vote: number }) => any
-  sendFavoriteRequest: (image_id: string) => any
-  voting: IVoting
-}
 
 function ContentPanelVoting(
   { getVotingRequest, getVotingHistory, sendVotingRequest, sendFavoriteRequest, voting

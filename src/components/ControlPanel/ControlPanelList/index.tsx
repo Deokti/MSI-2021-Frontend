@@ -2,16 +2,12 @@ import React, { ReactElement } from 'react';
 import { ControlPanelItem } from '../ControlPanelItem';
 import { connect } from 'react-redux';
 import { IStore } from '../../../interfaces/store';
-import { IManagementState } from '../../../interfaces/reducers';
 import { setActiveControlPath } from '../../../actions/management';
 import { Link, useHistory } from 'react-router-dom';
 import './style.scss';
 import { useEffect } from 'react';
+import { ControlPanelListProps } from './ControlPanelList.props';
 
-interface ControlPanelListProps {
-  management: IManagementState
-  setActiveControlPath: (text: string) => void
-}
 
 function ControlPanelList({ management, setActiveControlPath }: ControlPanelListProps): ReactElement<ControlPanelListProps> {
   const { location } = useHistory();

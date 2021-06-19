@@ -25,8 +25,8 @@ export interface ButtonProps {
 function Button({
   type = 'button',
   children = 'Нажми на меня',
-  width,
-  height,
+  width = 100,
+  height = 100,
   border = 'none',
   cursor = 'pointer',
   backgroundColor,
